@@ -3,17 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Seiyaa Studio</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
 <style>
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Inter', sans-serif;
   background: #0a0a0a;
   color: white;
 }
@@ -21,64 +29,95 @@ body {
 /* NAV */
 nav {
   position: fixed;
-  top: 0;
   width: 100%;
-  padding: 20px 40px;
+  padding: 25px 60px;
   display: flex;
   justify-content: space-between;
   z-index: 1000;
-  background: rgba(0,0,0,0.3);
-  backdrop-filter: blur(10px);
+  transition: 0.3s;
+}
+
+nav.scrolled {
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(12px);
 }
 
 nav a {
   color: white;
-  margin-left: 20px;
+  margin-left: 30px;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 13px;
+  letter-spacing: 1px;
 }
 
 /* HERO */
 .hero {
   height: 100vh;
-  background: url('images/_DSC8255.jpg') center/cover no-repeat;
+  background: 
+    linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.9)),
+    url('images/_DSC8255.jpg') center/cover no-repeat;
   display: flex;
   align-items: flex-end;
-  padding: 60px;
+  padding: 80px;
 }
 
 .hero h1 {
-  font-size: 60px;
+  font-family: 'Playfair Display', serif;
+  font-size: 72px;
+  line-height: 1.1;
+}
+
+.hero p {
+  margin-top: 10px;
+  color: #ccc;
+  font-size: 14px;
 }
 
 /* SECTION */
 .section {
-  padding: 80px 40px;
+  padding: 120px 80px;
 }
 
 .section h2 {
-  margin-bottom: 20px;
-  font-size: 24px;
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  margin-bottom: 40px;
 }
 
 /* GRID */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
 }
 
 .grid img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.4s ease;
+  filter: brightness(0.95);
 }
 
 .grid img:hover {
   transform: scale(1.03);
+  filter: brightness(1.1);
 }
 
-/* FULLSCREEN VIEW */
+/* FADE IN */
+.fade {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease;
+}
+
+.fade.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* LIGHTBOX */
 .lightbox {
   position: fixed;
   top: 0;
@@ -97,12 +136,20 @@ nav a {
   max-height: 90%;
 }
 
+/* FOOTER */
+.footer {
+  padding: 80px;
+  text-align: center;
+  color: #777;
+  font-size: 13px;
+}
+
 </style>
 </head>
 
 <body>
 
-<nav>
+<nav id="nav">
   <div><b>SEIYAA STUDIO</b></div>
   <div>
     <a href="#">Home</a>
@@ -113,12 +160,15 @@ nav a {
 
 <!-- HERO -->
 <section class="hero">
-  <h1>VISUAL STORYTELLER</h1>
+  <div>
+    <h1>Visual Storytelling</h1>
+    <p>Cinematic Photography • Editorial • Street</p>
+  </div>
 </section>
 
 <!-- MARKET -->
-<section class="section" id="market">
-  <h2>MARKET SERIES</h2>
+<section class="section fade" id="market">
+  <h2>Market Series</h2>
   <div class="grid">
     <img src="images/_DSC8261.jpg">
     <img src="images/_DSC8267.jpg">
@@ -128,8 +178,8 @@ nav a {
 </section>
 
 <!-- STREET -->
-<section class="section" id="street">
-  <h2>STREET / GAS STATION</h2>
+<section class="section fade" id="street">
+  <h2>Street / Gas Station</h2>
   <div class="grid">
     <img src="images/_DSC8303.jpg">
     <img src="images/_DSC8330.jpg">
@@ -140,10 +190,35 @@ nav a {
 
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
-  <img src="" id="lightbox-img">
+  <img id="lightbox-img">
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  © Seiyaa Studio — Visual Storytelling
 </div>
 
 <script>
+
+/* NAV SCROLL EFFECT */
+window.addEventListener("scroll", () => {
+  document.getElementById("nav").classList.toggle("scrolled", window.scrollY > 50);
+});
+
+/* FADE IN ON SCROLL */
+const faders = document.querySelectorAll(".fade");
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add("show");
+    }
+  });
+});
+
+faders.forEach(el => observer.observe(el));
+
+/* LIGHTBOX */
 const images = document.querySelectorAll(".grid img");
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightbox-img");
@@ -158,6 +233,7 @@ images.forEach(img => {
 lightbox.addEventListener("click", () => {
   lightbox.style.display = "none";
 });
+
 </script>
 
 </body>
