@@ -16,7 +16,7 @@ font-family:sans-serif;
 overflow-x:hidden;
 }
 
-/* SECTION BASE */
+/* SECTION */
 .section {
 height:100vh;
 position:relative;
@@ -37,32 +37,37 @@ background:rgba(0,0,0,0.5);
 }
 
 .hero-text {
-position:relative;
 z-index:2;
 text-align:center;
 }
 
 .hero-text h1 {
-font-size:80px;
-letter-spacing:10px;
+font-size:90px;
+letter-spacing:12px;
 }
 
 .hero-text p {
-letter-spacing:4px;
+letter-spacing:5px;
 color:#aaa;
 }
 
-/* BIG TEXT OVERLAY */
+/* BIG TEXT */
 .big-text {
 position:absolute;
-font-size:120px;
+font-size:140px;
+opacity:0.06;
 font-weight:bold;
-opacity:0.08;
 }
 
-/* IMAGE SECTION */
-.image-section {
+/* STORY */
+.story {
 background:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee') center/cover no-repeat;
+}
+
+.text-box {
+max-width:600px;
+padding:40px;
+z-index:2;
 }
 
 /* GALLERY */
@@ -74,19 +79,38 @@ padding:60px;
 }
 
 .gallery img {
-height:400px;
+height:420px;
 border-radius:12px;
-transition:0.5s;
+cursor:pointer;
+transition:0.4s;
 }
 
 .gallery img:hover {
 transform:scale(1.08);
 }
 
-/* TEXT */
-.text-block {
-max-width:600px;
-padding:40px;
+/* LIGHTBOX */
+.lightbox {
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.95);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:999;
+}
+
+.lightbox img {
+max-width:90%;
+max-height:90%;
+}
+
+/* CTA */
+.cta {
+text-align:center;
 }
 
 </style>
@@ -102,18 +126,17 @@ padding:40px;
 <h1>SEIYAA</h1>
 <p>VISUAL STORYTELLER</p>
 </div>
-
 </section>
 
-<!-- STORY SECTION -->
-<section class="section image-section">
+<!-- STORY -->
+<section class="section story">
 <div class="big-text">VISION</div>
 
-<div class="text-block">
+<div class="text-box">
 <h2>I build atmosphere.</h2>
 <p style="color:#bbb;">
 Every frame is intentional. Every light has purpose.
-I create visuals that feel cinematic and alive.
+This is not photography. This is storytelling.
 </p>
 </div>
 </section>
@@ -121,20 +144,36 @@ I create visuals that feel cinematic and alive.
 <!-- GALLERY -->
 <section>
 <div class="gallery">
-<img src="https://images.unsplash.com/photo-1495567720989-cebdbdd97913">
-<img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7">
-<img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e">
-<img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
+<img src="https://images.unsplash.com/photo-1495567720989-cebdbdd97913" onclick="openLightbox(this)">
+<img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7" onclick="openLightbox(this)">
+<img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" onclick="openLightbox(this)">
+<img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee" onclick="openLightbox(this)">
 </div>
 </section>
 
 <!-- CTA -->
-<section class="section" style="text-align:center;">
+<section class="section cta">
 <div>
 <h2 style="font-size:40px;">LET’S WORK</h2>
 <p style="color:#777;">DM me on Instagram</p>
 </div>
 </section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+<img id="lightbox-img">
+</div>
+
+<script>
+function openLightbox(img) {
+document.getElementById("lightbox").style.display = "flex";
+document.getElementById("lightbox-img").src = img.src;
+}
+
+function closeLightbox() {
+document.getElementById("lightbox").style.display = "none";
+}
+</script>
 
 </body>
 </html>
