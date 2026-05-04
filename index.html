@@ -8,271 +8,205 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-
-/* RESET */
-* { margin:0; padding:0; box-sizing:border-box; }
-
-body {
+*{margin:0;padding:0;box-sizing:border-box}
+body{
   background:#050505;
   color:#fff;
-  font-family:'Inter', sans-serif;
-  overflow-x:hidden;
+  font-family:'Inter',sans-serif;
 }
 
 /* NAV */
-nav {
+.nav{
   position:fixed;
+  top:0;
   width:100%;
-  padding:25px 80px;
+  padding:25px 8%;
   display:flex;
   justify-content:space-between;
-  z-index:100;
-  backdrop-filter:blur(10px);
+  z-index:1000;
+  background:linear-gradient(to bottom, rgba(0,0,0,.7), transparent);
 }
-
-nav h1 {
-  font-family:'Playfair Display', serif;
+.logo{
+  font-family:'Playfair Display',serif;
+  font-size:22px;
   letter-spacing:3px;
-  font-size:18px;
 }
-
-nav a {
-  margin-left:30px;
+.nav a{
+  color:#aaa;
   text-decoration:none;
-  color:white;
-  opacity:.6;
-  transition:.3s;
+  margin-left:30px;
 }
-
-nav a:hover { opacity:1; }
+.nav a:hover{color:#fff}
 
 /* HERO */
-.hero {
+.hero{
   height:100vh;
   position:relative;
-  display:flex;
-  align-items:center;
-  padding:0 100px;
   overflow:hidden;
 }
-
-.hero-slide {
+.hero img{
   position:absolute;
-  inset:0;
-  background-size:cover;
-  background-position:center;
+  width:100%;
+  height:100%;
+  object-fit:cover;
   opacity:0;
   transition:opacity 2s ease;
-  transform:scale(1.05);
 }
-
-.hero-slide.active {
-  opacity:1;
-}
-
-.hero::after {
-  content:"";
+.hero img.active{opacity:1}
+.overlay{
   position:absolute;
-  inset:0;
-  background:linear-gradient(to top,#050505 5%,transparent 60%);
+  width:100%;
+  height:100%;
+  background:linear-gradient(to bottom, rgba(0,0,0,.2), rgba(0,0,0,.9));
 }
-
-.hero-content {
-  position:relative;
-  z-index:2;
-  max-width:700px;
+.hero-content{
+  position:absolute;
+  bottom:120px;
+  left:8%;
 }
-
-.hero h2 {
-  font-family:'Playfair Display', serif;
-  font-size:80px;
-  line-height:1.1;
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:64px;
 }
-
-.hero p {
+.hero-buttons{
   margin-top:20px;
-  opacity:.7;
 }
-
-/* BUTTONS */
-.hero-buttons {
-  margin-top:30px;
-}
-
-.hero-buttons a {
+.hero-buttons a{
   display:inline-block;
-  padding:14px 28px;
-  margin-right:12px;
-  border:1px solid rgba(255,255,255,.4);
+  padding:12px 28px;
+  margin-right:15px;
+  border:1px solid #fff;
+  color:#fff;
   text-decoration:none;
-  color:white;
-  transition:.4s;
+  transition:.3s;
+}
+.hero-buttons a:hover{
+  background:#fff;
+  color:#000;
 }
 
-.hero-buttons a:hover {
-  background:white;
-  color:black;
+/* SECTIONS */
+.section{
+  padding:120px 8%;
 }
-
-/* SECTION */
-.section {
-  padding:160px 100px;
-}
-
-.section h2 {
-  font-family:'Playfair Display', serif;
-  font-size:36px;
-  margin-bottom:60px;
+.section h2{
+  font-family:'Playfair Display',serif;
+  font-size:34px;
+  margin-bottom:40px;
 }
 
 /* GRID */
-.grid {
+.grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:40px;
+  gap:30px;
 }
-
-.card {
-  position:relative;
+.card{
   overflow:hidden;
-  border-radius:18px;
+  border-radius:14px;
 }
-
-.card img {
+.card img{
   width:100%;
-  height:420px;
+  height:100%;
   object-fit:cover;
-  transition:1s;
-}
-
-/* PREMIUM HOVER */
-.card:hover img {
-  transform:scale(1.08);
-}
-
-.card::after {
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(to top, rgba(0,0,0,.5), transparent);
-  opacity:0;
   transition:.5s;
+  cursor:pointer;
 }
-
-.card:hover::after {
-  opacity:1;
-}
-
-/* FADE ANIMATION */
-.fade {
-  opacity:0;
-  transform:translateY(40px);
-  transition:1s;
-}
-
-.fade.show {
-  opacity:1;
-  transform:translateY(0);
+.card:hover img{
+  transform:scale(1.05);
 }
 
 /* LIGHTBOX */
-.lightbox {
+.lightbox{
   position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.95);
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,.95);
   display:none;
-  align-items:center;
   justify-content:center;
-  z-index:200;
+  align-items:center;
+  z-index:2000;
 }
-
-.lightbox img {
+.lightbox img{
   max-width:90%;
   max-height:90%;
 }
 
-/* CTA */
-.cta {
-  text-align:center;
-  padding:160px 20px;
+/* FADE */
+.fade{
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s;
 }
-
-.cta a {
-  padding:16px 32px;
-  border:1px solid white;
-  text-decoration:none;
-  color:white;
+.fade.show{
+  opacity:1;
+  transform:translateY(0);
 }
-
-.cta a:hover {
-  background:white;
-  color:black;
-}
-
 </style>
 </head>
 
 <body>
 
-<nav>
-  <h1>SEIYAA STUDIO</h1>
+<!-- NAV -->
+<div class="nav">
+  <div class="logo">SEIYAA STUDIO</div>
   <div>
     <a href="#market">Market</a>
     <a href="#street">Street</a>
   </div>
-</nav>
+</div>
 
 <!-- HERO -->
 <section class="hero">
-
-  <!-- MAKE THIS FIRST IMAGE YOUR APPLE HERO -->
-  <div class="hero-slide active" style="background-image:url('images/_DSC8261.jpg')"></div>
-  <div class="hero-slide" style="background-image:url('images/_DSC8255.jpg')"></div>
-  <div class="hero-slide" style="background-image:url('images/_DSC8303.jpg')"></div>
+  <img src="images/_DSC8255.jpg" class="active">
+  <img src="images/_DSC8261.jpg">
+  <img src="images/_DSC8267.jpg">
+  <div class="overlay"></div>
 
   <div class="hero-content">
-    <h2>Cinematic Photography</h2>
-    <p>Visual storytelling with a luxury editorial feel.</p>
-
+    <h1>Cinematic Photography</h1>
     <div class="hero-buttons">
       <a href="#market">View Work</a>
-      <a href="#">Book Now</a>
+      <a href="https://instagram.com/YOUR_USERNAME" target="_blank">Instagram</a>
     </div>
   </div>
-
 </section>
 
 <!-- MARKET -->
 <section class="section fade" id="market">
   <h2>Market Series</h2>
   <div class="grid">
-
-    <!-- PURE MARKET ONLY -->
     <div class="card"><img src="images/_DSC8255.jpg"></div>
     <div class="card"><img src="images/_DSC8261.jpg"></div>
     <div class="card"><img src="images/_DSC8267.jpg"></div>
     <div class="card"><img src="images/_DSC7867.jpg"></div>
+  </div>
+</section>
 
+<!-- URBAN -->
+<section class="section fade">
+  <h2>Urban Nights</h2>
+  <div class="grid">
+    <div class="card"><img src="images/_DSC7665.jpg"></div>
+    <div class="card"><img src="images/_DSC7676.jpg"></div>
+    <div class="card"><img src="images/_DSC7679.jpg"></div>
+    <div class="card"><img src="images/_DSC7685.jpg"></div>
+    <div class="card"><img src="images/_DSC7694.jpg"></div>
   </div>
 </section>
 
 <!-- STREET -->
 <section class="section fade" id="street">
-  <h2>Street / Gas Station</h2>
+  <h2>Street Rebel</h2>
   <div class="grid">
-
-    <!-- PURE STREET ONLY -->
-    <div class="card"><img src="images/_DSC8303.jpg"></div>
-    <div class="card"><img src="images/_DSC8330.jpg"></div>
-    <div class="card"><img src="images/_DSC7851.jpg"></div>
-    <div class="card"><img src="images/_DSC7860.jpg"></div>
-
+    <div class="card"><img src="images/_DSC8091.jpg"></div>
+    <div class="card"><img src="images/_DSC8092.jpg"></div>
+    <div class="card"><img src="images/_DSC8093.jpg"></div>
+    <div class="card"><img src="images/_DSC8105.jpg"></div>
+    <div class="card"><img src="images/_DSC8112.jpg"></div>
   </div>
-</section>
-
-<!-- CTA -->
-<section class="cta">
-  <a href="#">Start a Project</a>
 </section>
 
 <!-- LIGHTBOX -->
@@ -282,44 +216,41 @@ nav a:hover { opacity:1; }
 
 <script>
 
-/* HERO AUTO */
-const slides = document.querySelectorAll(".hero-slide");
-let current = 0;
+/* HERO AUTO SLIDE */
+let slides=document.querySelectorAll(".hero img");
+let i=0;
+setInterval(()=>{
+  slides[i].classList.remove("active");
+  i=(i+1)%slides.length;
+  slides[i].classList.add("active");
+},4000);
 
-setInterval(() => {
-  slides[current].classList.remove("active");
-  current = (current + 1) % slides.length;
-  slides[current].classList.add("active");
-}, 5000);
-
-/* SCROLL FADE */
-const faders = document.querySelectorAll(".fade");
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      entry.target.classList.add("show");
+/* FADE ON SCROLL */
+const faders=document.querySelectorAll(".fade");
+window.addEventListener("scroll",()=>{
+  faders.forEach(el=>{
+    const top=el.getBoundingClientRect().top;
+    if(top<window.innerHeight-100){
+      el.classList.add("show");
     }
   });
 });
 
-faders.forEach(el => observer.observe(el));
-
 /* LIGHTBOX */
-const imgs = document.querySelectorAll(".card img");
-const lightbox = document.getElementById("lightbox");
-const lightboxImg = document.getElementById("lightbox-img");
+const images=document.querySelectorAll(".card img");
+const lightbox=document.getElementById("lightbox");
+const lightboxImg=document.getElementById("lightbox-img");
 
-imgs.forEach(img => {
-  img.addEventListener("click", () => {
-    lightbox.style.display = "flex";
-    lightboxImg.src = img.src;
-  });
+images.forEach(img=>{
+  img.onclick=()=>{
+    lightbox.style.display="flex";
+    lightboxImg.src=img.src;
+  }
 });
 
-lightbox.addEventListener("click", () => {
-  lightbox.style.display = "none";
-});
+lightbox.onclick=()=>{
+  lightbox.style.display="none";
+};
 
 </script>
 
