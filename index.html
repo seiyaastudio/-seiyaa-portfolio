@@ -3,88 +3,108 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Seiyaa Studio</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#050505;color:#fff;font-family:'Inter',sans-serif}
+body{background:#050505;color:#fff;font-family:'Inter'}
 
-/* NAV */
 .nav{
-  position:fixed;top:0;width:100%;
-  padding:25px 8%;display:flex;
-  justify-content:space-between;z-index:1000;
-  background:linear-gradient(to bottom, rgba(0,0,0,.7), transparent);
+position:fixed;width:100%;padding:25px 8%;
+display:flex;justify-content:space-between;
+z-index:1000;
+background:linear-gradient(to bottom,rgba(0,0,0,.7),transparent);
 }
+
 .logo{font-family:'Playfair Display';letter-spacing:3px}
-.nav a{color:#aaa;text-decoration:none;margin-left:30px}
+
+.nav a{
+color:#aaa;text-decoration:none;margin-left:30px;
+transition:.3s;
+}
 .nav a:hover{color:#fff}
 
 /* HERO */
-.hero{height:100vh;position:relative;overflow:hidden}
+.hero{
+height:100vh;position:relative;overflow:hidden;
+}
 .hero img{
-  position:absolute;width:100%;height:100%;
-  object-fit:cover;opacity:0;
-  transition:opacity 2s ease;
+position:absolute;width:100%;height:100%;
+object-fit:cover;opacity:0;
+transition:opacity 2s ease;
 }
 .hero img.active{opacity:1}
+
 .overlay{
-  position:absolute;width:100%;height:100%;
-  background:linear-gradient(to bottom, rgba(0,0,0,.2), rgba(0,0,0,.9));
+position:absolute;width:100%;height:100%;
+background:linear-gradient(to bottom,rgba(0,0,0,.2),rgba(0,0,0,.95));
 }
+
 .hero-content{
-  position:absolute;bottom:120px;left:8%;
+position:absolute;bottom:120px;left:8%;
 }
+
 .hero h1{
-  font-family:'Playfair Display';
-  font-size:64px;
+font-family:'Playfair Display';
+font-size:64px;
 }
-.hero-buttons{margin-top:20px}
+
 .hero-buttons a{
-  display:inline-block;padding:12px 28px;
-  margin-right:15px;border:1px solid #fff;
-  color:#fff;text-decoration:none;transition:.3s;
+display:inline-block;margin-right:15px;
+padding:12px 28px;border:1px solid #fff;
+text-decoration:none;color:#fff;
+transition:.3s;
 }
-.hero-buttons a:hover{background:#fff;color:#000}
+.hero-buttons a:hover{
+background:#fff;color:#000;
+}
 
 /* SECTION */
 .section{padding:120px 8%}
+
 .section h2{
-  font-family:'Playfair Display';
-  font-size:34px;margin-bottom:40px;
+font-family:'Playfair Display';
+font-size:34px;margin-bottom:40px;
 }
 
 /* GRID */
 .grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:30px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:30px;
 }
-.card{overflow:hidden;border-radius:14px}
+
+.card{
+overflow:hidden;border-radius:14px;
+}
+
 .card img{
-  width:100%;height:100%;
-  object-fit:cover;cursor:pointer;
-  transition:.5s;
+width:100%;height:100%;
+object-fit:cover;cursor:pointer;
+transition:.5s;
 }
-.card:hover img{transform:scale(1.05)}
+.card:hover img{
+transform:scale(1.05);
+}
 
 /* LIGHTBOX */
 .lightbox{
-  position:fixed;top:0;left:0;
-  width:100%;height:100%;
-  background:rgba(0,0,0,.95);
-  display:none;justify-content:center;
-  align-items:center;z-index:2000;
+position:fixed;width:100%;height:100%;
+background:rgba(0,0,0,.95);
+display:none;justify-content:center;
+align-items:center;z-index:2000;
 }
 .lightbox img{
-  max-width:90%;max-height:90%;
+max-width:90%;max-height:90%;
 }
 
-/* ANIMATION */
+/* SCROLL */
 .fade{opacity:0;transform:translateY(40px);transition:1s}
 .fade.show{opacity:1;transform:translateY(0)}
+
 </style>
 </head>
 
@@ -92,101 +112,96 @@ body{background:#050505;color:#fff;font-family:'Inter',sans-serif}
 
 <!-- NAV -->
 <div class="nav">
-  <div class="logo">SEIYAA STUDIO</div>
-  <div>
-    <a href="#market">Market</a>
-    <a href="#gas">Gas</a>
-    <a href="#street">Street</a>
-  </div>
+<div class="logo">SEIYAA STUDIO</div>
+<div>
+<a href="#market">Market</a>
+<a href="#gas">Gas</a>
+<a href="#street">Street</a>
+</div>
 </div>
 
 <!-- HERO -->
 <section class="hero">
-  <img src="images/_DSC8255.jpg" class="active">
-  <img src="images/_DSC8261.jpg">
-  <img src="images/_DSC8267.jpg">
-  <div class="overlay"></div>
+<img src="images/_DSC8261.jpg" class="active">
+<img src="images/_DSC8255.jpg">
+<img src="images/_DSC7867.jpg">
 
-  <div class="hero-content">
-    <h1>Cinematic Photography</h1>
-    <div class="hero-buttons">
-      <a href="#market">View Work</a>
-      <a href="https://instagram.com/YOUR_USERNAME" target="_blank">Instagram</a>
-    </div>
-  </div>
+<div class="overlay"></div>
+
+<div class="hero-content">
+<h1>Cinematic Photography</h1>
+
+<div class="hero-buttons">
+<a href="#market">View Work</a>
+<a href="https://www.instagram.com/seiyaasstudio/" target="_blank">Instagram</a>
+</div>
+</div>
 </section>
 
 <!-- MARKET -->
 <section class="section fade" id="market">
-  <h2>Market Series</h2>
-  <div class="grid">
-    <div class="card"><img src="images/_DSC8255.jpg"></div>
-    <div class="card"><img src="images/_DSC8261.jpg"></div>
-    <div class="card"><img src="images/_DSC8267.jpg"></div>
-    <div class="card"><img src="images/_DSC7867.jpg"></div>
-  </div>
-</section>
+<h2>Market Series</h2>
 
-<!-- URBAN -->
-<section class="section fade">
-  <h2>Urban Nights</h2>
-  <div class="grid">
-    <div class="card"><img src="images/_DSC7665.jpg"></div>
-    <div class="card"><img src="images/_DSC7676.jpg"></div>
-    <div class="card"><img src="images/_DSC7679.jpg"></div>
-    <div class="card"><img src="images/_DSC7685.jpg"></div>
-    <div class="card"><img src="images/_DSC7694.jpg"></div>
-  </div>
+<div class="grid">
+<div class="card"><img src="images/_DSC8255.jpg"></div>
+<div class="card"><img src="images/_DSC8261.jpg"></div>
+<div class="card"><img src="images/_DSC8267.jpg"></div>
+<div class="card"><img src="images/_DSC8248.jpg"></div>
+</div>
 </section>
 
 <!-- GAS STATION -->
 <section class="section fade" id="gas">
-  <h2>Gas Station</h2>
-  <div class="grid">
-    <div class="card"><img src="images/_DSC7851.jpg"></div>
-    <div class="card"><img src="images/_DSC7860.jpg"></div>
-    <div class="card"><img src="images/_DSC8303.jpg"></div>
-    <div class="card"><img src="images/_DSC8330.jpg"></div>
-  </div>
+<h2>Gas Station</h2>
+
+<div class="grid">
+<div class="card"><img src="images/_DSC7851.jpg"></div>
+<div class="card"><img src="images/_DSC7860.jpg"></div>
+<div class="card"><img src="images/_DSC7867.jpg"></div>
+<div class="card"><img src="images/_DSC7886.jpg"></div>
+<div class="card"><img src="images/_DSC7900.jpg"></div>
+</div>
 </section>
 
 <!-- STREET -->
 <section class="section fade" id="street">
-  <h2>Street Rebel</h2>
-  <div class="grid">
-    <div class="card"><img src="images/_DSC8091.jpg"></div>
-    <div class="card"><img src="images/_DSC8092.jpg"></div>
-    <div class="card"><img src="images/_DSC8093.jpg"></div>
-    <div class="card"><img src="images/_DSC8105.jpg"></div>
-    <div class="card"><img src="images/_DSC8112.jpg"></div>
-  </div>
+<h2>Street Rebel</h2>
+
+<div class="grid">
+<div class="card"><img src="images/_DSC8091.jpg"></div>
+<div class="card"><img src="images/_DSC8092.jpg"></div>
+<div class="card"><img src="images/_DSC8093.jpg"></div>
+<div class="card"><img src="images/_DSC8105.jpg"></div>
+<div class="card"><img src="images/_DSC8112.jpg"></div>
+</div>
 </section>
 
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
-  <img id="lightbox-img">
+<img id="lightbox-img">
 </div>
 
 <script>
 
-/* HERO AUTO SLIDE */
+/* HERO SLIDER */
 let slides=document.querySelectorAll(".hero img");
 let i=0;
+
 setInterval(()=>{
-  slides[i].classList.remove("active");
-  i=(i+1)%slides.length;
-  slides[i].classList.add("active");
+slides[i].classList.remove("active");
+i=(i+1)%slides.length;
+slides[i].classList.add("active");
 },4000);
 
 /* SCROLL ANIMATION */
 const faders=document.querySelectorAll(".fade");
+
 window.addEventListener("scroll",()=>{
-  faders.forEach(el=>{
-    const top=el.getBoundingClientRect().top;
-    if(top<window.innerHeight-100){
-      el.classList.add("show");
-    }
-  });
+faders.forEach(el=>{
+if(el.getBoundingClientRect().top < window.innerHeight-100){
+el.classList.add("show");
+}
+});
 });
 
 /* LIGHTBOX */
@@ -195,11 +210,12 @@ const lightbox=document.getElementById("lightbox");
 const lightboxImg=document.getElementById("lightbox-img");
 
 images.forEach(img=>{
-  img.onclick=()=>{
-    lightbox.style.display="flex";
-    lightboxImg.src=img.src;
-  }
+img.onclick=()=>{
+lightbox.style.display="flex";
+lightboxImg.src=img.src;
+}
 });
+
 lightbox.onclick=()=>lightbox.style.display="none";
 
 </script>
