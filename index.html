@@ -195,7 +195,7 @@ transition:1s ease;
 opacity:1;
 transform:translateY(0);
 }
-  /* ===== CINEMATIC PORTFOLIO ===== */
+/* ===== CINEMATIC PORTFOLIO ===== */
 .cinematic{
 display:grid;
 grid-template-columns:2fr 1fr;
@@ -229,14 +229,16 @@ border-radius:12px;
 
 .cinematic img{
 cursor:pointer;
-transition:.6s ease;
+transition:transform 0.6s cubic-bezier(0.22,1,0.36,1),
+box-shadow 0.6s ease,
+filter 0.6s ease;
 }
 
 .cinematic img:hover{
-transform:scale(1.04);
+transform:scale(1.04) translateY(-4px);
 box-shadow:0 25px 80px rgba(0,0,0,0.45);
+filter:brightness(1.05);
 }
-
 /* MOBILE FIX */
 @media(max-width:768px){
 .cinematic{
@@ -444,7 +446,7 @@ el.classList.add("show");
 window.dispatchEvent(new Event('scroll'));
 
 /* LIGHTBOX */
-const images=document.querySelectorAll(".grid img");
+const images=document.querySelectorAll(".cinematic img");
 const lightbox=document.getElementById("lightbox");
 const lightboxImg=document.getElementById("lightbox-img");
 
