@@ -51,6 +51,10 @@ font-family:'Playfair Display';
 font-size:64px;
 }
 
+.hero p{
+margin:15px 0;color:#ccc;max-width:500px;
+}
+
 .hero-buttons a{
 display:inline-block;margin-right:15px;
 padding:12px 28px;border:1px solid #fff;
@@ -65,7 +69,10 @@ background:#fff;color:#000;
 .section{padding:120px 8%}
 .section h2{
 font-family:'Playfair Display';
-font-size:34px;margin-bottom:40px;
+font-size:34px;margin-bottom:30px;
+}
+.section p{
+color:#bbb;max-width:700px;margin-bottom:40px;
 }
 
 /* GRID */
@@ -74,16 +81,33 @@ display:grid;
 grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
 gap:30px;
 }
+.grid img{
+width:100%;border-radius:12px;
+cursor:pointer;transition:.5s;
+}
+.grid img:hover{transform:scale(1.05)}
 
-.card{
-overflow:hidden;border-radius:14px;
+/* SERVICES */
+.services{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
 }
-.card img{
-width:100%;height:100%;
-object-fit:cover;cursor:pointer;
-transition:.5s;
+.service-box{
+border:1px solid #222;padding:25px;
+border-radius:10px;
 }
-.card:hover img{transform:scale(1.05)}
+.service-box h3{margin-bottom:10px}
+
+/* PROCESS */
+.process div{margin-bottom:20px}
+
+/* CONTACT */
+.contact a{
+display:inline-block;margin-right:20px;
+color:#fff;text-decoration:none;
+border-bottom:1px solid #fff;
+}
 
 /* LIGHTBOX */
 .lightbox{
@@ -108,10 +132,9 @@ max-width:90%;max-height:90%;
 <div class="nav">
 <div class="logo">SEIYAA STUDIO</div>
 <div>
-<a href="#market">Market</a>
-<a href="#gas">Gas</a>
-<a href="#street">Street</a>
-<a href="#rebel">Rebel</a>
+<a href="#portfolio">Work</a>
+<a href="#services">Services</a>
+<a href="#contact">Contact</a>
 </div>
 </div>
 
@@ -124,60 +147,116 @@ max-width:90%;max-height:90%;
 <div class="overlay"></div>
 
 <div class="hero-content">
-<h1>Cinematic Photography</h1>
+<h1>We Don’t Shoot Photos.<br>We Build Visual Identity.</h1>
+
+<p>Cinematic street and fashion photography built for brands, models, and standout visuals.</p>
 
 <div class="hero-buttons">
-<a href="#market">View Work</a>
+<a href="#portfolio">View Work</a>
 <a href="https://instagram.com/YOUR_USERNAME" target="_blank">Instagram</a>
 </div>
 </div>
 </section>
 
-<!-- MARKET -->
-<section class="section fade" id="market">
-<h2>Market Series</h2>
+<!-- ABOUT -->
+<section class="section fade">
+<h2>About</h2>
+<p>
+Seiyaa Studio is a photography brand focused on cinematic street and fashion visuals.
+We create bold, editorial-style imagery that elevates personal brands, models, and businesses.
+Every shoot is built on concept, lighting, and storytelling — not just taking photos, but creating identity.
+</p>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="section fade" id="portfolio">
+
+<h2>Urban Market Series</h2>
 <div class="grid">
-<div class="card"><img src="images/_DSC8255.jpg"></div>
-<div class="card"><img src="images/_DSC8261.jpg"></div>
-<div class="card"><img src="images/_DSC8267.jpg"></div>
-<div class="card"><img src="images/_DSC8303.jpg"></div>
-<div class="card"><img src="images/_DSC8330.jpg"></div>
+<img src="images/_DSC8255.jpg">
+<img src="images/_DSC8261.jpg">
+<img src="images/_DSC8267.jpg">
+<img src="images/_DSC8303.jpg">
+<img src="images/_DSC8330.jpg">
+</div>
+
+<h2 style="margin-top:100px;">Gas Station Editorial</h2>
+<div class="grid">
+<img src="images/_DSC7851.jpg">
+<img src="images/_DSC7860.jpg">
+<img src="images/_DSC7867.jpg">
+<img src="images/_DSC7886.jpg">
+<img src="images/_DSC7900.jpg">
+</div>
+
+<h2 style="margin-top:100px;">Night Street Cinematics</h2>
+<div class="grid">
+<img src="images/_DSC8091.jpg">
+<img src="images/_DSC8092.jpg">
+<img src="images/_DSC8093.jpg">
+</div>
+
+<h2 style="margin-top:100px;">Rebel / Underground Series</h2>
+<div class="grid">
+<img src="images/_DSC8105.jpg">
+<img src="images/_DSC8112.jpg">
+<img src="images/_rebel1.jpg">
+<img src="images/_rebel2.jpg">
+<img src="images/_rebel3.jpg">
+</div>
+
+</section>
+
+<!-- SERVICES -->
+<section class="section fade" id="services">
+<h2>Services</h2>
+
+<div class="services">
+
+<div class="service-box">
+<h3>Model Portfolio Shoot</h3>
+<p>Clean, cinematic, and editorial visuals for aspiring and professional models.</p>
+</div>
+
+<div class="service-box">
+<h3>Brand / Product Shoot</h3>
+<p>High-impact visuals for clothing brands, businesses, and campaigns.</p>
+</div>
+
+<div class="service-box">
+<h3>Creative Concept Shoots</h3>
+<p>Planned shoots with styling, direction, and strong visual storytelling.</p>
+</div>
+
+<div class="service-box">
+<h3>X-Deal Collaboration</h3>
+<p>Selected collaborations based on concept and creative alignment.</p>
+</div>
+
 </div>
 </section>
 
-<!-- GAS -->
-<section class="section fade" id="gas">
-<h2>Gas Station</h2>
-<div class="grid">
-<div class="card"><img src="images/_DSC7851.jpg"></div>
-<div class="card"><img src="images/_DSC7860.jpg"></div>
-<div class="card"><img src="images/_DSC7867.jpg"></div>
-<div class="card"><img src="images/_DSC7886.jpg"></div>
-<div class="card"><img src="images/_DSC7900.jpg"></div>
+<!-- PROCESS -->
+<section class="section fade">
+<h2>Process</h2>
+
+<div class="process">
+<div><strong>01. Inquiry</strong> — Send your concept or idea</div>
+<div><strong>02. Planning</strong> — We align on style and direction</div>
+<div><strong>03. Shoot</strong> — Guided posing and lighting</div>
+<div><strong>04. Delivery</strong> — Edited high-quality images</div>
 </div>
 </section>
 
-<!-- STREET -->
-<section class="section fade" id="street">
-<h2>Street Night</h2>
-<div class="grid">
-<div class="card"><img src="images/_DSC8091.jpg"></div>
-<div class="card"><img src="images/_DSC8092.jpg"></div>
-<div class="card"><img src="images/_DSC8093.jpg"></div>
-<div class="card"><img src="images/_DSC8105.jpg"></div>
-<div class="card"><img src="images/_DSC8112.jpg"></div>
-</div>
-</section>
+<!-- CONTACT -->
+<section class="section fade" id="contact">
+<h2>Contact</h2>
 
-<!-- REBEL -->
-<section class="section fade" id="rebel">
-<h2>Rebel Series</h2>
-<div class="grid">
-<div class="card"><img src="images/_rebel1.jpg"></div>
-<div class="card"><img src="images/_rebel2.jpg"></div>
-<div class="card"><img src="images/_rebel3.jpg"></div>
-<div class="card"><img src="images/_rebel4.jpg"></div>
-<div class="card"><img src="images/_rebel5.jpg"></div>
+<p>Ready to create something cinematic?</p>
+
+<div class="contact">
+<a href="https://instagram.com/YOUR_USERNAME" target="_blank">Instagram</a>
+<a href="mailto:youremail@gmail.com">Email</a>
 </div>
 </section>
 
@@ -208,7 +287,7 @@ el.classList.add("show");
 });
 
 /* LIGHTBOX */
-const images=document.querySelectorAll(".card img");
+const images=document.querySelectorAll(".grid img");
 const lightbox=document.getElementById("lightbox");
 const lightboxImg=document.getElementById("lightbox-img");
 
