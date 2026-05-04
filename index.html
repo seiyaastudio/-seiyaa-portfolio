@@ -9,90 +9,51 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{
-  background:#050505;
-  color:#fff;
-  font-family:'Inter',sans-serif;
-}
+body{background:#050505;color:#fff;font-family:'Inter',sans-serif}
 
 /* NAV */
 .nav{
-  position:fixed;
-  top:0;
-  width:100%;
-  padding:25px 8%;
-  display:flex;
-  justify-content:space-between;
-  z-index:1000;
+  position:fixed;top:0;width:100%;
+  padding:25px 8%;display:flex;
+  justify-content:space-between;z-index:1000;
   background:linear-gradient(to bottom, rgba(0,0,0,.7), transparent);
 }
-.logo{
-  font-family:'Playfair Display',serif;
-  font-size:22px;
-  letter-spacing:3px;
-}
-.nav a{
-  color:#aaa;
-  text-decoration:none;
-  margin-left:30px;
-}
+.logo{font-family:'Playfair Display';letter-spacing:3px}
+.nav a{color:#aaa;text-decoration:none;margin-left:30px}
 .nav a:hover{color:#fff}
 
 /* HERO */
-.hero{
-  height:100vh;
-  position:relative;
-  overflow:hidden;
-}
+.hero{height:100vh;position:relative;overflow:hidden}
 .hero img{
-  position:absolute;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  opacity:0;
+  position:absolute;width:100%;height:100%;
+  object-fit:cover;opacity:0;
   transition:opacity 2s ease;
 }
 .hero img.active{opacity:1}
 .overlay{
-  position:absolute;
-  width:100%;
-  height:100%;
+  position:absolute;width:100%;height:100%;
   background:linear-gradient(to bottom, rgba(0,0,0,.2), rgba(0,0,0,.9));
 }
 .hero-content{
-  position:absolute;
-  bottom:120px;
-  left:8%;
+  position:absolute;bottom:120px;left:8%;
 }
 .hero h1{
-  font-family:'Playfair Display',serif;
+  font-family:'Playfair Display';
   font-size:64px;
 }
-.hero-buttons{
-  margin-top:20px;
-}
+.hero-buttons{margin-top:20px}
 .hero-buttons a{
-  display:inline-block;
-  padding:12px 28px;
-  margin-right:15px;
-  border:1px solid #fff;
-  color:#fff;
-  text-decoration:none;
-  transition:.3s;
+  display:inline-block;padding:12px 28px;
+  margin-right:15px;border:1px solid #fff;
+  color:#fff;text-decoration:none;transition:.3s;
 }
-.hero-buttons a:hover{
-  background:#fff;
-  color:#000;
-}
+.hero-buttons a:hover{background:#fff;color:#000}
 
-/* SECTIONS */
-.section{
-  padding:120px 8%;
-}
+/* SECTION */
+.section{padding:120px 8%}
 .section h2{
-  font-family:'Playfair Display',serif;
-  font-size:34px;
-  margin-bottom:40px;
+  font-family:'Playfair Display';
+  font-size:34px;margin-bottom:40px;
 }
 
 /* GRID */
@@ -101,49 +62,29 @@ body{
   grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
   gap:30px;
 }
-.card{
-  overflow:hidden;
-  border-radius:14px;
-}
+.card{overflow:hidden;border-radius:14px}
 .card img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
+  width:100%;height:100%;
+  object-fit:cover;cursor:pointer;
   transition:.5s;
-  cursor:pointer;
 }
-.card:hover img{
-  transform:scale(1.05);
-}
+.card:hover img{transform:scale(1.05)}
 
 /* LIGHTBOX */
 .lightbox{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
+  position:fixed;top:0;left:0;
+  width:100%;height:100%;
   background:rgba(0,0,0,.95);
-  display:none;
-  justify-content:center;
-  align-items:center;
-  z-index:2000;
+  display:none;justify-content:center;
+  align-items:center;z-index:2000;
 }
 .lightbox img{
-  max-width:90%;
-  max-height:90%;
+  max-width:90%;max-height:90%;
 }
 
-/* FADE */
-.fade{
-  opacity:0;
-  transform:translateY(40px);
-  transition:1s;
-}
-.fade.show{
-  opacity:1;
-  transform:translateY(0);
-}
+/* ANIMATION */
+.fade{opacity:0;transform:translateY(40px);transition:1s}
+.fade.show{opacity:1;transform:translateY(0)}
 </style>
 </head>
 
@@ -154,6 +95,7 @@ body{
   <div class="logo">SEIYAA STUDIO</div>
   <div>
     <a href="#market">Market</a>
+    <a href="#gas">Gas</a>
     <a href="#street">Street</a>
   </div>
 </div>
@@ -197,6 +139,17 @@ body{
   </div>
 </section>
 
+<!-- GAS STATION -->
+<section class="section fade" id="gas">
+  <h2>Gas Station</h2>
+  <div class="grid">
+    <div class="card"><img src="images/_DSC7851.jpg"></div>
+    <div class="card"><img src="images/_DSC7860.jpg"></div>
+    <div class="card"><img src="images/_DSC8303.jpg"></div>
+    <div class="card"><img src="images/_DSC8330.jpg"></div>
+  </div>
+</section>
+
 <!-- STREET -->
 <section class="section fade" id="street">
   <h2>Street Rebel</h2>
@@ -225,7 +178,7 @@ setInterval(()=>{
   slides[i].classList.add("active");
 },4000);
 
-/* FADE ON SCROLL */
+/* SCROLL ANIMATION */
 const faders=document.querySelectorAll(".fade");
 window.addEventListener("scroll",()=>{
   faders.forEach(el=>{
@@ -247,10 +200,7 @@ images.forEach(img=>{
     lightboxImg.src=img.src;
   }
 });
-
-lightbox.onclick=()=>{
-  lightbox.style.display="none";
-};
+lightbox.onclick=()=>lightbox.style.display="none";
 
 </script>
 
