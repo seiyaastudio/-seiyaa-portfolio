@@ -15,7 +15,6 @@ body{
   background:#050505;
   color:#fff;
   font-family:'Inter', sans-serif;
-  overflow-x:hidden;
 }
 
 /* NAV */
@@ -47,6 +46,8 @@ body{
   align-items:center;
   justify-content:center;
   text-align:center;
+  position:relative;
+  z-index:1;
 }
 
 .hero h1{
@@ -57,6 +58,8 @@ body{
 /* SECTION */
 .section{
   padding:120px 8%;
+  position:relative;
+  z-index:2;
 }
 
 h2{
@@ -71,65 +74,52 @@ h2{
   gap:20px;
 }
 
-/* IMAGE BASE */
+/* IMAGE FIXED */
 .grid img{
   width:100%;
   display:block;
   cursor:pointer;
 
-  transform:scale(1);
   transition:
-    transform 0.8s cubic-bezier(0.22,1,0.36,1),
-    box-shadow 0.8s,
-    filter 0.8s;
-
-  will-change:transform;
+    transform 0.6s ease,
+    box-shadow 0.6s ease,
+    filter 0.6s ease;
 }
 
-/* PREMIUM HOVER */
 .grid img:hover{
-  transform:scale(1.08) translateY(-6px);
-  box-shadow:0 30px 80px rgba(0,0,0,0.8);
-  filter:brightness(1.08) contrast(1.05);
+  transform:scale(1.05);
+  box-shadow:0 20px 60px rgba(0,0,0,0.6);
 }
 
-/* BLUR LOADING */
+/* BLUR LOAD SAFE */
 .img-blur{
-  filter:blur(25px);
-  transform:scale(1.05);
+  filter:blur(20px);
   opacity:0;
 }
 
 .img-blur.loaded{
   filter:blur(0);
-  transform:scale(1);
   opacity:1;
-  transition:all 1s ease;
+  transition:0.8s ease;
 }
 
 /* SCROLL REVEAL */
 .fade{
   opacity:0;
-  transform:translateY(60px);
+  transform:translateY(40px);
+  transition:1s ease;
 }
 
 .fade.show{
   opacity:1;
   transform:translateY(0);
-  transition:1s ease;
-}
-
-/* PARALLAX */
-.parallax{
-  transform:translateY(0);
-  transition:transform 0.2s linear;
 }
 
 /* LIGHTBOX */
 #lightbox{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,0.95);
+  background:rgba(0,0,0,0.9);
   display:none;
   align-items:center;
   justify-content:center;
@@ -139,6 +129,14 @@ h2{
 #lightbox img{
   max-width:90%;
   max-height:90%;
+}
+
+/* DETAILS SECTION (RESTORED) */
+.details{
+  max-width:700px;
+  margin-top:20px;
+  color:#bbb;
+  line-height:1.6;
 }
 </style>
 </head>
@@ -152,50 +150,69 @@ h2{
   </div>
 </div>
 
+<!-- HERO -->
 <div class="hero">
   <h1 class="fade">Creative Direction & Photography</h1>
 </div>
 
+<!-- PORTFOLIO -->
 <section class="section fade" id="portfolio">
 
 <h2>Urban Market Series</h2>
+<p class="details">
+A vibrant exploration of street culture, blending raw market textures with high-fashion direction.
+</p>
+
 <div class="grid">
-<img class="img-blur parallax" src="images/_DSC8255.jpg">
-<img class="img-blur parallax" src="images/_DSC8261.jpg">
-<img class="img-blur parallax" src="images/_DSC8267.jpg">
-<img class="img-blur parallax" src="images/_DSC8303.jpg">
-<img class="img-blur parallax" src="images/_DSC8330.jpg">
+<img class="img-blur" src="images/_DSC8255.jpg">
+<img class="img-blur" src="images/_DSC8261.jpg">
+<img class="img-blur" src="images/_DSC8267.jpg">
+<img class="img-blur" src="images/_DSC8303.jpg">
+<img class="img-blur" src="images/_DSC8330.jpg">
 </div>
 
 <h2 style="margin-top:120px;">Gas Station Editorial</h2>
+<p class="details">
+A bold editorial concept set in a raw urban gas station environment—clean styling meets industrial tones.
+</p>
+
 <div class="grid">
-<img class="img-blur parallax" src="images/_DSC7851.jpg">
-<img class="img-blur parallax" src="images/_DSC7860.jpg">
-<img class="img-blur parallax" src="images/_DSC7867.jpg">
-<img class="img-blur parallax" src="images/_DSC7886.jpg">
-<img class="img-blur parallax" src="images/_DSC7900.jpg">
+<img class="img-blur" src="images/_DSC7851.jpg">
+<img class="img-blur" src="images/_DSC7860.jpg">
+<img class="img-blur" src="images/_DSC7867.jpg">
+<img class="img-blur" src="images/_DSC7886.jpg">
+<img class="img-blur" src="images/_DSC7900.jpg">
 </div>
 
 <h2 style="margin-top:120px;">Night Street Cinematics</h2>
+<p class="details">
+Cinematic night photography capturing motion, light, and atmosphere in urban environments.
+</p>
+
 <div class="grid">
-<img class="img-blur parallax" src="images/_DSC7665.jpg">
-<img class="img-blur parallax" src="images/_DSC7676.jpg">
-<img class="img-blur parallax" src="images/_DSC7679.jpg">
-<img class="img-blur parallax" src="images/_DSC7685.jpg">
-<img class="img-blur parallax" src="images/_DSC7694.jpg">
+<img class="img-blur" src="images/_DSC7665.jpg">
+<img class="img-blur" src="images/_DSC7676.jpg">
+<img class="img-blur" src="images/_DSC7679.jpg">
+<img class="img-blur" src="images/_DSC7685.jpg">
+<img class="img-blur" src="images/_DSC7694.jpg">
 </div>
 
 <h2 style="margin-top:120px;">Rebel / Underground Series</h2>
+<p class="details">
+A darker, more expressive series focused on attitude, rebellion, and underground visual identity.
+</p>
+
 <div class="grid">
-<img class="img-blur parallax" src="images/_DSC8091.jpg">
-<img class="img-blur parallax" src="images/_DSC8092.jpg">
-<img class="img-blur parallax" src="images/_DSC8093.jpg">
-<img class="img-blur parallax" src="images/_DSC8105.jpg">
-<img class="img-blur parallax" src="images/_DSC8112.jpg">
+<img class="img-blur" src="images/_DSC8091.jpg">
+<img class="img-blur" src="images/_DSC8092.jpg">
+<img class="img-blur" src="images/_DSC8093.jpg">
+<img class="img-blur" src="images/_DSC8105.jpg">
+<img class="img-blur" src="images/_DSC8112.jpg">
 </div>
 
 </section>
 
+<!-- LIGHTBOX -->
 <div id="lightbox">
   <img id="lightbox-img">
 </div>
@@ -207,29 +224,18 @@ document.querySelectorAll('.img-blur').forEach(img=>{
   if(img.complete){
     img.classList.add('loaded');
   }else{
-    img.addEventListener('load',()=>img.classList.add('loaded'));
+    img.onload=()=>img.classList.add('loaded');
   }
 });
 
-/* SCROLL REVEAL */
-const observer=new IntersectionObserver((entries)=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.classList.add('show');
-    }
-  });
-},{threshold:0.15});
+/* SCROLL */
+const faders=document.querySelectorAll(".fade");
 
-document.querySelectorAll('.fade').forEach(el=>{
-  observer.observe(el);
-});
-
-/* PARALLAX */
 window.addEventListener("scroll",()=>{
-  const scrolled=window.scrollY;
-  document.querySelectorAll('.parallax').forEach(el=>{
-    const speed=0.08;
-    el.style.transform=`translateY(${scrolled * speed}px)`;
+  faders.forEach(el=>{
+    if(el.getBoundingClientRect().top<window.innerHeight-100){
+      el.classList.add("show");
+    }
   });
 });
 
