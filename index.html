@@ -12,6 +12,79 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#050505;color:#fff;font-family:'Inter'}
 
+/* 🔥 PASTE HERE — RIGHT BELOW BODY */
+
+/* ===== BLUR LOADING ===== */
+.img-blur {
+  filter: blur(20px);
+  transform: scale(1.03);
+  opacity: 0;
+  transition: 
+    filter 1.2s ease,
+    transform 1.2s ease,
+    opacity 0.8s ease;
+}
+
+/* when loaded */
+.img-blur.loaded {
+  filter: blur(0);
+  transform: scale(1);
+  opacity: 1;
+}
+
+
+/* ===== SMOOTH SECTION REVEAL ===== */
+.fade {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.fade.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+  
+/* ===== IMAGE HOVER (PORTFOLIO) ===== */
+.grid img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+              filter 0.6s ease;
+  cursor: pointer;
+  will-change: transform;
+}
+
+.grid img:hover {
+  transform: scale(1.05) translateY(-4px) rotateZ(0.3deg);
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.45);
+  filter: brightness(1.05) contrast(1.05);
+  z-index: 2;
+}
+
+.grid {
+  perspective: 1000px;
+}
+
+/* ===== BUTTONS ===== */
+button, .btn {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.35s ease,
+              background 0.3s ease;
+  cursor: pointer;
+}
+
+button:hover, .btn:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+}
+
+button:active, .btn:active {
+  transform: scale(0.97);
+}
+
 .nav{
 position:fixed;width:100%;padding:25px 8%;
 display:flex;justify-content:space-between;
@@ -126,6 +199,7 @@ max-width:90%;max-height:90%;
 </style>
 </head>
 
+  
 <body>
 
 <!-- NAV -->
@@ -173,38 +247,38 @@ Every shoot is built on concept, lighting, and storytelling — not just taking 
 
 <h2>Urban Market Series</h2>
 <div class="grid">
-<img src="images/_DSC8255.jpg">
-<img src="images/_DSC8261.jpg">
-<img src="images/_DSC8267.jpg">
-<img src="images/_DSC8303.jpg">
-<img src="images/_DSC8330.jpg">
+  <img src="images/_DSC8255.jpg" loading="lazy" class="img-blur">
+  <img src="images/_DSC8261.jpg" loading="lazy" class="img-blur">
+  <img src="images/_DSC8267.jpg" loading="lazy" class="img-blur">
+  <img src="images/_DSC8303.jpg" loading="lazy" class="img-blur">
+  <img src="images/_DSC8330.jpg" loading="lazy" class="img-blur">
 </div>
 
 <h2 style="margin-top:100px;">Gas Station Editorial</h2>
 <div class="grid">
-<img src="images/_DSC7851.jpg">
-<img src="images/_DSC7860.jpg">
-<img src="images/_DSC7867.jpg">
-<img src="images/_DSC7886.jpg">
-<img src="images/_DSC7900.jpg">
+  <img src="images/_DSC7851.jpg" loading="lazy" class="img-blur">
+  <img src="images/_DSC7860.jpg" loading="lazy" class="img-blur">
+  <img src="images/_DSC7867.jpg" loading="lazy" class="img-blur">
+  <img src="images/_DSC7886.jpg" loading="lazy" class="img-blur">
+  <img src="images/_DSC7900.jpg" loading="lazy" class="img-blur">
 </div>
 
 <h2 style="margin-top:100px;">Night Street Cinematics</h2>
 <div class="grid">
-<img src="images/_DSC7665.jpg">
-<img src="images/_DSC7676.jpg">
-<img src="images/_DSC7679.jpg">
-<img src="images/_DSC7685.jpg">
-<img src="images/_DSC7694.jpg">
+  <img src="images/_DSC7665.jpg" loading="lazy" class="img-blur">
+  <img src="images/_DSC7676.jpg" loading="lazy" class="img-blur">
+  <img src="images/_DSC7679.jpg" loading="lazy" class="img-blur">
+  <img src="images/_DSC7685.jpg" loading="lazy" class="img-blur">
+  <img src="images/_DSC7694.jpg" loading="lazy" class="img-blur">
 </div>
 
 <h2 style="margin-top:100px;">Rebel / Underground Series</h2>
 <div class="grid">
-<img src="images/_DSC8091.jpg">
-<img src="images/_DSC8092.jpg">
-<img src="images/_DSC8093.jpg">
-<img src="images/_DSC8105.jpg">
-<img src="images/_DSC8112.jpg">
+  <img src="images/_DSC8091.jpg" loading="lazy" class="img-blur">
+  <img src="images/_DSC8092.jpg" loading="lazy" class="img-blur">
+  <img src="images/_DSC8093.jpg" loading="lazy" class="img-blur">
+  <img src="images/_DSC8105.jpg" loading="lazy" class="img-blur">
+  <img src="images/_DSC8112.jpg" loading="lazy" class="img-blur">
 </div>
 
 </section>
@@ -278,29 +352,47 @@ i=(i+1)%slides.length;
 slides[i].classList.add("active");
 },4000);
 
-/* SCROLL */
-const faders=document.querySelectorAll(".fade");
-window.addEventListener("scroll",()=>{
-faders.forEach(el=>{
-if(el.getBoundingClientRect().top < window.innerHeight-100){
-el.classList.add("show");
-}
-});
-});
+<script>
 
-/* LIGHTBOX */
-const images=document.querySelectorAll(".grid img");
-const lightbox=document.getElementById("lightbox");
-const lightboxImg=document.getElementById("lightbox-img");
-
-images.forEach(img=>{
-img.onclick=()=>{
-lightbox.style.display="flex";
-lightboxImg.src=img.src;
-}
+/* ===== IMAGE BLUR LOAD ===== */
+document.querySelectorAll('.img-blur').forEach(img => {
+  if (img.complete) {
+    img.classList.add('loaded');
+  } else {
+    img.addEventListener('load', () => {
+      img.classList.add('loaded');
+    });
+  }
 });
 
-lightbox.onclick=()=>lightbox.style.display="none";
+
+/* ===== SCROLL REVEAL (REPLACE YOUR OLD SCROLL CODE) ===== */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.fade').forEach(el => {
+  observer.observe(el);
+});
+
+
+/* ===== LIGHTBOX ===== */
+const images = document.querySelectorAll(".grid img");
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+
+images.forEach(img => {
+  img.onclick = () => {
+    lightbox.style.display = "flex";
+    lightboxImg.src = img.src;
+  };
+});
+
+lightbox.onclick = () => lightbox.style.display = "none";
 
 </script>
 
