@@ -6,23 +6,41 @@
 
 <title>Seiyaa Studio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#050505;color:#fff;font-family:'Inter'}
+
+body{
+background:#050505;
+color:#fff;
+font-family:'Inter';
+line-height:1.6;
+}
 
 /* NAV */
 .nav{
 position:fixed;
 width:100%;
-padding:20px 8%;
+padding:25px 8%;
 display:flex;
 justify-content:space-between;
 z-index:1000;
 background:linear-gradient(to bottom,rgba(0,0,0,.8),transparent);
 }
-.logo{font-family:'Playfair Display';letter-spacing:3px}
+
+.logo{
+font-family:'Playfair Display';
+letter-spacing:3px;
+}
+
+.nav a{
+color:#aaa;
+text-decoration:none;
+margin-left:30px;
+transition:.3s;
+}
+.nav a:hover{color:#fff}
 
 /* HERO */
 .hero{
@@ -30,34 +48,53 @@ height:100vh;
 position:relative;
 overflow:hidden;
 }
-.slide{
+.hero img{
 position:absolute;
-inset:0;
-background-size:cover;
-background-position:center;
+width:100%;
+height:100%;
+object-fit:cover;
 opacity:0;
-transition:1.5s ease;
+transition:opacity 1.5s ease;
 }
-.slide.active{opacity:1}
+.hero img.active{opacity:1}
 
 .overlay{
 position:absolute;
-inset:0;
-background:rgba(0,0,0,.5);
-z-index:1;
+width:100%;
+height:100%;
+background:linear-gradient(to bottom,rgba(0,0,0,.2),rgba(0,0,0,.95));
 }
 
-.hero-text{
+.hero-content{
 position:absolute;
-z-index:2;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-text-align:center;
+bottom:120px;
+left:8%;
+max-width:600px;
 }
-.hero-text h1{
-font-size:60px;
+
+.hero h1{
 font-family:'Playfair Display';
+font-size:64px;
+margin-bottom:10px;
+}
+
+.hero p{
+color:#ccc;
+margin-bottom:20px;
+}
+
+.hero-buttons a{
+display:inline-block;
+margin-right:15px;
+padding:12px 28px;
+border:1px solid #fff;
+text-decoration:none;
+color:#fff;
+transition:.3s;
+}
+.hero-buttons a:hover{
+background:#fff;
+color:#000;
 }
 
 /* SECTION */
@@ -65,44 +102,87 @@ font-family:'Playfair Display';
 padding:120px 8%;
 }
 .section h2{
+font-family:'Playfair Display';
+font-size:34px;
 margin-bottom:20px;
 }
-.details{
-color:#aaa;
-max-width:600px;
+.section p{
+color:#bbb;
+max-width:700px;
 margin-bottom:40px;
 }
 
 /* GRID */
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:30px;
+perspective:1000px;
 }
 
-/* IMAGE */
 .grid img{
 width:100%;
-transition:.6s;
+border-radius:12px;
 cursor:pointer;
+
+transition:
+transform 0.6s cubic-bezier(0.22,1,0.36,1),
+box-shadow 0.6s ease,
+filter 0.6s ease;
 }
 
-/* HOVER */
 .grid img:hover{
-transform:scale(1.05);
-box-shadow:0 20px 60px rgba(0,0,0,.6);
+transform:scale(1.05) translateY(-4px);
+box-shadow:0 25px 80px rgba(0,0,0,0.45);
+filter:brightness(1.05);
 }
 
-/* BLUR LOAD */
-.img-blur{
-filter:blur(20px);
-opacity:0;
-transition:0.8s ease;
+/* SERVICES */
+.services{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+}
+.service-box{
+border:1px solid #222;
+padding:25px;
+border-radius:10px;
+transition:.3s;
+}
+.service-box:hover{
+transform:translateY(-5px);
+border-color:#444;
 }
 
-.img-blur.loaded{
-filter:blur(0);
-opacity:1;
+/* PROCESS */
+.process div{
+margin-bottom:15px;
+color:#ccc;
+}
+
+/* CONTACT */
+.contact a{
+display:inline-block;
+margin-right:20px;
+color:#fff;
+text-decoration:none;
+border-bottom:1px solid #fff;
+}
+
+/* LIGHTBOX */
+.lightbox{
+position:fixed;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.95);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:2000;
+}
+.lightbox img{
+max-width:90%;
+max-height:90%;
 }
 
 /* SCROLL */
@@ -115,140 +195,182 @@ transition:1s ease;
 opacity:1;
 transform:translateY(0);
 }
-
-/* LIGHTBOX */
-#lightbox{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.9);
-display:none;
-justify-content:center;
-align-items:center;
-z-index:2000;
-}
-#lightbox img{
-max-width:90%;
-max-height:90%;
-}
 </style>
 </head>
 
 <body>
 
+<!-- NAV -->
 <div class="nav">
-<div class="logo">SEIYAA</div>
+<div class="logo">SEIYAA STUDIO</div>
+<div>
+<a href="#portfolio">Work</a>
+<a href="#services">Services</a>
+<a href="#contact">Contact</a>
+</div>
 </div>
 
 <!-- HERO -->
-<div class="hero">
-<div class="slide active" style="background-image:url('images/_DSC8255.jpg')"></div>
-<div class="slide" style="background-image:url('images/_DSC7867.jpg')"></div>
-<div class="slide" style="background-image:url('images/_DSC8091.jpg')"></div>
+<section class="hero">
+<img src="images/_DSC8255.jpg" class="active">
+<img src="images/_DSC7867.jpg">
+<img src="images/_DSC8091.jpg">
 
 <div class="overlay"></div>
 
-<div class="hero-text">
-<h1>Cinematic Photography</h1>
+<div class="hero-content">
+<h1>We Don’t Shoot Photos.<br>We Build Visual Identity.</h1>
+<p>Cinematic street and fashion photography built for brands, models, and standout visuals.</p>
+
+<div class="hero-buttons">
+<a href="#portfolio">View Work</a>
+<a href="https://www.instagram.com/seiyaasstudio/" target="_blank">Instagram</a>
 </div>
 </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section fade">
+<h2>About</h2>
+<p>
+Seiyaa Studio is a photography brand focused on cinematic street and fashion visuals.  
+We create bold, editorial-style imagery that elevate personal brands, models, and businesses.  
+Every shoot is built around concept, lighting, and storytelling — not just taking photos, but creating identity.
+</p>
+</section>
 
 <!-- PORTFOLIO -->
-<section class="section fade">
+<section class="section fade" id="portfolio">
 
 <h2>Urban Market Series</h2>
-<p class="details">Street textures combined with editorial storytelling.</p>
-
 <div class="grid">
-<img src="images/_DSC8255.jpg" loading="lazy" class="img-blur">
-<img src="images/_DSC8261.jpg" loading="lazy" class="img-blur">
-<img src="images/_DSC8267.jpg" loading="lazy" class="img-blur">
-<img src="images/_DSC8303.jpg" loading="lazy" class="img-blur">
-<img src="images/_DSC8330.jpg" loading="lazy" class="img-blur">
+<img src="images/_DSC8255.jpg" loading="lazy" alt="Market portrait">
+<img src="images/_DSC8261.jpg" loading="lazy">
+<img src="images/_DSC8267.jpg" loading="lazy">
+<img src="images/_DSC8303.jpg" loading="lazy">
+<img src="images/_DSC8330.jpg" loading="lazy">
 </div>
 
 <h2 style="margin-top:100px;">Gas Station Editorial</h2>
-<p class="details">Industrial environment with strong fashion direction.</p>
-
 <div class="grid">
-<img src="images/_DSC7851.jpg" loading="lazy" class="img-blur">
-<img src="images/_DSC7860.jpg" loading="lazy" class="img-blur">
-<img src="images/_DSC7867.jpg" loading="lazy" class="img-blur">
-<img src="images/_DSC7886.jpg" loading="lazy" class="img-blur">
-<img src="images/_DSC7900.jpg" loading="lazy" class="img-blur">
+<img src="images/_DSC7851.jpg" loading="lazy">
+<img src="images/_DSC7860.jpg" loading="lazy">
+<img src="images/_DSC7867.jpg" loading="lazy">
+<img src="images/_DSC7886.jpg" loading="lazy">
+<img src="images/_DSC7900.jpg" loading="lazy">
 </div>
 
 <h2 style="margin-top:100px;">Night Street Cinematics</h2>
-<p class="details">Urban night visuals focused on light and motion.</p>
-
 <div class="grid">
-<img src="images/_DSC7665.jpg" loading="lazy" class="img-blur">
-<img src="images/_DSC7676.jpg" loading="lazy" class="img-blur">
-<img src="images/_DSC7679.jpg" loading="lazy" class="img-blur">
-<img src="images/_DSC7685.jpg" loading="lazy" class="img-blur">
-<img src="images/_DSC7694.jpg" loading="lazy" class="img-blur">
+<img src="images/_DSC7665.jpg" loading="lazy">
+<img src="images/_DSC7676.jpg" loading="lazy">
+<img src="images/_DSC7679.jpg" loading="lazy">
+<img src="images/_DSC7685.jpg" loading="lazy">
+<img src="images/_DSC7694.jpg" loading="lazy">
 </div>
 
 <h2 style="margin-top:100px;">Rebel / Underground Series</h2>
-<p class="details">Dark, expressive and attitude-driven visuals.</p>
-
 <div class="grid">
-<img src="images/_DSC8091.jpg" loading="lazy" class="img-blur">
-<img src="images/_DSC8092.jpg" loading="lazy" class="img-blur">
-<img src="images/_DSC8093.jpg" loading="lazy" class="img-blur">
-<img src="images/_DSC8105.jpg" loading="lazy" class="img-blur">
-<img src="images/_DSC8112.jpg" loading="lazy" class="img-blur">
+<img src="images/_DSC8091.jpg" loading="lazy">
+<img src="images/_DSC8092.jpg" loading="lazy">
+<img src="images/_DSC8093.jpg" loading="lazy">
+<img src="images/_DSC8105.jpg" loading="lazy">
+<img src="images/_DSC8112.jpg" loading="lazy">
 </div>
 
 </section>
 
+<!-- SERVICES -->
+<section class="section fade" id="services">
+<h2>Services</h2>
+
+<div class="services">
+
+<div class="service-box">
+<h3>Model Portfolio Shoot</h3>
+<p>Clean, cinematic, and editorial visuals for aspiring and professional models.</p>
+</div>
+
+<div class="service-box">
+<h3>Brand / Product Shoot</h3>
+<p>High-impact visuals for clothing brands, businesses, and campaigns.</p>
+</div>
+
+<div class="service-box">
+<h3>Creative Concept Shoots</h3>
+<p>Planned shoots with styling, direction, and strong visual storytelling.</p>
+</div>
+
+<div class="service-box">
+<h3>X-Deal Collaboration</h3>
+<p>Selected collaborations based on concept and creative alignment.</p>
+</div>
+
+</div>
+</section>
+
+<!-- PROCESS -->
+<section class="section fade">
+<h2>Process</h2>
+<div class="process">
+<div><strong>01. Inquiry</strong> — Send your idea or concept</div>
+<div><strong>02. Planning</strong> — We align on visual direction</div>
+<div><strong>03. Shoot</strong> — Guided posing and lighting</div>
+<div><strong>04. Delivery</strong> — High-quality edited images</div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section class="section fade" id="contact">
+<h2>Contact</h2>
+<p>Ready to create something cinematic?</p>
+
+<div class="contact">
+<a href="https://www.instagram.com/seiyaasstudio/" target="_blank">Instagram</a>
+<a href="mailto:youremail@gmail.com">Email</a>
+</div>
+</section>
+
 <!-- LIGHTBOX -->
-<div id="lightbox">
+<div class="lightbox" id="lightbox">
 <img id="lightbox-img">
 </div>
 
 <script>
 
 /* HERO */
-let slides=document.querySelectorAll('.slide');
+let slides=document.querySelectorAll(".hero img");
 let i=0;
 setInterval(()=>{
-slides[i].classList.remove('active');
+slides[i].classList.remove("active");
 i=(i+1)%slides.length;
-slides[i].classList.add('active');
+slides[i].classList.add("active");
 },4000);
 
 /* SCROLL */
-const faders=document.querySelectorAll('.fade');
-window.addEventListener('scroll',()=>{
+const faders=document.querySelectorAll(".fade");
+window.addEventListener("scroll",()=>{
 faders.forEach(el=>{
-if(el.getBoundingClientRect().top<window.innerHeight-100){
-el.classList.add('show');
+if(el.getBoundingClientRect().top < window.innerHeight-100){
+el.classList.add("show");
 }
 });
 });
+window.dispatchEvent(new Event('scroll'));
 
 /* LIGHTBOX */
-const imgs=document.querySelectorAll('.grid img');
-const lightbox=document.getElementById('lightbox');
-const lightboxImg=document.getElementById('lightbox-img');
+const images=document.querySelectorAll(".grid img");
+const lightbox=document.getElementById("lightbox");
+const lightboxImg=document.getElementById("lightbox-img");
 
-imgs.forEach(img=>{
+images.forEach(img=>{
 img.onclick=()=>{
-lightbox.style.display='flex';
+lightbox.style.display="flex";
 lightboxImg.src=img.src;
-};
-});
-
-lightbox.onclick=()=>lightbox.style.display='none';
-
-/* BLUR LOAD */
-document.querySelectorAll('.img-blur').forEach(img=>{
-if(img.complete){
-img.classList.add('loaded');
-}else{
-img.onload=()=>img.classList.add('loaded');
 }
 });
+
+lightbox.onclick=()=>lightbox.style.display="none";
 
 </script>
 
