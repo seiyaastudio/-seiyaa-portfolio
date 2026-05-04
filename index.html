@@ -3,21 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Seiyaa Studio</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
+
+/* =========================
+   CORE RESET
+========================= */
 *{margin:0;padding:0;box-sizing:border-box}
 
 body{
   background:#050505;
   color:#fff;
-  font-family:'Inter', sans-serif;
+  font-family:'Inter',sans-serif;
+  overflow-x:hidden;
 }
 
-/* NAV */
+/* =========================
+   NAVBAR
+========================= */
 .nav{
   position:fixed;
   width:100%;
@@ -25,7 +31,7 @@ body{
   display:flex;
   justify-content:space-between;
   z-index:1000;
-  background:linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);
+  background:linear-gradient(to bottom,rgba(0,0,0,.8),transparent);
 }
 
 .logo{
@@ -37,73 +43,100 @@ body{
   color:#aaa;
   margin-left:30px;
   text-decoration:none;
+  transition:.3s;
 }
 
-/* HERO */
+.nav a:hover{
+  color:#fff;
+}
+
+/* =========================
+   HERO CAROUSEL
+========================= */
 .hero{
   height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
   position:relative;
-  z-index:1;
+  overflow:hidden;
 }
 
-.hero h1{
-  font-size:60px;
+.slide{
+  position:absolute;
+  inset:0;
+  background-size:cover;
+  background-position:center;
+  opacity:0;
+  transform:scale(1.1);
+  transition:1.5s ease;
+}
+
+.slide.active{
+  opacity:1;
+  transform:scale(1);
+}
+
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.5);
+  z-index:2;
+}
+
+.hero-content{
+  position:absolute;
+  z-index:3;
+  width:100%;
+  top:50%;
+  transform:translateY(-50%);
+  text-align:center;
+}
+
+.hero-content h1{
   font-family:'Playfair Display';
+  font-size:60px;
 }
 
-/* SECTION */
+/* =========================
+   SECTION
+========================= */
 .section{
   padding:120px 8%;
-  position:relative;
-  z-index:2;
 }
 
 h2{
   font-size:28px;
-  margin-bottom:40px;
+  margin-bottom:20px;
 }
 
-/* GRID */
+.details{
+  max-width:700px;
+  color:#aaa;
+  margin-bottom:40px;
+  line-height:1.6;
+}
+
+/* =========================
+   GRID
+========================= */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
   gap:20px;
 }
 
-/* IMAGE FIXED */
 .grid img{
   width:100%;
-  display:block;
   cursor:pointer;
-
-  transition:
-    transform 0.6s ease,
-    box-shadow 0.6s ease,
-    filter 0.6s ease;
+  transition:.6s ease;
 }
 
 .grid img:hover{
   transform:scale(1.05);
-  box-shadow:0 20px 60px rgba(0,0,0,0.6);
+  box-shadow:0 20px 60px rgba(0,0,0,.7);
 }
 
-/* BLUR LOAD SAFE */
-.img-blur{
-  filter:blur(20px);
-  opacity:0;
-}
-
-.img-blur.loaded{
-  filter:blur(0);
-  opacity:1;
-  transition:0.8s ease;
-}
-
-/* SCROLL REVEAL */
+/* =========================
+   SCROLL FADE
+========================= */
 .fade{
   opacity:0;
   transform:translateY(40px);
@@ -115,14 +148,16 @@ h2{
   transform:translateY(0);
 }
 
-/* LIGHTBOX */
+/* =========================
+   LIGHTBOX
+========================= */
 #lightbox{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,0.9);
+  background:rgba(0,0,0,.9);
   display:none;
-  align-items:center;
   justify-content:center;
+  align-items:center;
   z-index:2000;
 }
 
@@ -131,83 +166,76 @@ h2{
   max-height:90%;
 }
 
-/* DETAILS SECTION (RESTORED) */
-.details{
-  max-width:700px;
-  margin-top:20px;
-  color:#bbb;
-  line-height:1.6;
-}
 </style>
 </head>
 
 <body>
 
+<!-- NAV -->
 <div class="nav">
   <div class="logo">SEIYAA</div>
-  <div>
-    <a href="#portfolio">Portfolio</a>
-  </div>
 </div>
 
 <!-- HERO -->
 <div class="hero">
-  <h1 class="fade">Creative Direction & Photography</h1>
+
+  <div class="slide active" style="background-image:url('images/_DSC7851.jpg')"></div>
+  <div class="slide" style="background-image:url('images/_DSC8267.jpg')"></div>
+  <div class="slide" style="background-image:url('images/_DSC8091.jpg')"></div>
+
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <h1>Creative Direction & Photography</h1>
+  </div>
+
 </div>
 
 <!-- PORTFOLIO -->
-<section class="section fade" id="portfolio">
+<section class="section fade">
 
 <h2>Urban Market Series</h2>
-<p class="details">
-A vibrant exploration of street culture, blending raw market textures with high-fashion direction.
-</p>
+<p class="details">Raw market textures with fashion storytelling.</p>
 
 <div class="grid">
-<img class="img-blur" src="images/_DSC8255.jpg">
-<img class="img-blur" src="images/_DSC8261.jpg">
-<img class="img-blur" src="images/_DSC8267.jpg">
-<img class="img-blur" src="images/_DSC8303.jpg">
-<img class="img-blur" src="images/_DSC8330.jpg">
+<img src="images/_DSC8255.jpg">
+<img src="images/_DSC8261.jpg">
+<img src="images/_DSC8267.jpg">
+<img src="images/_DSC8303.jpg">
+<img src="images/_DSC8330.jpg">
 </div>
 
 <h2 style="margin-top:120px;">Gas Station Editorial</h2>
-<p class="details">
-A bold editorial concept set in a raw urban gas station environment—clean styling meets industrial tones.
-</p>
+<p class="details">Industrial setting meets styled editorial.</p>
 
 <div class="grid">
-<img class="img-blur" src="images/_DSC7851.jpg">
-<img class="img-blur" src="images/_DSC7860.jpg">
-<img class="img-blur" src="images/_DSC7867.jpg">
-<img class="img-blur" src="images/_DSC7886.jpg">
-<img class="img-blur" src="images/_DSC7900.jpg">
+<img src="images/_DSC7851.jpg">
+<img src="images/_DSC7860.jpg">
+<img src="images/_DSC7867.jpg">
+<img src="images/_DSC7886.jpg">
+<img src="images/_DSC7900.jpg">
 </div>
 
 <h2 style="margin-top:120px;">Night Street Cinematics</h2>
-<p class="details">
-Cinematic night photography capturing motion, light, and atmosphere in urban environments.
-</p>
+<p class="details">Urban night visuals with cinematic tone.</p>
 
 <div class="grid">
-<img class="img-blur" src="images/_DSC7665.jpg">
-<img class="img-blur" src="images/_DSC7676.jpg">
-<img class="img-blur" src="images/_DSC7679.jpg">
-<img class="img-blur" src="images/_DSC7685.jpg">
-<img class="img-blur" src="images/_DSC7694.jpg">
+<img src="images/_DSC7665.jpg">
+<img src="images/_DSC7676.jpg">
+<img src="images/_DSC7679.jpg">
+<img src="images/_DSC7685.jpg">
+<img src="images/_DSC7694.jpg">
 </div>
 
 <h2 style="margin-top:120px;">Rebel / Underground Series</h2>
-<p class="details">
-A darker, more expressive series focused on attitude, rebellion, and underground visual identity.
-</p>
+<p class="details">Dark, expressive underground identity.</p>
 
 <div class="grid">
-<img class="img-blur" src="images/_DSC8091.jpg">
-<img class="img-blur" src="images/_DSC8092.jpg">
-<img class="img-blur" src="images/_DSC8093.jpg">
-<img class="img-blur" src="images/_DSC8105.jpg">
-<img class="img-blur" src="images/_DSC8112.jpg">
+<img src="images/_DSC8091.jpg">
+<img src="images/_DSC8092.jpg">
+<img src="images/_DSC8093.jpg">
+<img src="images/_DSC8105.jpg">
+<img src="images/_DSC8112.jpg">
 </div>
 
 </section>
@@ -219,39 +247,40 @@ A darker, more expressive series focused on attitude, rebellion, and underground
 
 <script>
 
-/* BLUR LOAD */
-document.querySelectorAll('.img-blur').forEach(img=>{
-  if(img.complete){
-    img.classList.add('loaded');
-  }else{
-    img.onload=()=>img.classList.add('loaded');
-  }
-});
+/* HERO CAROUSEL */
+let slides=document.querySelectorAll('.slide');
+let index=0;
 
-/* SCROLL */
-const faders=document.querySelectorAll(".fade");
+setInterval(()=>{
+  slides[index].classList.remove('active');
+  index=(index+1)%slides.length;
+  slides[index].classList.add('active');
+},4000);
 
-window.addEventListener("scroll",()=>{
+/* SCROLL REVEAL */
+const faders=document.querySelectorAll('.fade');
+
+window.addEventListener('scroll',()=>{
   faders.forEach(el=>{
     if(el.getBoundingClientRect().top<window.innerHeight-100){
-      el.classList.add("show");
+      el.classList.add('show');
     }
   });
 });
 
 /* LIGHTBOX */
-const images=document.querySelectorAll(".grid img");
-const lightbox=document.getElementById("lightbox");
-const lightboxImg=document.getElementById("lightbox-img");
+const images=document.querySelectorAll('.grid img');
+const lightbox=document.getElementById('lightbox');
+const lightboxImg=document.getElementById('lightbox-img');
 
 images.forEach(img=>{
   img.onclick=()=>{
-    lightbox.style.display="flex";
+    lightbox.style.display='flex';
     lightboxImg.src=img.src;
   };
 });
 
-lightbox.onclick=()=>lightbox.style.display="none";
+lightbox.onclick=()=>lightbox.style.display='none';
 
 </script>
 
