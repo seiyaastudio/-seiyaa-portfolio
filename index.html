@@ -5,131 +5,42 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Seiyaa Studio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
+  margin: 0;
   background: #0a0a0a;
-  color: #fff;
-  font-family: 'Inter', sans-serif;
-}
-
-/* NAV /
-nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  padding: 20px 50px;
-  display: flex;
-  justify-content: space-between;
-  background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(8px);
-  z-index: 1000;
-}
-
-nav h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 18px;
-  letter-spacing: 2px;
-}
-
-nav a {
-  color: #aaa;
-  text-decoration: none;
-  margin-left: 20px;
-  font-size: 14px;
-}
-
-nav a:hover {
   color: white;
+  font-family: Arial, sans-serif;
 }
 
-/ HERO /
-.hero {
-  height: 90vh;
-  display: flex;
-  align-items: flex-end;
-  padding: 60px;
-  background: url('./images/_DSC8303.jpg') center/cover no-repeat;
+h1 {
+  padding: 20px;
 }
 
-.hero h2 {
-  font-size: 48px;
-  font-family: 'Playfair Display', serif;
-  max-width: 500px;
-}
-
-/ SECTION /
 .section {
-  padding: 100px 50px;
+  padding: 40px;
 }
 
-.section h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 32px;
-  margin-bottom: 30px;
-}
-
-/ GRID /
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
 }
 
 .grid img {
   width: 100%;
-  height: 320px;
+  height: 300px;
   object-fit: cover;
-  border-radius: 10px;
-  transition: 0.4s ease;
-}
-
-.grid img:hover {
-  transform: scale(1.04);
-}
-
-/ LIGHTBOX */
-.lightbox {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.9);
-  display: none;
-  justify-content: center;
-  align-items: center;
-}
-
-.lightbox img {
-  max-width: 90%;
-  max-height: 90%;
+  display: block;
 }
 </style>
 </head>
 
 <body>
 
-<nav>
-  <h1>SEIYAA STUDIO</h1>
-  <div>
-    <a href="#market">Market</a>
-    <a href="#street">Street</a>
-  </div>
-</nav>
+<h1>SEIYAA STUDIO</h1>
 
-<section class="hero">
-  <h2>Cinematic Photography</h2>
-</section>
-
-<section class="section" id="market">
+<div class="section">
   <h2>Market Series</h2>
   <div class="grid">
     <img src="./images/_DSC8261.jpg">
@@ -137,9 +48,9 @@ nav a:hover {
     <img src="./images/_DSC7867.jpg">
     <img src="./images/_DSC7886.jpg">
   </div>
-</section>
+</div>
 
-<section class="section" id="street">
+<div class="section">
   <h2>Street / Gas Station</h2>
   <div class="grid">
     <img src="./images/_DSC8303.jpg">
@@ -147,28 +58,7 @@ nav a:hover {
     <img src="./images/_DSC7851.jpg">
     <img src="./images/_DSC7860.jpg">
   </div>
-</section>
-
-<div class="lightbox" id="lightbox">
-  <img id="lightbox-img">
 </div>
-
-<script>
-const images = document.querySelectorAll(".grid img");
-const lightbox = document.getElementById("lightbox");
-const lightboxImg = document.getElementById("lightbox-img");
-
-images.forEach(img => {
-  img.addEventListener("click", () => {
-    lightbox.style.display = "flex";
-    lightboxImg.src = img.src;
-  });
-});
-
-lightbox.addEventListener("click", () => {
-  lightbox.style.display = "none";
-});
-</script>
 
 </body>
 </html>
