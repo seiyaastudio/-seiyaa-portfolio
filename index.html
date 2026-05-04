@@ -25,7 +25,7 @@ nav {
   display:flex;
   justify-content:space-between;
   z-index:100;
-  background:linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+  background:linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
 }
 
 nav h1 {
@@ -37,7 +37,8 @@ nav a {
   color:white;
   margin-left:30px;
   text-decoration:none;
-  opacity:0.5;
+  opacity:0.6;
+  transition:0.3s;
 }
 
 nav a:hover { opacity:1; }
@@ -45,11 +46,24 @@ nav a:hover { opacity:1; }
 /* HERO */
 .hero {
   height:100vh;
-  background:url('images/_DSC8261.jpg') center/cover no-repeat;
+  position:relative;
+  overflow:hidden;
   display:flex;
   align-items:center;
   padding:0 100px;
-  position:relative;
+}
+
+.hero-slide {
+  position:absolute;
+  inset:0;
+  background-size:cover;
+  background-position:center;
+  opacity:0;
+  transition:opacity 1.5s ease;
+}
+
+.hero-slide.active {
+  opacity:1;
 }
 
 .hero::after {
@@ -67,6 +81,23 @@ nav a:hover { opacity:1; }
 .hero h2 {
   font-family:'Playfair Display', serif;
   font-size:72px;
+  margin-bottom:20px;
+}
+
+/* BUTTONS */
+.hero-buttons a {
+  display:inline-block;
+  margin-right:15px;
+  padding:12px 26px;
+  border:1px solid white;
+  text-decoration:none;
+  color:white;
+  transition:0.3s;
+}
+
+.hero-buttons a:hover {
+  background:white;
+  color:black;
 }
 
 /* SECTION */
@@ -82,7 +113,7 @@ nav a:hover { opacity:1; }
 /* GRID */
 .grid {
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
   gap:30px;
 }
 
@@ -92,7 +123,7 @@ nav a:hover { opacity:1; }
   object-fit:cover;
   border-radius:18px;
   cursor:pointer;
-  transition:0.6s;
+  transition:0.5s;
 }
 
 .grid img:hover {
@@ -107,6 +138,7 @@ nav a:hover { opacity:1; }
   display:none;
   align-items:center;
   justify-content:center;
+  z-index:200;
 }
 
 .lightbox img {
@@ -120,35 +152,16 @@ nav a:hover { opacity:1; }
   padding:140px 20px;
 }
 
-.cta h2 {
-  font-family:'Playfair Display', serif;
-  font-size:36px;
-}
-
-.cta p {
-  margin:20px 0;
-  opacity:0.6;
-}
-
 .cta a {
-  display:inline-block;
   padding:14px 28px;
   border:1px solid white;
   text-decoration:none;
   color:white;
-  transition:0.3s;
 }
 
 .cta a:hover {
   background:white;
   color:black;
-}
-
-/* FOOTER */
-.footer {
-  text-align:center;
-  padding:60px;
-  opacity:0.4;
 }
 
 </style>
@@ -166,8 +179,20 @@ nav a:hover { opacity:1; }
 
 <!-- HERO -->
 <section class="hero">
+
+  <!-- SLIDES -->
+  <div class="hero-slide active" style="background-image:url('images/_DSC8261.jpg')"></div>
+  <div class="hero-slide" style="background-image:url('images/_DSC8255.jpg')"></div>
+  <div class="hero-slide" style="background-image:url('images/_DSC8303.jpg')"></div>
+
   <div class="hero-content">
     <h2>Cinematic Photography</h2>
+
+    <div class="hero-buttons">
+      <a href="#market">View Work</a>
+      <a href="https://instagram.com/YOUR_USERNAME" target="_blank">Instagram</a>
+    </div>
+
   </div>
 </section>
 
@@ -195,9 +220,7 @@ nav a:hover { opacity:1; }
 
 <!-- CTA -->
 <section class="cta">
-  <h2>Work With Me</h2>
-  <p>Available for creative shoots, brand work, and collaborations.</p>
-  <a href="https://instagram.com/seiyaastudio" target="_blank">DM on Instagram</a>
+  <a href="https://instagram.com/seiyasstudio" target="_blank">Book a Shoot</a>
 </section>
 
 <!-- LIGHTBOX -->
@@ -205,12 +228,19 @@ nav a:hover { opacity:1; }
   <img id="lightbox-img">
 </div>
 
-<div class="footer">
-  © Seiyaa Studio
-</div>
-
 <script>
 
+/* HERO AUTO SLIDER */
+const slides = document.querySelectorAll(".hero-slide");
+let current = 0;
+
+setInterval(() => {
+  slides[current].classList.remove("active");
+  current = (current + 1) % slides.length;
+  slides[current].classList.add("active");
+}, 4000);
+
+/* LIGHTBOX */
 const images = document.querySelectorAll(".grid img");
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightbox-img");
