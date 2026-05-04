@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+{margin:0;padding:0;box-sizing:border-box}
 
 body{
 background:#050505;
@@ -18,7 +18,7 @@ font-family:'Inter';
 line-height:1.6;
 }
 
-/* NAV */
+/ NAV /
 .nav{
 position:fixed;
 width:100%;
@@ -42,7 +42,7 @@ transition:.3s;
 }
 .nav a:hover{color:#fff}
 
-/* HERO */
+/ HERO /
 .hero{
 height:100vh;
 position:relative;
@@ -97,7 +97,7 @@ background:#fff;
 color:#000;
 }
 
-/* SECTION */
+/ SECTION /
 .section{
 padding:120px 8%;
 }
@@ -112,7 +112,7 @@ max-width:700px;
 margin-bottom:40px;
 }
 
-/* GRID */
+/ GRID /
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
@@ -137,7 +137,7 @@ box-shadow:0 25px 80px rgba(0,0,0,0.45);
 filter:brightness(1.05);
 }
 
-/* SERVICES */
+/ SERVICES /
 .services{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
@@ -154,13 +154,13 @@ transform:translateY(-5px);
 border-color:#444;
 }
 
-/* PROCESS */
+/ PROCESS /
 .process div{
 margin-bottom:15px;
 color:#ccc;
 }
 
-/* CONTACT */
+/ CONTACT /
 .contact a{
 display:inline-block;
 margin-right:20px;
@@ -169,7 +169,7 @@ text-decoration:none;
 border-bottom:1px solid #fff;
 }
 
-/* LIGHTBOX */
+/ LIGHTBOX /
 .lightbox{
 position:fixed;
 width:100%;
@@ -185,7 +185,7 @@ max-width:90%;
 max-height:90%;
 }
 
-/* SCROLL */
+/ SCROLL /
 .fade{
 opacity:0;
 transform:translateY(40px);
@@ -195,7 +195,7 @@ transition:1s ease;
 opacity:1;
 transform:translateY(0);
 }
-/* ===== CINEMATIC PORTFOLIO ===== */
+/ ===== CINEMATIC PORTFOLIO ===== /
 .cinematic{
 display:grid;
 grid-template-columns:2fr 1fr;
@@ -239,7 +239,7 @@ transform:scale(1.04) translateY(-4px);
 box-shadow:0 25px 80px rgba(0,0,0,0.45);
 filter:brightness(1.05);
 }
-/* MOBILE FIX */
+/ MOBILE FIX /
 @media(max-width:768px){
 .cinematic{
 grid-template-columns:1fr;
@@ -275,6 +275,10 @@ grid-template-columns:1fr;
 <h1>We Don’t Shoot Photos.<br>We Build Visual Identity.</h1>
 <p>Cinematic street and fashion photography built for brands, models, and standout visuals.</p>
 
+<p style="margin-top:10px; max-width:520px; color:#aaa;">
+For models, brands, and creatives who want to stand out with strong visual identity — not just content.
+</p>
+
 <div class="hero-buttons">
 <a href="#portfolio">View Work</a>
 <a href="https://www.instagram.com/seiyaasstudio/" target="_blank">Instagram</a>
@@ -290,79 +294,74 @@ Seiyaa Studio is a photography brand focused on cinematic street and fashion vis
 We create bold, editorial-style imagery that elevate personal brands, models, and businesses.  
 Every shoot is built around concept, lighting, and storytelling — not just taking photos, but creating identity.
 </p>
+
+<p style="margin-top:15px;">
+We approach every shoot with intention — combining direction, lighting, and environment to produce images 
+that don’t just look good, but position you at a higher level.
+</p>
 </section>
 
 <!-- PORTFOLIO -->
 <section class="section fade" id="portfolio">
 
 <h2>Urban Market Series</h2>
+<p style="max-width:600px;">A contrast-driven editorial set in raw public environments, blending everyday textures with intentional styling.</p>
 
 <div class="cinematic">
-
-  <!-- FEATURE IMAGE -->
-  <div class="cinematic-main">
-    <img src="images/_DSC8255.jpg" loading="lazy" alt="Market main">
-  </div>
-
-  <!-- SIDE GRID -->
-  <div class="cinematic-side">
-    <img src="images/_DSC8261.jpg" loading="lazy">
-    <img src="images/_DSC8267.jpg" loading="lazy">
-    <img src="images/_DSC8303.jpg" loading="lazy">
-    <img src="images/_DSC8330.jpg" loading="lazy">
-  </div>
-
+<div class="cinematic-main">
+<img src="images/_DSC8255.jpg" loading="lazy">
+</div>
+<div class="cinematic-side">
+<img src="images/_DSC8261.jpg" loading="lazy">
+<img src="images/_DSC8267.jpg" loading="lazy">
+<img src="images/_DSC8303.jpg" loading="lazy">
+<img src="images/_DSC8330.jpg" loading="lazy">
+</div>
 </div>
 
 <h2 style="margin-top:120px;">Gas Station Editorial</h2>
+<p style="max-width:600px;">Structured compositions with clean lighting and bold posing, built for clarity and strong visual impact.</p>
 
 <div class="cinematic reverse">
-
-  <div class="cinematic-main">
-    <img src="images/_DSC7851.jpg" loading="lazy">
-  </div>
-
-  <div class="cinematic-side">
-    <img src="images/_DSC7860.jpg" loading="lazy">
-    <img src="images/_DSC7867.jpg" loading="lazy">
-    <img src="images/_DSC7886.jpg" loading="lazy">
-    <img src="images/_DSC7900.jpg" loading="lazy">
-  </div>
-
+<div class="cinematic-main">
+<img src="images/_DSC7851.jpg" loading="lazy">
+</div>
+<div class="cinematic-side">
+<img src="images/_DSC7860.jpg" loading="lazy">
+<img src="images/_DSC7867.jpg" loading="lazy">
+<img src="images/_DSC7886.jpg" loading="lazy">
+<img src="images/_DSC7900.jpg" loading="lazy">
+</div>
 </div>
 
 <h2 style="margin-top:120px;">Night Street Cinematics</h2>
+<p style="max-width:600px;">Low-light storytelling focused on atmosphere, shadows, and cinematic depth.</p>
 
 <div class="cinematic">
-
-  <div class="cinematic-main">
-    <img src="images/_DSC7665.jpg" loading="lazy">
-  </div>
-
-  <div class="cinematic-side">
-    <img src="images/_DSC7676.jpg" loading="lazy">
-    <img src="images/_DSC7679.jpg" loading="lazy">
-    <img src="images/_DSC7685.jpg" loading="lazy">
-    <img src="images/_DSC7694.jpg" loading="lazy">
-  </div>
-
+<div class="cinematic-main">
+<img src="images/_DSC7665.jpg" loading="lazy">
+</div>
+<div class="cinematic-side">
+<img src="images/_DSC7676.jpg" loading="lazy">
+<img src="images/_DSC7679.jpg" loading="lazy">
+<img src="images/_DSC7685.jpg" loading="lazy">
+<img src="images/_DSC7694.jpg" loading="lazy">
+</div>
 </div>
 
 <h2 style="margin-top:120px;">Rebel / Underground Series</h2>
+<p style="max-width:600px;">Unfiltered visuals centered on identity, attitude, and non-conforming expression.</p>
 
 <div class="cinematic reverse">
-
-  <div class="cinematic-main">
-    <img src="images/_DSC8091.jpg" loading="lazy">
-  </div>
-
-  <div class="cinematic-side">
-    <img src="images/_DSC8092.jpg" loading="lazy">
-    <img src="images/_DSC8093.jpg" loading="lazy">
-    <img src="images/_DSC8105.jpg" loading="lazy">
-    <img src="images/_DSC8112.jpg" loading="lazy">
-  </div>
-
+<div class="cinematic-main">
+<img src="images/_DSC8091.jpg" loading="lazy">
+</div>
+<div class="cinematic-side">
+<img src="images/_DSC8092.jpg" loading="lazy">
+<img src="images/_DSC8093.jpg" loading="lazy">
+<img src="images/_DSC8105.jpg" loading="lazy">
+<img src="images/_DSC8112.jpg" loading="lazy">
+</div>
 </div>
 
 </section>
@@ -376,21 +375,25 @@ Every shoot is built around concept, lighting, and storytelling — not just tak
 <div class="service-box">
 <h3>Model Portfolio Shoot</h3>
 <p>Clean, cinematic, and editorial visuals for aspiring and professional models.</p>
+<p style="margin-top:10px;color:#888;font-size:14px;">Built for clients who want strong, standout visuals.</p>
 </div>
 
 <div class="service-box">
 <h3>Brand / Product Shoot</h3>
 <p>High-impact visuals for clothing brands, businesses, and campaigns.</p>
+<p style="margin-top:10px;color:#888;font-size:14px;">Designed to attract attention and elevate brand presence.</p>
 </div>
 
 <div class="service-box">
 <h3>Creative Concept Shoots</h3>
 <p>Planned shoots with styling, direction, and strong visual storytelling.</p>
+<p style="margin-top:10px;color:#888;font-size:14px;">Focused on building identity through visual storytelling.</p>
 </div>
 
 <div class="service-box">
 <h3>X-Deal Collaboration</h3>
 <p>Selected collaborations based on concept and creative alignment.</p>
+<p style="margin-top:10px;color:#888;font-size:14px;">Limited slots for strong and unique concepts only.</p>
 </div>
 
 </div>
@@ -399,6 +402,11 @@ Every shoot is built around concept, lighting, and storytelling — not just tak
 <!-- PROCESS -->
 <section class="section fade">
 <h2>Process</h2>
+
+<p style="max-width:600px;">
+A streamlined process designed to keep everything clear, efficient, and creatively focused.
+</p>
+
 <div class="process">
 <div><strong>01. Inquiry</strong> — Send your idea or concept</div>
 <div><strong>02. Planning</strong> — We align on visual direction</div>
@@ -411,6 +419,10 @@ Every shoot is built around concept, lighting, and storytelling — not just tak
 <section class="section fade" id="contact">
 <h2>Contact</h2>
 <p>Ready to create something cinematic?</p>
+
+<p style="margin-top:10px; max-width:500px;">
+If you're serious about upgrading your visuals, this is where it starts.
+</p>
 
 <div class="contact">
 <a href="https://www.instagram.com/seiyaasstudio/" target="_blank">Instagram</a>
@@ -425,7 +437,7 @@ Every shoot is built around concept, lighting, and storytelling — not just tak
 
 <script>
 
-/* HERO */
+/ HERO /
 let slides=document.querySelectorAll(".hero img");
 let i=0;
 setInterval(()=>{
@@ -434,7 +446,7 @@ i=(i+1)%slides.length;
 slides[i].classList.add("active");
 },4000);
 
-/* SCROLL */
+/ SCROLL /
 const faders=document.querySelectorAll(".fade");
 window.addEventListener("scroll",()=>{
 faders.forEach(el=>{
@@ -445,7 +457,7 @@ el.classList.add("show");
 });
 window.dispatchEvent(new Event('scroll'));
 
-/* LIGHTBOX */
+/ LIGHTBOX */
 const images=document.querySelectorAll(".cinematic img");
 const lightbox=document.getElementById("lightbox");
 const lightboxImg=document.getElementById("lightbox-img");
