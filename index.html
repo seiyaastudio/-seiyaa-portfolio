@@ -1,28 +1,51 @@
-<script>
-const faders = document.querySelectorAll(".fade");
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Seiyaa Studio</title>
 
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      entry.target.classList.add("show");
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      color: white;
+      font-family: Arial;
     }
-  });
-});
 
-faders.forEach(el => observer.observe(el));
+    h1 {
+      padding: 40px;
+    }
 
-const images = document.querySelectorAll(".grid img");
-const lightbox = document.getElementById("lightbox");
-const lightboxImg = document.getElementById("lightbox-img");
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 40px;
+    }
 
-images.forEach(img => {
-  img.addEventListener("click", () => {
-    lightbox.style.display = "flex";
-    lightboxImg.src = img.src;
-  });
-});
+    img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
+  </style>
+</head>
 
-lightbox.addEventListener("click", () => {
-  lightbox.style.display = "none";
-});
-</script>
+<body>
+
+<h1>Seiyaa Studio</h1>
+
+<div class="grid">
+  <img src="./images/_DSC8261.jpg">
+  <img src="./images/_DSC8267.jpg">
+  <img src="./images/_DSC7867.jpg">
+  <img src="./images/_DSC7886.jpg">
+
+  <img src="./images/_DSC8303.jpg">
+  <img src="./images/_DSC8330.jpg">
+  <img src="./images/_DSC7851.jpg">
+  <img src="./images/_DSC7860.jpg">
+</div>
+
+</body>
+</html>
