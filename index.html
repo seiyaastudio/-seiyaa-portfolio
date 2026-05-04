@@ -5,9 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Seiyaa Studio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
+
 * {
   margin: 0;
   padding: 0;
@@ -23,56 +24,69 @@ body {
 /* NAV */
 nav {
   position: fixed;
-  top: 0;
   width: 100%;
   padding: 25px 60px;
   display: flex;
   justify-content: space-between;
-  background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(10px);
-  z-index: 1000;
+  z-index: 100;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);
 }
 
 nav h1 {
   font-family: 'Playfair Display', serif;
-  font-size: 20px;
   letter-spacing: 2px;
 }
 
 nav a {
-  color: #aaa;
+  color: white;
   margin-left: 30px;
   text-decoration: none;
-  font-size: 14px;
-  transition: 0.3s;
+  opacity: 0.7;
 }
 
 nav a:hover {
-  color: white;
+  opacity: 1;
 }
 
 /* HERO */
 .hero {
   height: 100vh;
+  background: url('images/dsc7851.jpg') center/cover no-repeat;
   display: flex;
   align-items: center;
-  padding: 0 60px;
+  padding: 0 80px;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, #0a0a0a 10%, transparent 60%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
 }
 
 .hero h2 {
-  font-size: 60px;
   font-family: 'Playfair Display', serif;
+  font-size: 64px;
 }
 
-/* SECTION */
+.hero p {
+  opacity: 0.7;
+  margin-top: 10px;
+}
+
+/* SECTIONS */
 .section {
-  padding: 100px 60px;
+  padding: 100px 80px;
 }
 
 .section h2 {
-  font-size: 32px;
-  margin-bottom: 40px;
   font-family: 'Playfair Display', serif;
+  margin-bottom: 30px;
 }
 
 /* GRID */
@@ -84,10 +98,9 @@ nav a:hover {
 
 .grid img {
   width: 100%;
-  height: 320px;
+  height: 340px;
   object-fit: cover;
   border-radius: 14px;
-  cursor: pointer;
   transition: 0.4s ease;
 }
 
@@ -95,42 +108,11 @@ nav a:hover {
   transform: scale(1.05);
 }
 
-/* LIGHTBOX */
-.lightbox {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.95);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 2000;
-}
-
-.lightbox img {
-  max-width: 90%;
-  max-height: 90%;
-}
-
-/* FADE */
-.fade {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: 1s ease;
-}
-
-.fade.show {
-  opacity: 1;
-  transform: translateY(0);
-}
 </style>
 </head>
 
 <body>
 
-<!-- NAV -->
 <nav>
   <h1>SEIYAA STUDIO</h1>
   <div>
@@ -141,66 +123,43 @@ nav a:hover {
 
 <!-- HERO -->
 <section class="hero">
-  <h2>Cinematic Photography</h2>
+  <div class="hero-content">
+    <h2>Cinematic Photography</h2>
+    <p>Visual storytelling through light and street culture</p>
+  </div>
+</section>
+
+<!-- FEATURED -->
+<section class="section">
+  <h2>Featured</h2>
+  <div class="grid">
+    <img src="images/dsc8255.jpg">
+    <img src="images/dsc8261.jpg">
+    <img src="images/dsc8267.jpg">
+  </div>
 </section>
 
 <!-- MARKET -->
-<section class="section fade" id="market">
+<section class="section" id="market">
   <h2>Market Series</h2>
   <div class="grid">
-    <img src="images/_DSC8261.jpg">
-    <img src="images/_DSC8267.jpg">
-    <img src="images/_DSC7867.jpg">
-    <img src="images/_DSC7886.jpg">
+    <img src="images/dsc8255.jpg">
+    <img src="images/dsc8261.jpg">
+    <img src="images/dsc8267.jpg">
+    <img src="images/dsc7867.jpg">
   </div>
 </section>
 
 <!-- STREET -->
-<section class="section fade" id="street">
+<section class="section" id="street">
   <h2>Street / Gas Station</h2>
   <div class="grid">
-    <img src="images/_DSC8303.jpg">
-    <img src="images/_DSC8330.jpg">
-    <img src="images/_DSC7851.jpg">
-    <img src="images/_DSC7860.jpg">
+    <img src="images/dsc8303.jpg">
+    <img src="images/dsc8330.jpg">
+    <img src="images/dsc7851.jpg">
+    <img src="images/dsc7860.jpg">
   </div>
 </section>
-
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox">
-  <img id="lightbox-img">
-</div>
-
-<script>
-// FADE ANIMATION
-const faders = document.querySelectorAll(".fade");
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      entry.target.classList.add("show");
-    }
-  });
-});
-
-faders.forEach(el => observer.observe(el));
-
-// LIGHTBOX
-const images = document.querySelectorAll(".grid img");
-const lightbox = document.getElementById("lightbox");
-const lightboxImg = document.getElementById("lightbox-img");
-
-images.forEach(img => {
-  img.addEventListener("click", () => {
-    lightbox.style.display = "flex";
-    lightboxImg.src = img.src;
-  });
-});
-
-lightbox.addEventListener("click", () => {
-  lightbox.style.display = "none";
-});
-</script>
 
 </body>
 </html>
