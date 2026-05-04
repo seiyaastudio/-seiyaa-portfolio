@@ -18,7 +18,6 @@ display:flex;justify-content:space-between;
 z-index:1000;
 background:linear-gradient(to bottom,rgba(0,0,0,.7),transparent);
 }
-
 .logo{font-family:'Playfair Display';letter-spacing:3px}
 
 .nav a{
@@ -64,7 +63,6 @@ background:#fff;color:#000;
 
 /* SECTION */
 .section{padding:120px 8%}
-
 .section h2{
 font-family:'Playfair Display';
 font-size:34px;margin-bottom:40px;
@@ -80,15 +78,12 @@ gap:30px;
 .card{
 overflow:hidden;border-radius:14px;
 }
-
 .card img{
 width:100%;height:100%;
 object-fit:cover;cursor:pointer;
 transition:.5s;
 }
-.card:hover img{
-transform:scale(1.05);
-}
+.card:hover img{transform:scale(1.05)}
 
 /* LIGHTBOX */
 .lightbox{
@@ -104,7 +99,6 @@ max-width:90%;max-height:90%;
 /* SCROLL */
 .fade{opacity:0;transform:translateY(40px);transition:1s}
 .fade.show{opacity:1;transform:translateY(0)}
-
 </style>
 </head>
 
@@ -117,14 +111,15 @@ max-width:90%;max-height:90%;
 <a href="#market">Market</a>
 <a href="#gas">Gas</a>
 <a href="#street">Street</a>
+<a href="#rebel">Rebel</a>
 </div>
 </div>
 
 <!-- HERO -->
 <section class="hero">
-<img src="images/_DSC8261.jpg" class="active">
-<img src="images/_DSC8255.jpg">
+<img src="images/_DSC8255.jpg" class="active">
 <img src="images/_DSC7867.jpg">
+<img src="images/_DSC8091.jpg">
 
 <div class="overlay"></div>
 
@@ -133,7 +128,7 @@ max-width:90%;max-height:90%;
 
 <div class="hero-buttons">
 <a href="#market">View Work</a>
-<a href="https://www.instagram.com/seiyaasstudio/" target="_blank">Instagram</a>
+<a href="https://instagram.com/YOUR_USERNAME" target="_blank">Instagram</a>
 </div>
 </div>
 </section>
@@ -141,19 +136,18 @@ max-width:90%;max-height:90%;
 <!-- MARKET -->
 <section class="section fade" id="market">
 <h2>Market Series</h2>
-
 <div class="grid">
 <div class="card"><img src="images/_DSC8255.jpg"></div>
 <div class="card"><img src="images/_DSC8261.jpg"></div>
 <div class="card"><img src="images/_DSC8267.jpg"></div>
-<div class="card"><img src="images/_DSC8248.jpg"></div>
+<div class="card"><img src="images/_DSC8303.jpg"></div>
+<div class="card"><img src="images/_DSC8330.jpg"></div>
 </div>
 </section>
 
-<!-- GAS STATION -->
+<!-- GAS -->
 <section class="section fade" id="gas">
 <h2>Gas Station</h2>
-
 <div class="grid">
 <div class="card"><img src="images/_DSC7851.jpg"></div>
 <div class="card"><img src="images/_DSC7860.jpg"></div>
@@ -165,14 +159,25 @@ max-width:90%;max-height:90%;
 
 <!-- STREET -->
 <section class="section fade" id="street">
-<h2>Street Rebel</h2>
-
+<h2>Street Night</h2>
 <div class="grid">
 <div class="card"><img src="images/_DSC8091.jpg"></div>
 <div class="card"><img src="images/_DSC8092.jpg"></div>
 <div class="card"><img src="images/_DSC8093.jpg"></div>
 <div class="card"><img src="images/_DSC8105.jpg"></div>
 <div class="card"><img src="images/_DSC8112.jpg"></div>
+</div>
+</section>
+
+<!-- REBEL -->
+<section class="section fade" id="rebel">
+<h2>Rebel Series</h2>
+<div class="grid">
+<div class="card"><img src="images/_rebel1.jpg"></div>
+<div class="card"><img src="images/_rebel2.jpg"></div>
+<div class="card"><img src="images/_rebel3.jpg"></div>
+<div class="card"><img src="images/_rebel4.jpg"></div>
+<div class="card"><img src="images/_rebel5.jpg"></div>
 </div>
 </section>
 
@@ -183,19 +188,17 @@ max-width:90%;max-height:90%;
 
 <script>
 
-/* HERO SLIDER */
+/* HERO */
 let slides=document.querySelectorAll(".hero img");
 let i=0;
-
 setInterval(()=>{
 slides[i].classList.remove("active");
 i=(i+1)%slides.length;
 slides[i].classList.add("active");
 },4000);
 
-/* SCROLL ANIMATION */
+/* SCROLL */
 const faders=document.querySelectorAll(".fade");
-
 window.addEventListener("scroll",()=>{
 faders.forEach(el=>{
 if(el.getBoundingClientRect().top < window.innerHeight-100){
