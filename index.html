@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Seiyaa Visuals — Cinematic Editorial</title>
+<title>Seiyaa Visuals — Eightysix Media</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -14,19 +14,30 @@ background:#050505;
 color:#fff;
 font-family:'Inter',sans-serif;
 overflow-x:hidden;
+scroll-behavior:smooth;
 }
 
-/* GLOBAL */
-.section{padding:100px 8%}
-h1,h2{font-family:'Playfair Display'}
-img{width:100%;height:100%;object-fit:cover;display:block}
-
-/* CINEMATIC OVERLAY */
-.overlay{
-position:absolute;
-inset:0;
-background:linear-gradient(to bottom,rgba(0,0,0,.2),rgba(0,0,0,.9));
+/* PROGRESS */
+.progress{
+position:fixed;
+top:0;left:0;height:3px;width:0%;
+background:linear-gradient(90deg,#00e0ff,#fff);
+z-index:9999;
 }
+
+/* NAV */
+.nav{
+position:fixed;
+top:0;width:100%;
+padding:20px 8%;
+display:flex;
+justify-content:space-between;
+z-index:1000;
+background:rgba(0,0,0,.6);
+backdrop-filter:blur(12px);
+}
+.nav a{color:#aaa;text-decoration:none;margin-left:25px;font-size:14px}
+.nav a.active,.nav a:hover{color:#fff}
 
 /* HERO */
 .hero{
@@ -34,18 +45,23 @@ height:100vh;
 position:relative;
 display:flex;
 align-items:center;
+padding:0 8%;
 }
-.hero img{position:absolute;inset:0}
-.hero-content{
-position:relative;
-max-width:700px;
-z-index:2;
+.hero img{
+position:absolute;inset:0;
+width:100%;height:100%;object-fit:cover;
 }
-.hero h1{
-font-size:80px;
-line-height:1;
+.hero::after{
+content:"";
+position:absolute;inset:0;
+background:linear-gradient(to bottom,rgba(0,0,0,.2),rgba(0,0,0,.9));
 }
+.hero-content{position:relative;z-index:2;max-width:700px}
+.hero h1{font-size:90px;font-family:'Playfair Display';line-height:1}
 .hero p{color:#ccc;margin-top:20px}
+
+/* SECTION */
+.section{padding:120px 8%}
 
 /* SPLIT */
 .split{
@@ -54,22 +70,32 @@ grid-template-columns:1fr 1fr;
 gap:40px;
 align-items:center;
 }
-.big-text{
-font-size:70px;
+
+/* TYPOGRAPHY */
+.big{
+font-size:80px;
+font-family:'Playfair Display';
 line-height:1;
 }
+.small{color:#aaa;margin-top:20px}
 
-/* FULL IMAGE BLOCK */
+/* FULL */
 .full{
 position:relative;
 height:80vh;
-margin:100px 0;
+margin:120px 0;
 }
-.full .text{
+.full img{width:100%;height:100%;object-fit:cover}
+.full::after{
+content:"";
+position:absolute;inset:0;
+background:linear-gradient(to bottom,rgba(0,0,0,.2),rgba(0,0,0,.85));
+}
+.full-text{
 position:absolute;
 bottom:40px;
 left:8%;
-max-width:500px;
+z-index:2;
 }
 
 /* COLLAGE */
@@ -84,23 +110,26 @@ grid-template-rows:1fr 1fr;
 gap:20px;
 }
 
-/* GRID MIX */
+/* GRID */
 .grid{
 display:grid;
 grid-template-columns:repeat(3,1fr);
 gap:20px;
 }
 
-/* THANK YOU */
-.thank{
-height:80vh;
+/* FILTER */
+.filters{
 display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
+gap:10px;
+margin-bottom:40px;
 }
-.thank h1{
-font-size:100px;
+.filter{
+padding:8px 18px;
+border:1px solid #333;
+cursor:pointer;
+}
+.filter.active{
+background:#fff;color:#000;
 }
 
 /* HOVER */
@@ -118,15 +147,15 @@ background:rgba(0,0,0,.95);
 display:none;
 justify-content:center;
 align-items:center;
-z-index:999;
+z-index:2000;
 }
 .lightbox img{
-max-width:90%;
-max-height:90%;
+max-width:95%;
+max-height:95%;
 object-fit:contain;
 }
 
-/* SCROLL ANIMATION */
+/* SCROLL */
 .fade{
 opacity:0;
 transform:translateY(60px);
@@ -137,27 +166,91 @@ opacity:1;
 transform:translateY(0);
 }
 
+/* CTA */
+.cta{
+height:80vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+}
+.cta h1{
+font-size:100px;
+font-family:'Playfair Display';
+}
+
+/* CONTACT */
+.form{
+max-width:400px;
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+.form input,.form textarea{
+background:#000;
+border:1px solid #333;
+padding:12px;color:#fff;
+}
+.form button{
+background:#00e0ff;
+border:none;padding:12px;cursor:pointer;
+}
+.success{display:none;color:#0f0}
+
+/* CHAT */
+.chat-btn{
+position:fixed;
+bottom:20px;right:20px;
+background:#00e0ff;
+padding:14px;border-radius:50%;
+cursor:pointer;
+}
+.chat-box{
+position:fixed;
+bottom:80px;right:20px;
+width:320px;height:420px;
+background:#111;
+display:none;
+flex-direction:column;
+border:1px solid #333;
+}
+.chat-msg{flex:1;overflow-y:auto;padding:10px;font-size:13px}
+.chat-input{display:flex}
+.chat-input input{flex:1;padding:10px;background:none;border:none;color:#fff}
+.chat-input button{background:#00e0ff;border:none;padding:10px}
+.quick{display:flex;gap:5px;padding:5px;flex-wrap:wrap}
+.quick span{background:#222;padding:6px;border-radius:20px;cursor:pointer;font-size:12px}
+
 /* MOBILE */
 @media(max-width:768px){
-.hero h1{font-size:48px}
-.big-text{font-size:40px}
+.hero h1{font-size:50px}
+.big{font-size:40px}
 .split{grid-template-columns:1fr}
 .collage{grid-template-columns:1fr}
 .grid{grid-template-columns:1fr}
-.thank h1{font-size:60px}
+.cta h1{font-size:60px}
 }
 </style>
 </head>
 
 <body>
 
+<div class="progress" id="progress"></div>
+
+<div class="nav">
+<div>Eightysix Media</div>
+<div>
+<a href="#portfolio">Work</a>
+<a href="#contact">Contact</a>
+</div>
+</div>
+
 <!-- HERO -->
 <section class="hero">
 <img src="images/_DSC8255.jpg">
-<div class="overlay"></div>
 <div class="hero-content">
 <h1>DREAM VISUALS</h1>
-<p>Seiyaa — Eightysix Media</p>
+<p>Seiyaa Cinematic Identity</p>
 </div>
 </section>
 
@@ -165,49 +258,50 @@ transform:translateY(0);
 <section class="section fade">
 <div class="split">
 <div>
-<h2 class="big-text">CONCEPT</h2>
-<p style="color:#aaa;margin-top:20px">
-A cinematic exploration of identity through light, texture, and atmosphere.  
-Each frame is intentional — crafted to evoke mood and narrative.
-</p>
+<div class="big">CONCEPT</div>
+<p class="small">A cinematic exploration of identity, light and motion.  
+Every frame is intentional and built for storytelling.</p>
 </div>
 <img src="images/_DSC8267.jpg">
 </div>
 </section>
 
-<!-- STORY FRAME -->
+<!-- STORY -->
 <div class="full fade">
 <img src="images/_DSC7851.jpg">
-<div class="overlay"></div>
-<div class="text">
-<h2 style="font-size:40px">#reaction</h2>
-<p style="color:#ccc;margin-top:10px">
-Moments captured between reality and storytelling.
-</p>
+<div class="full-text">
+<h2>#REACTION</h2>
+<p class="small">Moments captured between reality and narrative.</p>
 </div>
 </div>
 
-<!-- COLLAGE -->
-<section class="section fade">
+<!-- FILTER -->
+<section class="section fade" id="portfolio">
+<div class="filters">
+<div class="filter active" data="all">All</div>
+<div class="filter" data="portrait">Portrait</div>
+<div class="filter" data="fashion">Fashion</div>
+<div class="filter" data="street">Street</div>
+<div class="filter" data="creative">Creative</div>
+</div>
+
 <div class="collage">
-<img src="images/_DSC7886.jpg">
+<img src="images/_DSC7886.jpg" class="item portrait">
 <div class="collage-right">
-<img src="images/_DSC8303.jpg">
-<img src="images/_DSC8261.jpg">
+<img src="images/_DSC8303.jpg" class="item fashion">
+<img src="images/_DSC8261.jpg" class="item creative">
 </div>
 </div>
-</section>
 
-<!-- GRID -->
-<section class="section fade">
-<div class="grid">
-<img src="images/_DSC7676.jpg">
-<img src="images/_DSC7679.jpg">
-<img src="images/_DSC7685.jpg">
-<img src="images/_DSC7694.jpg">
-<img src="images/_DSC8091.jpg">
-<img src="images/_DSC8105.jpg">
+<div class="grid" style="margin-top:20px">
+<img src="images/_DSC7676.jpg" class="item street">
+<img src="images/_DSC7679.jpg" class="item street">
+<img src="images/_DSC7685.jpg" class="item street">
+<img src="images/_DSC7694.jpg" class="item street">
+<img src="images/_DSC8091.jpg" class="item portrait">
+<img src="images/_DSC8105.jpg" class="item fashion">
 </div>
+
 </section>
 
 <!-- MOOD -->
@@ -215,23 +309,30 @@ Moments captured between reality and storytelling.
 <div class="split">
 <img src="images/_DSC8093.jpg">
 <div>
-<h2 class="big-text">MOOD & TONE</h2>
-<p style="color:#aaa;margin-top:20px">
-Warm cinematic palettes, soft shadows, and intentional highlights  
-create a timeless and emotional atmosphere.
-</p>
+<div class="big">MOOD & TONE</div>
+<p class="small">Warm cinematic tones, deep shadows and layered light create a timeless atmosphere.</p>
 </div>
 </div>
 </section>
 
-<!-- THANK YOU -->
-<section class="thank fade">
+<!-- CTA -->
+<section class="cta fade">
 <div>
 <h1>THANK YOU</h1>
-<p style="color:#aaa;margin-top:20px">
-For inquiries: rainiercasas28@gmail.com
-</p>
+<p class="small">rainiercasas28@gmail.com</p>
 </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section fade" id="contact">
+<h2>Contact</h2>
+<form class="form" onsubmit="sendMail(event)">
+<input id="name" required placeholder="Name">
+<input id="email" type="email" required placeholder="Email">
+<textarea id="msg" required placeholder="Project"></textarea>
+<button>Send</button>
+<div class="success" id="success">Opening email...</div>
+</form>
 </section>
 
 <!-- LIGHTBOX -->
@@ -239,16 +340,33 @@ For inquiries: rainiercasas28@gmail.com
 <img id="lightbox-img">
 </div>
 
+<!-- CHAT -->
+<div class="chat-btn" onclick="toggleChat()">💬</div>
+
+<div class="chat-box" id="chatBox">
+<div class="chat-msg" id="chat"></div>
+
+<div class="quick">
+<span onclick="quick('price')">Pricing</span>
+<span onclick="quick('booking')">Booking</span>
+<span onclick="quick('services')">Services</span>
+<span onclick="quick('location')">Location</span>
+</div>
+
+<div class="chat-input">
+<input id="input">
+<button onclick="send()">Send</button>
+</div>
+</div>
+
 <script>
 
-/* LIGHTBOX */
-document.querySelectorAll("img").forEach(img=>{
-img.onclick=()=>{
-lightbox.style.display="flex";
-lightboxImg.src=img.src;
-}
+/* PROGRESS */
+window.addEventListener("scroll",()=>{
+let h=document.documentElement;
+let sc=(h.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
+progress.style.width=sc+"%";
 });
-lightbox.onclick=()=>lightbox.style.display="none";
 
 /* SCROLL */
 const faders=document.querySelectorAll(".fade");
@@ -260,6 +378,75 @@ el.classList.add("show");
 });
 });
 window.dispatchEvent(new Event('scroll'));
+
+/* FILTER */
+document.querySelectorAll(".filter").forEach(btn=>{
+btn.onclick=()=>{
+document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));
+btn.classList.add("active");
+let val=btn.getAttribute("data");
+document.querySelectorAll(".item").forEach(el=>{
+el.style.display=(val==="all"||el.classList.contains(val))?"block":"none";
+});
+};
+});
+
+/* LIGHTBOX */
+document.querySelectorAll("img").forEach(img=>{
+img.onclick=()=>{
+lightbox.style.display="flex";
+lightboxImg.src=img.src;
+};
+});
+lightbox.onclick=()=>lightbox.style.display="none";
+
+/* EMAIL */
+function sendMail(e){
+e.preventDefault();
+window.location.href=`mailto:rainiercasas28@gmail.com`;
+success.style.display="block";
+}
+
+/* CHAT */
+function toggleChat(){
+chatBox.style.display=chatBox.style.display==="flex"?"none":"flex";
+if(!chatBox.dataset.init){
+bot("Hi 👋 Ask about pricing, booking or services.");
+chatBox.dataset.init=true;
+}
+}
+
+function quick(q){
+input.value=q;
+send();
+}
+
+function send(){
+let msg=input.value.toLowerCase();
+if(!msg)return;
+user(msg);
+setTimeout(()=>reply(msg),500);
+input.value="";
+}
+
+function user(t){
+chat.innerHTML+=`<div>> ${t}</div>`;
+chat.scrollTop=chat.scrollHeight;
+}
+
+function bot(t){
+chat.innerHTML+=`<div style="color:#aaa;">AI: ${t}</div>`;
+chat.scrollTop=chat.scrollHeight;
+}
+
+function reply(m){
+let r="I can help you.";
+if(m.includes("price")) r="Packages ₱3k–₱15k.";
+if(m.includes("booking")) r="Use contact form to book.";
+if(m.includes("services")) r="Portrait, fashion, street shoots.";
+if(m.includes("location")) r="Based in Philippines.";
+bot(r);
+}
 
 </script>
 
