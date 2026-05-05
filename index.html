@@ -28,7 +28,7 @@ overflow-x:hidden;
 scroll-behavior:smooth;
 }
 
-/* SCROLL PROGRESS */
+/* PROGRESS */
 .progress{
 position:fixed;
 top:0;
@@ -53,7 +53,12 @@ background:rgba(0,0,0,.6);
 backdrop-filter:blur(14px);
 }
 .logo{font-family:'Playfair Display';letter-spacing:3px}
-.nav a{color:var(--muted);margin-left:25px;text-decoration:none}
+.nav a{
+color:var(--muted);
+margin-left:25px;
+text-decoration:none;
+transition:.3s;
+}
 .nav a.active,.nav a:hover{color:#fff}
 
 /* HERO */
@@ -99,14 +104,14 @@ font-family:'Playfair Display';
 font-size:36px;
 margin-bottom:10px;
 }
-.section p{color:var(--muted);margin-bottom:40px;max-width:700px}
+.section p{color:var(--muted);margin-bottom:40px}
 
 /* FILTER */
 .filters{
 display:flex;
 gap:10px;
-margin-bottom:30px;
 flex-wrap:wrap;
+margin-bottom:40px;
 }
 .filter-btn{
 padding:8px 16px;
@@ -114,8 +119,7 @@ border:1px solid var(--border);
 cursor:pointer;
 transition:.3s;
 }
-.filter-btn.active,
-.filter-btn:hover{
+.filter-btn.active{
 background:#fff;
 color:#000;
 }
@@ -123,46 +127,42 @@ color:#000;
 /* GRID */
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:20px;
 }
-
 .item{
 position:relative;
 border-radius:16px;
 overflow:hidden;
 aspect-ratio:4/5;
 cursor:pointer;
-transition:.4s;
+opacity:1;
+transform:scale(1);
+transition:.4s ease;
 }
-
 .item.hide{
 opacity:0;
 transform:scale(.9);
 pointer-events:none;
 position:absolute;
 }
-
 .item img{
 width:100%;
 height:100%;
 object-fit:cover;
-transition:.6s cubic-bezier(.22,1,.36,1);
+transition:.6s;
 }
-
 .item:hover img{transform:scale(1.1)}
-
 .overlay{
 position:absolute;
 bottom:0;
 width:100%;
-padding:15px;
+padding:12px;
 background:linear-gradient(to top,rgba(0,0,0,.8),transparent);
-font-size:14px;
 opacity:0;
-transition:.4s;
+transition:.3s;
+font-size:13px;
 }
-
 .item:hover .overlay{opacity:1}
 
 /* LIGHTBOX */
@@ -183,28 +183,37 @@ object-fit:contain;
 border-radius:16px;
 }
 
-/* SERVICES */
-.services{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+/* FUNNEL */
+.funnel{
+display:flex;
+flex-direction:column;
+align-items:center;
 gap:25px;
 }
-.card{
-background:var(--glass);
-border:1px solid var(--border);
+.step{
+width:100%;
+max-width:700px;
 padding:25px;
-border-radius:14px;
-transition:.3s;
+border:1px solid var(--border);
+background:var(--glass);
+border-radius:16px;
+cursor:pointer;
+transition:.4s;
 }
-.card:hover{transform:translateY(-5px)}
-
-/* CTA */
-.cta{
-text-align:center;
-padding:100px 8%;
-background:linear-gradient(180deg,#050505,#111);
+.step.active{
+background:#fff;
+color:#000;
+transform:scale(1.05);
 }
-.cta h2{font-size:40px;margin-bottom:20px}
+.step-content{
+max-height:0;
+overflow:hidden;
+transition:.4s;
+margin-top:10px;
+}
+.step.active .step-content{
+max-height:200px;
+}
 
 /* FORM */
 .form{
@@ -225,14 +234,10 @@ background:#fff;
 border:none;
 cursor:pointer;
 }
-.success{display:none;color:#0f0;margin-top:10px}
-
-/* FOOTER */
-.footer{
-padding:40px 8%;
-text-align:center;
-border-top:1px solid var(--border);
-color:var(--muted);
+.success{
+display:none;
+color:#0f0;
+font-size:14px;
 }
 
 /* CHAT */
@@ -282,19 +287,20 @@ padding:10px
 display:flex;
 flex-wrap:wrap;
 gap:6px;
-padding:6px
+padding:6px;
 }
 .quick span{
 background:#222;
 padding:6px;
 border-radius:20px;
 cursor:pointer;
-font-size:12px
+font-size:12px;
 }
 
 /* MOBILE */
 @media(max-width:768px){
 .hero h1{font-size:42px}
+.section{padding:80px 6%}
 }
 </style>
 </head>
@@ -307,8 +313,7 @@ font-size:12px
 <div class="logo">EIGHTYSIX MEDIA</div>
 <div>
 <a href="#portfolio">Work</a>
-<a href="#about">About</a>
-<a href="#services">Services</a>
+<a href="#process">Process</a>
 <a href="#contact">Contact</a>
 </div>
 </div>
@@ -333,52 +338,55 @@ font-size:12px
 <div class="filter-btn" data-filter="creative">Creative</div>
 </div>
 
-<div class="grid">
+<div class="grid" id="grid">
 
 <!-- PORTRAIT -->
-<div class="item" data-cat="portrait"><img loading="lazy" src="images/_DSC8255.jpg"><div class="overlay">Portrait</div></div>
-<div class="item" data-cat="portrait"><img loading="lazy" src="images/_DSC7851.jpg"><div class="overlay">Portrait</div></div>
-<div class="item" data-cat="portrait"><img loading="lazy" src="images/_DSC7665.jpg"><div class="overlay">Portrait</div></div>
-<div class="item" data-cat="portrait"><img loading="lazy" src="images/_DSC7676.jpg"><div class="overlay">Portrait</div></div>
+<div class="item" data-cat="portrait"><img src="images/_DSC8255.jpg" loading="lazy"><div class="overlay">Portrait</div></div>
+<div class="item" data-cat="portrait"><img src="images/_DSC8261.jpg" loading="lazy"><div class="overlay">Portrait</div></div>
+<div class="item" data-cat="portrait"><img src="images/_DSC8267.jpg" loading="lazy"><div class="overlay">Portrait</div></div>
 
 <!-- FASHION -->
-<div class="item" data-cat="fashion"><img loading="lazy" src="images/_DSC8261.jpg"><div class="overlay">Fashion</div></div>
-<div class="item" data-cat="fashion"><img loading="lazy" src="images/_DSC7860.jpg"><div class="overlay">Fashion</div></div>
-<div class="item" data-cat="fashion"><img loading="lazy" src="images/_DSC7679.jpg"><div class="overlay">Fashion</div></div>
-<div class="item" data-cat="fashion"><img loading="lazy" src="images/_DSC7685.jpg"><div class="overlay">Fashion</div></div>
+<div class="item" data-cat="fashion"><img src="images/_DSC7851.jpg" loading="lazy"><div class="overlay">Fashion</div></div>
+<div class="item" data-cat="fashion"><img src="images/_DSC7860.jpg" loading="lazy"><div class="overlay">Fashion</div></div>
+<div class="item" data-cat="fashion"><img src="images/_DSC7867.jpg" loading="lazy"><div class="overlay">Fashion</div></div>
 
 <!-- STREET -->
-<div class="item" data-cat="street"><img loading="lazy" src="images/_DSC8267.jpg"><div class="overlay">Street</div></div>
-<div class="item" data-cat="street"><img loading="lazy" src="images/_DSC7886.jpg"><div class="overlay">Street</div></div>
-<div class="item" data-cat="street"><img loading="lazy" src="images/_DSC7694.jpg"><div class="overlay">Street</div></div>
-<div class="item" data-cat="street"><img loading="lazy" src="images/_DSC8303.jpg"><div class="overlay">Street</div></div>
+<div class="item" data-cat="street"><img src="images/_DSC7665.jpg" loading="lazy"><div class="overlay">Street</div></div>
+<div class="item" data-cat="street"><img src="images/_DSC7676.jpg" loading="lazy"><div class="overlay">Street</div></div>
+<div class="item" data-cat="street"><img src="images/_DSC7679.jpg" loading="lazy"><div class="overlay">Street</div></div>
+<div class="item" data-cat="street"><img src="images/_DSC7685.jpg" loading="lazy"><div class="overlay">Street</div></div>
+<div class="item" data-cat="street"><img src="images/_DSC7694.jpg" loading="lazy"><div class="overlay">Street</div></div>
 
 <!-- CREATIVE -->
-<div class="item" data-cat="creative"><img loading="lazy" src="images/_DSC8303.jpg"><div class="overlay">Creative</div></div>
-<div class="item" data-cat="creative"><img loading="lazy" src="images/_DSC7900.jpg"><div class="overlay">Creative</div></div>
-<div class="item" data-cat="creative"><img loading="lazy" src="images/_DSC8091.jpg"><div class="overlay">Creative</div></div>
-<div class="item" data-cat="creative"><img loading="lazy" src="images/_DSC8105.jpg"><div class="overlay">Creative</div></div>
+<div class="item" data-cat="creative"><img src="images/_DSC8091.jpg" loading="lazy"><div class="overlay">Creative</div></div>
+<div class="item" data-cat="creative"><img src="images/_DSC8092.jpg" loading="lazy"><div class="overlay">Creative</div></div>
+<div class="item" data-cat="creative"><img src="images/_DSC8093.jpg" loading="lazy"><div class="overlay">Creative</div></div>
+<div class="item" data-cat="creative"><img src="images/_DSC8105.jpg" loading="lazy"><div class="overlay">Creative</div></div>
+<div class="item" data-cat="creative"><img src="images/_DSC8112.jpg" loading="lazy"><div class="overlay">Creative</div></div>
 
 </div>
 </section>
 
-<section class="section" id="about">
-<h2>About</h2>
-<p>Seiyaa is a cinematic photographer creating bold visual identity. Eightysix Media transforms brands into visual authority.</p>
-</section>
-
-<section class="section" id="services">
-<h2>Services</h2>
-<div class="services">
-<div class="card"><h3>Photography</h3><p>High-end visuals that convert.</p></div>
-<div class="card"><h3>Creative Direction</h3><p>Concept-driven storytelling.</p></div>
-<div class="card"><h3>Brand Visuals</h3><p>Marketing-focused imagery.</p></div>
+<section class="section" id="process">
+<h2>Process Funnel</h2>
+<div class="funnel">
+<div class="step" onclick="toggleStep(this)">
+<h3>01. Inquiry</h3>
+<div class="step-content">Share your idea or concept.</div>
 </div>
-</section>
-
-<section class="cta">
-<h2>Ready to Build Your Visual Identity?</h2>
-<a href="#contact" class="btn">Book Now</a>
+<div class="step" onclick="toggleStep(this)">
+<h3>02. Planning</h3>
+<div class="step-content">We align creative direction.</div>
+</div>
+<div class="step" onclick="toggleStep(this)">
+<h3>03. Shoot</h3>
+<div class="step-content">Guided professional shoot.</div>
+</div>
+<div class="step" onclick="toggleStep(this)">
+<h3>04. Delivery</h3>
+<div class="step-content">Final cinematic output.</div>
+</div>
+</div>
 </section>
 
 <section class="section" id="contact">
@@ -388,11 +396,9 @@ font-size:12px
 <input type="email" id="email" required placeholder="Email">
 <textarea id="msg" required placeholder="Project details"></textarea>
 <button type="submit">Send Inquiry</button>
-<div class="success" id="success">Opening your email app...</div>
+<div class="success" id="success">Opening email...</div>
 </form>
 </section>
-
-<div class="footer">© 2026 Eightysix Media</div>
 
 <div class="lightbox" id="lightbox"><img id="lightbox-img"></div>
 
@@ -404,7 +410,6 @@ font-size:12px
 <span onclick="quick('pricing')">Pricing</span>
 <span onclick="quick('services')">Services</span>
 <span onclick="quick('booking')">Booking</span>
-<span onclick="quick('portfolio')">Portfolio</span>
 </div>
 <div class="chat-input">
 <input id="chatInput">
@@ -414,32 +419,49 @@ font-size:12px
 
 <script>
 
-/* PROGRESS + ACTIVE NAV */
+/* SCROLL PROGRESS */
 window.onscroll=()=>{
 let h=document.documentElement;
 let sc=(h.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
 document.getElementById("progress").style.width=sc+"%";
-
-document.querySelectorAll("section").forEach(sec=>{
-let top=window.scrollY;
-if(top>=sec.offsetTop-100){
-document.querySelectorAll(".nav a").forEach(a=>a.classList.remove("active"));
-let link=document.querySelector(`.nav a[href="#${sec.id}"]`);
-if(link) link.classList.add("active");
-}
-});
 };
 
-/* FILTER */
-document.querySelectorAll(".filter-btn").forEach(btn=>{
-btn.onclick=()=>{
-document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
-btn.classList.add("active");
-let f=btn.dataset.filter;
+/* ACTIVE NAV */
+const sections=document.querySelectorAll("section");
+const navLinks=document.querySelectorAll(".nav a");
 
-document.querySelectorAll(".item").forEach(i=>{
-let match=(f==="all"||i.dataset.cat===f);
-i.classList.toggle("hide",!match);
+window.addEventListener("scroll",()=>{
+let current="";
+sections.forEach(sec=>{
+let top=window.scrollY;
+if(top>=sec.offsetTop-200){
+current=sec.getAttribute("id");
+}
+});
+navLinks.forEach(a=>{
+a.classList.remove("active");
+if(a.getAttribute("href")==="#"+current){
+a.classList.add("active");
+}
+});
+});
+
+/* FILTER */
+const buttons=document.querySelectorAll(".filter-btn");
+const items=document.querySelectorAll(".item");
+
+buttons.forEach(btn=>{
+btn.onclick=()=>{
+buttons.forEach(b=>b.classList.remove("active"));
+btn.classList.add("active");
+let filter=btn.dataset.filter;
+
+items.forEach(i=>{
+if(filter==="all" || i.dataset.cat===filter){
+i.classList.remove("hide");
+}else{
+i.classList.add("hide");
+}
 });
 };
 });
@@ -451,7 +473,17 @@ document.getElementById("lightbox-img").src=img.src;
 document.getElementById("lightbox").classList.add("active");
 };
 });
-document.getElementById("lightbox").onclick=()=>document.getElementById("lightbox").classList.remove("active");
+document.getElementById("lightbox").onclick=()=>{
+document.getElementById("lightbox").classList.remove("active");
+};
+
+/* FUNNEL */
+function toggleStep(el){
+document.querySelectorAll(".step").forEach(s=>{
+if(s!==el)s.classList.remove("active");
+});
+el.classList.toggle("active");
+}
 
 /* EMAIL */
 function sendEmail(e){
@@ -471,7 +503,7 @@ function toggleChat(){
 let box=document.getElementById("chatBox");
 box.style.display=box.style.display==="flex"?"none":"flex";
 if(!box.dataset.init){
-addBot("Hey 👋 Ask me about pricing, booking, or services.");
+addBot("Hey 👋 I can help with pricing, booking, and services.");
 box.dataset.init=true;
 }
 }
@@ -486,7 +518,7 @@ let input=document.getElementById("chatInput");
 let msg=input.value.toLowerCase();
 if(!msg)return;
 addUser(msg);
-setTimeout(()=>reply(msg),400);
+setTimeout(()=>reply(msg),500);
 input.value="";
 }
 
@@ -503,12 +535,12 @@ c.scrollTop=c.scrollHeight;
 }
 
 function reply(msg){
-let r="I can help with bookings, services, and pricing.";
-if(msg.includes("price")) r="Rates range ₱3k–₱15k depending on shoot.";
-else if(msg.includes("service")) r="I offer portraits, fashion, street, and branding shoots.";
-else if(msg.includes("book")) r="Use the contact form below to book.";
+let r="I can help you with bookings and services.";
+if(msg.includes("price")) r="Pricing starts at ₱3k–₱15k depending on shoot.";
+else if(msg.includes("service")) r="We offer photography, creative direction, and brand visuals.";
+else if(msg.includes("book")) r="Use the contact form to secure your schedule.";
 else if(msg.includes("location")) r="Available nationwide.";
-else if(msg.includes("portfolio")) r="Explore the categories above.";
+else if(msg.includes("portfolio")) r="Browse the portfolio above.";
 addBot(r);
 }
 
