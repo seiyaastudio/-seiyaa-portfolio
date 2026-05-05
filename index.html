@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-<!--
-To create a new page:
-1. Duplicate this HTML file
-2. Rename (e.g. services.html)
-3. Update navigation links
--->
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Eightysix Media — Seiyaa Visuals</title>
@@ -22,7 +14,6 @@ To create a new page:
 --border:rgba(255,255,255,0.12);
 --text:#fff;
 --muted:#9a9a9a;
---accent:#fff;
 --glow:0 0 60px rgba(255,255,255,0.15);
 }
 
@@ -36,30 +27,26 @@ overflow-x:hidden;
 scroll-behavior:smooth;
 }
 
-/* CURSOR LIGHT */
+/* CURSOR GRADIENT */
 .cursor{
 position:fixed;
-width:500px;
-height:500px;
+width:520px;height:520px;
 background:radial-gradient(circle,rgba(255,255,255,0.06),transparent 70%);
 pointer-events:none;
-z-index:0;
 transform:translate(-50%,-50%);
-filter:blur(80px);
+filter:blur(90px);
+z-index:0;
 }
 
 /* NAV */
 .nav{
 position:fixed;
-top:0;
-width:100%;
+top:0;width:100%;
 padding:18px 8%;
-display:flex;
-justify-content:space-between;
-align-items:center;
-z-index:1000;
+display:flex;justify-content:space-between;align-items:center;
 background:rgba(0,0,0,.6);
 backdrop-filter:blur(14px);
+z-index:1000;
 }
 .logo{font-family:'Playfair Display';letter-spacing:3px}
 .nav a{color:var(--muted);margin-left:25px;text-decoration:none;transition:.3s}
@@ -75,21 +62,39 @@ position:relative;
 }
 .hero::before{
 content:"";
-position:absolute;
-inset:0;
+position:absolute;inset:0;
 background:url('images/_DSC8255.jpg') center/cover;
 opacity:.35;
 }
 .hero-content{position:relative;z-index:2}
-.hero h1{font-family:'Playfair Display';font-size:68px;line-height:1.05}
-.hero-words{margin-top:20px;font-size:12px;letter-spacing:3px;color:var(--muted);height:20px}
+.hero h1{
+font-family:'Playfair Display';
+font-size:70px;
+line-height:1.05;
+}
+.hero-words{
+margin-top:20px;
+font-size:12px;
+letter-spacing:3px;
+color:var(--muted);
+height:20px;
+}
 
 /* SECTION */
 .section{padding:120px 8%}
-.section h2{font-family:'Playfair Display';font-size:44px;margin-bottom:30px}
+.section h2{
+font-family:'Playfair Display';
+font-size:44px;
+margin-bottom:30px;
+}
 
 /* FILTER */
-.filters{display:flex;gap:10px;margin-bottom:50px;flex-wrap:wrap}
+.filters{
+display:flex;
+gap:10px;
+margin-bottom:50px;
+flex-wrap:wrap;
+}
 .filter-btn{
 padding:10px 18px;
 border:1px solid var(--border);
@@ -97,7 +102,10 @@ cursor:pointer;
 transition:.3s;
 font-size:13px;
 }
-.filter-btn.active{background:#fff;color:#000}
+.filter-btn.active{
+background:#fff;
+color:#000;
+}
 
 /* GRID */
 .grid{
@@ -105,8 +113,6 @@ display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:20px;
 }
-
-/* ITEM */
 .item{
 position:relative;
 border-radius:14px;
@@ -114,8 +120,6 @@ overflow:hidden;
 aspect-ratio:4/5;
 cursor:pointer;
 transition:.5s cubic-bezier(.22,1,.36,1);
-opacity:1;
-transform:scale(1);
 }
 .item.featured{
 grid-column:span 2;
@@ -123,7 +127,7 @@ aspect-ratio:4/3;
 }
 .item.hide{
 opacity:0;
-transform:scale(.85);
+transform:scale(.8);
 pointer-events:none;
 }
 .item img{
@@ -132,7 +136,7 @@ height:100%;
 object-fit:cover;
 transition:.5s;
 }
-.item:hover img{transform:scale(1.1)}
+.item:hover img{transform:scale(1.08)}
 
 .overlay{
 position:absolute;
@@ -141,7 +145,6 @@ width:100%;
 padding:12px;
 background:linear-gradient(transparent,rgba(0,0,0,.9));
 font-size:12px;
-letter-spacing:1px;
 opacity:0;
 transition:.3s;
 }
@@ -171,13 +174,14 @@ border-radius:12px;
 transform:scale(.9);
 transition:.4s;
 }
-.lightbox.active img{transform:scale(1)}
+.lightbox.active img{
+transform:scale(1);
+}
 
 /* TEAM */
 .team{
 padding:140px 8%;
 text-align:center;
-background:linear-gradient(180deg,#050505,#0a0a0a);
 }
 .team h2{
 font-family:'Playfair Display';
@@ -203,7 +207,7 @@ box-shadow:var(--glow);
 }
 .team-card.active{
 transform:scale(1.05);
-box-shadow:0 0 80px rgba(255,255,255,.2);
+box-shadow:0 0 90px rgba(255,255,255,.2);
 }
 .team-expand{
 max-height:0;
@@ -213,13 +217,18 @@ transition:.4s;
 text-align:left;
 }
 .team-card.active .team-expand{
-max-height:400px;
+max-height:500px;
 opacity:1;
 margin-top:10px;
 }
 
 /* CONTACT */
-.form{max-width:420px;display:flex;flex-direction:column;gap:12px}
+.form{
+max-width:420px;
+display:flex;
+flex-direction:column;
+gap:12px;
+}
 .form input,.form textarea{
 background:#000;
 border:1px solid #333;
@@ -233,8 +242,13 @@ border:none;
 cursor:pointer;
 transition:.3s;
 }
-.form button:hover{box-shadow:var(--glow)}
-.success{display:none;color:#0f0}
+.form button:hover{
+box-shadow:var(--glow);
+}
+.success{
+display:none;
+color:#0f0;
+}
 
 /* CHAT */
 .chat-btn{
@@ -273,6 +287,22 @@ gap:8px;
 .msg-user{align-self:flex-end;background:#fff;color:#000;padding:8px 12px;border-radius:12px}
 .msg-bot{align-self:flex-start;background:#1a1a1a;padding:8px 12px;border-radius:12px}
 
+.quick{
+display:flex;
+flex-wrap:wrap;
+gap:6px;
+padding:10px;
+}
+.quick button{
+font-size:11px;
+padding:6px 10px;
+border:1px solid #333;
+background:#111;
+color:#fff;
+border-radius:8px;
+cursor:pointer;
+}
+
 /* MOBILE */
 @media(max-width:768px){
 .hero h1{font-size:42px}
@@ -295,7 +325,6 @@ gap:8px;
 </div>
 </div>
 
-<!-- HERO -->
 <section class="hero">
 <div class="hero-content">
 <h1>Cinematic Visual Identity</h1>
@@ -303,7 +332,6 @@ gap:8px;
 </div>
 </section>
 
-<!-- PORTFOLIO -->
 <section class="section" id="portfolio">
 <h2>Portfolio</h2>
 
@@ -315,17 +343,9 @@ gap:8px;
 <div class="filter-btn" data-filter="creative">Creative</div>
 </div>
 
-<!--
-To add new images:
-1. Copy an existing .item block
-2. Update image src
-3. Set correct data-cat
--->
-
 <div class="grid" id="grid"></div>
 </section>
 
-<!-- TEAM -->
 <section class="team" id="team">
 <h2>Core Team</h2>
 
@@ -335,9 +355,10 @@ To add new images:
 <h3>Rain Casas</h3>
 <p>Main Photographer • Director</p>
 <div class="team-expand">
-<p>• Cinematic Lighting</p>
-<p>• Creative Direction</p>
-<p>• Brand Identity</p>
+<p>Cinematic Lighting</p>
+<p>Creative Direction</p>
+<p>Brand Identity</p>
+<p>Storytelling Visuals</p>
 </div>
 </div>
 
@@ -345,24 +366,24 @@ To add new images:
 <h3>Tristan Buerano</h3>
 <p>Lighting Assistant</p>
 <div class="team-expand">
-<p>• Lighting Setup</p>
-<p>• Mobile Photography</p>
+<p>Lighting Setup</p>
+<p>Mobile Photography</p>
+<p>Scene Support</p>
 </div>
 </div>
 
 <div class="team-card" onclick="toggleTeam(this)">
-<h3>Xaris Baltazar</h3>
+<h3>Xaris Joshua Baltazar</h3>
 <p>Lighting Assistant</p>
 <div class="team-expand">
-<p>• Light Control</p>
-<p>• Scene Support</p>
+<p>Light Control</p>
+<p>Composition Support</p>
 </div>
 </div>
 
 </div>
 </section>
 
-<!-- CONTACT -->
 <section class="section" id="contact">
 <h2>Contact</h2>
 <form class="form" onsubmit="sendEmail(event)">
@@ -374,11 +395,22 @@ To add new images:
 </form>
 </section>
 
-<div class="lightbox" id="lightbox"><img id="lightbox-img"></div>
+<div class="lightbox" id="lightbox">
+<img id="lightbox-img">
+</div>
 
 <div class="chat-btn" onclick="toggleChat()">Chat</div>
 <div class="chat-box" id="chatBox">
 <div class="chat-messages" id="chatMessages"></div>
+
+<div class="quick">
+<button onclick="quick('pricing')">Pricing</button>
+<button onclick="quick('services')">Services</button>
+<button onclick="quick('booking')">Booking</button>
+<button onclick="quick('location')">Location</button>
+<button onclick="quick('portfolio')">Portfolio</button>
+</div>
+
 <div style="display:flex;">
 <input id="chatInput" style="flex:1;padding:10px;background:none;border:none;color:#fff">
 <button onclick="sendMsg()" style="background:#fff;border:none;padding:10px">Send</button>
@@ -396,9 +428,12 @@ cursor.style.top=e.clientY+"px";
 /* HERO WORDS */
 const words=["CINEMATIC","EDITORIAL","IDENTITY","MOOD","STORY"];
 let wi=0;
-setInterval(()=>{heroWords.textContent=words[wi];wi=(wi+1)%words.length},1500);
+setInterval(()=>{
+heroWords.textContent=words[wi];
+wi=(wi+1)%words.length;
+},1500);
 
-/* IMAGES */
+/* IMAGES (20 EXACT) */
 const images=[
 ["_DSC8255","portrait"],["_DSC8261","portrait"],["_DSC8267","portrait"],["_DSC8303","portrait"],["_DSC8330","portrait"],
 ["_DSC7851","fashion"],["_DSC7860","fashion"],["_DSC7867","fashion"],["_DSC7886","fashion"],["_DSC7900","fashion"],
@@ -412,7 +447,7 @@ images.forEach((i,index)=>{
 grid.innerHTML+=`
 <div class="item ${index<2?'featured':''}" data-cat="${i[1]}">
 <img src="images/${i[0]}.jpg" loading="lazy">
-<div class="overlay">${i[1].toUpperCase()}</div>
+<div class="overlay">${i[1]}</div>
 </div>`;
 });
 }
@@ -450,9 +485,11 @@ el.classList.toggle("active");
 /* CONTACT */
 function sendEmail(e){
 e.preventDefault();
-let n=name.value.trim(),em=email.value.trim(),m=msg.value.trim();
-let emailValid=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-if(!n||!emailValid.test(em)||!m)return;
+let n=name.value.trim();
+let em=email.value.trim();
+let m=msg.value.trim();
+let valid=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+if(!n||!valid.test(em)||!m)return;
 window.location.href=`mailto:rainiercasas28@gmail.com?subject=${encodeURIComponent(n)}&body=${encodeURIComponent(m+" ("+em+")")}`;
 success.style.display="block";
 }
@@ -461,10 +498,11 @@ success.style.display="block";
 function toggleChat(){
 chatBox.style.display=chatBox.style.display==="flex"?"none":"flex";
 if(!chatBox.dataset.init){
-bot("Hi 👋 Ask about pricing, services, booking, location, portfolio.");
+bot("Hi 👋 Ask anything about pricing, services, booking, location or portfolio.");
 chatBox.dataset.init=true;
 }
 }
+function quick(q){reply(q)}
 function sendMsg(){
 let msg=chatInput.value.toLowerCase();
 if(!msg)return;
@@ -482,11 +520,11 @@ chatMessages.scrollTop=chatMessages.scrollHeight;
 }
 function reply(m){
 let r="Tell me more about your project.";
-if(m.includes("price")) r="Rates ₱3k–₱15k depending on scope. Want a quote?";
-else if(m.includes("service")) r="We offer photography, creative direction, branding.";
-else if(m.includes("book")) r="You can book via contact form.";
+if(m.includes("price")) r="₱3k–₱15k depending on project. Want a quote?";
+else if(m.includes("service")) r="Photography, branding, creative direction.";
+else if(m.includes("book")) r="Use contact form to book.";
 else if(m.includes("location")) r="Available nationwide.";
-else if(m.includes("portfolio")) r="Scroll above to explore work.";
+else if(m.includes("portfolio")) r="Browse above.";
 bot(r);
 }
 
@@ -505,13 +543,6 @@ if(a.getAttribute("href")==="#"+current) a.classList.add("active");
 });
 
 </script>
-
-<!-- NEW SECTION TEMPLATE START -->
-<section class="section">
-  <h2>New Section</h2>
-  <p>Content here</p>
-</section>
-<!-- NEW SECTION TEMPLATE END -->
 
 </body>
 </html>
