@@ -28,7 +28,7 @@ overflow-x:hidden;
 scroll-behavior:smooth;
 }
 
-/* PROGRESS */
+/* SCROLL PROGRESS */
 .progress{
 position:fixed;
 top:0;
@@ -71,14 +71,18 @@ position:absolute;
 inset:0;
 background:url('images/_DSC8255.jpg') center/cover;
 opacity:.35;
-animation:zoomHero 20s infinite alternate ease-in-out;
+animation:zoomHero 18s ease-in-out infinite alternate;
 }
 @keyframes zoomHero{
-from{transform:scale(1.05)}
-to{transform:scale(1.15)}
+0%{transform:scale(1.05)}
+100%{transform:scale(1.15)}
 }
 .hero-content{position:relative;max-width:650px;}
-.hero h1{font-family:'Playfair Display';font-size:64px}
+.hero h1{
+font-family:'Playfair Display';
+font-size:64px;
+line-height:1.1;
+}
 .hero p{color:var(--muted);margin:20px 0}
 
 .btn{
@@ -87,6 +91,7 @@ border:1px solid #fff;
 color:#fff;
 text-decoration:none;
 transition:.3s;
+display:inline-block;
 }
 .btn:hover{
 background:#fff;
@@ -96,10 +101,19 @@ box-shadow:var(--glow);
 
 /* SECTION */
 .section{padding:120px 8%}
-.section h2{font-family:'Playfair Display';font-size:42px;margin-bottom:25px}
+.section h2{
+font-family:'Playfair Display';
+font-size:44px;
+margin-bottom:25px;
+}
 
 /* FILTER */
-.filters{display:flex;gap:10px;margin-bottom:40px;flex-wrap:wrap}
+.filters{
+display:flex;
+gap:10px;
+margin-bottom:40px;
+flex-wrap:wrap;
+}
 .filter-btn{
 padding:10px 18px;
 border:1px solid var(--border);
@@ -107,7 +121,10 @@ cursor:pointer;
 transition:.3s;
 font-size:13px;
 }
-.filter-btn.active{background:#fff;color:#000}
+.filter-btn.active{
+background:#fff;
+color:#000;
+}
 
 /* GRID */
 .grid{
@@ -121,28 +138,32 @@ border-radius:14px;
 overflow:hidden;
 aspect-ratio:4/5;
 cursor:pointer;
-transition:.4s;
+transition:.5s cubic-bezier(.22,1,.36,1);
+opacity:1;
+transform:scale(1);
+}
+.item.hide{
+opacity:0;
+transform:scale(.85);
+pointer-events:none;
+position:absolute;
 }
 .item img{
 width:100%;
 height:100%;
 object-fit:cover;
-transition:.6s;
+transition:.6s cubic-bezier(.22,1,.36,1);
 }
 .item:hover img{transform:scale(1.12)}
-.item.hide{
-opacity:0;
-transform:scale(.8);
-pointer-events:none;
-position:absolute;
-}
+
 .overlay{
 position:absolute;
 bottom:0;
 width:100%;
-padding:12px;
+padding:14px;
 background:linear-gradient(transparent,rgba(0,0,0,.9));
 font-size:12px;
+letter-spacing:1px;
 opacity:0;
 transition:.3s;
 }
@@ -152,7 +173,7 @@ transition:.3s;
 .lightbox{
 position:fixed;
 inset:0;
-background:rgba(0,0,0,.96);
+background:rgba(0,0,0,.97);
 display:none;
 justify-content:center;
 align-items:center;
@@ -162,6 +183,7 @@ z-index:2000;
 .lightbox img{
 max-width:95%;
 max-height:95%;
+object-fit:contain;
 border-radius:14px;
 }
 
@@ -169,39 +191,53 @@ border-radius:14px;
 .team{
 padding:140px 8%;
 text-align:center;
+background:linear-gradient(180deg,#050505,#0a0a0a);
 }
 .team h2{
 font-family:'Playfair Display';
-font-size:56px;
-margin-bottom:20px;
+font-size:58px;
+margin-bottom:10px;
+text-shadow:0 0 20px rgba(255,255,255,.25);
 }
+.team-sub{color:var(--muted);margin-bottom:50px}
+
 .team-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:30px;
 }
+
 .team-card{
 padding:28px;
 background:var(--glass);
 border:1px solid var(--border);
 border-radius:18px;
 cursor:pointer;
-transition:.4s;
+transition:.4s cubic-bezier(.22,1,.36,1);
+position:relative;
+overflow:hidden;
 }
-.team-card.active{
-transform:scale(1.05);
+.team-card:hover{
+transform:translateY(-8px) scale(1.02);
 box-shadow:var(--glow);
 }
+
+.team-card.active{
+transform:scale(1.05);
+box-shadow:0 0 80px rgba(255,255,255,.25);
+}
+
 .team-expand{
 max-height:0;
 overflow:hidden;
 opacity:0;
-transition:.4s;
+transition:.5s ease;
+text-align:left;
 }
 .team-card.active .team-expand{
 max-height:500px;
 opacity:1;
-margin-top:10px;
+margin-top:15px;
 }
 
 /* CONTACT */
@@ -223,7 +259,12 @@ background:#fff;
 border:none;
 cursor:pointer;
 }
-.success{display:none;color:#0f0}
+.success{
+display:none;
+color:#0f0;
+font-size:13px;
+margin-top:10px;
+}
 
 /* CHAT */
 .chat-btn{
@@ -315,33 +356,38 @@ font-size:12px;
 
 <section class="team" id="team">
 <h2>Core Team</h2>
+<p class="team-sub">Tap to reveal roles & skills</p>
+
 <div class="team-grid">
 
 <div class="team-card active" onclick="toggleTeam(this)">
 <h3>Rain Casas</h3>
 <p>Main Photographer • Main Videographer</p>
 <div class="team-expand">
-<p>• Cinematic Lighting</p>
-<p>• Creative Direction</p>
-<p>• Brand Identity</p>
+<p>• Cinematic Lighting Specialist</p>
+<p>• Creative Director</p>
+<p>• Brand Visual Architect</p>
+<p>• Narrative Composition Expert</p>
 </div>
 </div>
 
 <div class="team-card" onclick="toggleTeam(this)">
 <h3>Tristan Buerano</h3>
-<p>Lighting Assistant</p>
+<p>Lighting Assistant • Mobile Photographer</p>
 <div class="team-expand">
-<p>• Lighting Setup</p>
-<p>• Mobile Photography</p>
+<p>• Lighting Setup & Balance</p>
+<p>• Mobile Composition</p>
+<p>• Scene Assistance</p>
 </div>
 </div>
 
 <div class="team-card" onclick="toggleTeam(this)">
 <h3>Xaris Joshua Baltazar</h3>
-<p>Lighting Assistant</p>
+<p>Lighting Assistant • Mobile Photographer</p>
 <div class="team-expand">
 <p>• Light Control</p>
-<p>• Scene Support</p>
+<p>• Scene Optimization</p>
+<p>• Visual Support</p>
 </div>
 </div>
 
@@ -362,6 +408,7 @@ font-size:12px;
 <div class="lightbox" id="lightbox"><img id="lightbox-img"></div>
 
 <div class="chat-btn" onclick="toggleChat()">Chat</div>
+
 <div class="chat-box" id="chatBox">
 <div class="chat-messages" id="chatMessages"></div>
 <div class="quick">
@@ -369,12 +416,13 @@ font-size:12px;
 <span onclick="quick('services')">Services</span>
 <span onclick="quick('booking')">Booking</span>
 <span onclick="quick('location')">Location</span>
+<span onclick="quick('portfolio')">Portfolio</span>
 </div>
 </div>
 
 <script>
 
-/* PROGRESS */
+/* SCROLL PROGRESS */
 window.onscroll=()=>{
 let h=document.documentElement;
 progress.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100+"%";
@@ -391,7 +439,7 @@ const images=[
 grid.innerHTML=images.map(i=>`
 <div class="item" data-cat="${i[1]}">
 <img src="images/${i[0]}.jpg" loading="lazy">
-<div class="overlay">${i[1]}</div>
+<div class="overlay">${i[1].toUpperCase()}</div>
 </div>`).join("");
 
 /* FILTER */
@@ -436,27 +484,31 @@ success.style.display="block";
 function toggleChat(){
 chatBox.style.display=chatBox.style.display==="flex"?"none":"flex";
 if(!chatBox.dataset.init){
-addBot("Hi 👋 I can help with pricing, booking, services.");
+addBot("Hi 👋 I can help with pricing, booking, services, or portfolio.");
 chatBox.dataset.init=true;
 }
 }
+
 function quick(q){
 reply(q);
 }
+
 function addBot(t){
 chatMessages.innerHTML+=`<div style="color:#aaa;">AI: ${t}</div>`;
 chatMessages.scrollTop=chatMessages.scrollHeight;
 }
+
 function reply(msg){
-let r="I can help you.";
-if(msg.includes("price")) r="Rates start ₱3k–₱15k.";
-else if(msg.includes("service")) r="Photography, creative direction, branding.";
-else if(msg.includes("book")) r="Use contact form to book.";
-else if(msg.includes("location")) r="Available nationwide.";
+let r="I can help guide you.";
+if(msg.includes("price")) r="Rates range ₱3k–₱15k depending on project. Want a custom quote?";
+else if(msg.includes("service")) r="Photography, creative direction, branding. What do you need?";
+else if(msg.includes("book")) r="Use the contact form to book. I can guide you step-by-step.";
+else if(msg.includes("location")) r="We’re available nationwide.";
+else if(msg.includes("portfolio")) r="Use the filters above to explore different styles.";
 addBot(r);
 }
 
-/* NAV ACTIVE */
+/* ACTIVE NAV */
 const sections=document.querySelectorAll("section");
 const navLinks=document.querySelectorAll(".nav a");
 
