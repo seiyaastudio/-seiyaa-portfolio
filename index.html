@@ -27,7 +27,7 @@ overflow-x:hidden;
 scroll-behavior:smooth;
 }
 
-/* CURSOR GRADIENT */
+/* CURSOR */
 .cursor{
 position:fixed;
 width:520px;height:520px;
@@ -119,16 +119,18 @@ border-radius:14px;
 overflow:hidden;
 aspect-ratio:4/5;
 cursor:pointer;
-transition:.5s cubic-bezier(.22,1,.36,1);
-}
-.item.featured{
-grid-column:span 2;
-aspect-ratio:4/3;
+transition:.5s;
+opacity:1;
+transform:scale(1);
 }
 .item.hide{
 opacity:0;
 transform:scale(.8);
 pointer-events:none;
+}
+.item.featured{
+grid-column:span 2;
+aspect-ratio:4/3;
 }
 .item img{
 width:100%;
@@ -250,6 +252,23 @@ display:none;
 color:#0f0;
 }
 
+/* INSTAGRAM */
+.social{
+margin-top:20px;
+}
+.social a{
+color:#fff;
+text-decoration:none;
+border:1px solid #333;
+padding:10px 16px;
+display:inline-block;
+transition:.3s;
+}
+.social a:hover{
+background:#fff;
+color:#000;
+}
+
 /* CHAT */
 .chat-btn{
 position:fixed;
@@ -286,22 +305,6 @@ gap:8px;
 }
 .msg-user{align-self:flex-end;background:#fff;color:#000;padding:8px 12px;border-radius:12px}
 .msg-bot{align-self:flex-start;background:#1a1a1a;padding:8px 12px;border-radius:12px}
-
-.quick{
-display:flex;
-flex-wrap:wrap;
-gap:6px;
-padding:10px;
-}
-.quick button{
-font-size:11px;
-padding:6px 10px;
-border:1px solid #333;
-background:#111;
-color:#fff;
-border-radius:8px;
-cursor:pointer;
-}
 
 /* MOBILE */
 @media(max-width:768px){
@@ -391,8 +394,13 @@ cursor:pointer;
 <input id="email" type="email" required placeholder="Email">
 <textarea id="msg" required placeholder="Project details"></textarea>
 <button type="submit">Send Inquiry</button>
-<div class="success" id="success">Opening email...</div>
+<div class="success" id="success">Opening email client...</div>
 </form>
+
+<div class="social">
+<a href="https://instagram.com/seiyaa.visuals" target="_blank">Instagram</a>
+</div>
+
 </section>
 
 <div class="lightbox" id="lightbox">
@@ -402,15 +410,6 @@ cursor:pointer;
 <div class="chat-btn" onclick="toggleChat()">Chat</div>
 <div class="chat-box" id="chatBox">
 <div class="chat-messages" id="chatMessages"></div>
-
-<div class="quick">
-<button onclick="quick('pricing')">Pricing</button>
-<button onclick="quick('services')">Services</button>
-<button onclick="quick('booking')">Booking</button>
-<button onclick="quick('location')">Location</button>
-<button onclick="quick('portfolio')">Portfolio</button>
-</div>
-
 <div style="display:flex;">
 <input id="chatInput" style="flex:1;padding:10px;background:none;border:none;color:#fff">
 <button onclick="sendMsg()" style="background:#fff;border:none;padding:10px">Send</button>
@@ -433,17 +432,30 @@ heroWords.textContent=words[wi];
 wi=(wi+1)%words.length;
 },1500);
 
-/* IMAGES (20 EXACT) */
-const images=[
-["_DSC8255","portrait"],["_DSC8261","portrait"],["_DSC8267","portrait"],["_DSC8303","portrait"],["_DSC8330","portrait"],
-["_DSC7851","fashion"],["_DSC7860","fashion"],["_DSC7867","fashion"],["_DSC7886","fashion"],["_DSC7900","fashion"],
-["_DSC7665","street"],["_DSC7676","street"],["_DSC7679","street"],["_DSC7685","street"],["_DSC7694","street"],
+/* 20 IMAGES */
+const batches=[
+[
+["_DSC8255","portrait"],["_DSC8261","portrait"],["_DSC8267","portrait"],["_DSC8303","portrait"],["_DSC8330","portrait"]
+],
+[
+["_DSC7851","fashion"],["_DSC7860","fashion"],["_DSC7867","fashion"],["_DSC7886","fashion"],["_DSC7900","fashion"]
+],
+[
+["_DSC7665","street"],["_DSC7676","street"],["_DSC7679","street"],["_DSC7685","street"],["_DSC7694","street"]
+],
+[
 ["_DSC8091","creative"],["_DSC8092","creative"],["_DSC8093","creative"],["_DSC8105","creative"],["_DSC8112","creative"]
+]
 ];
 
-function render(){
+let currentBatch=0;
+
+function render(filter="all"){
 grid.innerHTML="";
-images.forEach((i,index)=>{
+let imgs=batches[currentBatch];
+
+imgs.forEach((i,index)=>{
+if(filter!=="all" && i[1]!==filter)return;
 grid.innerHTML+=`
 <div class="item ${index<2?'featured':''}" data-cat="${i[1]}">
 <img src="images/${i[0]}.jpg" loading="lazy">
@@ -453,15 +465,18 @@ grid.innerHTML+=`
 }
 render();
 
+/* AUTO ROTATE BATCH */
+setInterval(()=>{
+currentBatch=(currentBatch+1)%batches.length;
+render(document.querySelector(".filter-btn.active").dataset.filter);
+},5000);
+
 /* FILTER */
 document.querySelectorAll(".filter-btn").forEach(btn=>{
 btn.onclick=()=>{
 document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
 btn.classList.add("active");
-let f=btn.dataset.filter;
-document.querySelectorAll(".item").forEach(i=>{
-i.classList.toggle("hide",f!=="all" && i.dataset.cat!==f);
-});
+render(btn.dataset.filter);
 };
 });
 
@@ -490,42 +505,29 @@ let em=email.value.trim();
 let m=msg.value.trim();
 let valid=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 if(!n||!valid.test(em)||!m)return;
-window.location.href=`mailto:rainiercasas28@gmail.com?subject=${encodeURIComponent(n)}&body=${encodeURIComponent(m+" ("+em+")")}`;
+
+let mail=`mailto:rainiercasas28@gmail.com?subject=${encodeURIComponent("Inquiry from "+n)}&body=${encodeURIComponent(m+"\n\nEmail: "+em)}`;
+window.location.href=mail;
+
 success.style.display="block";
 }
 
 /* CHAT */
 function toggleChat(){
 chatBox.style.display=chatBox.style.display==="flex"?"none":"flex";
-if(!chatBox.dataset.init){
-bot("Hi 👋 Ask anything about pricing, services, booking, location or portfolio.");
-chatBox.dataset.init=true;
 }
-}
-function quick(q){reply(q)}
 function sendMsg(){
 let msg=chatInput.value.toLowerCase();
 if(!msg)return;
-user(msg);
-setTimeout(()=>reply(msg),300);
+chatMessages.innerHTML+=`<div class="msg-user">${msg}</div>`;
+let r="Tell me more.";
+if(msg.includes("price")) r="₱3k–₱15k depending on project.";
+else if(msg.includes("service")) r="Photography, branding, creative direction.";
+else if(msg.includes("book")) r="Use contact form.";
+else if(msg.includes("location")) r="Available nationwide.";
+else if(msg.includes("portfolio")) r="Browse above.";
+chatMessages.innerHTML+=`<div class="msg-bot">${r}</div>`;
 chatInput.value="";
-}
-function user(t){
-chatMessages.innerHTML+=`<div class="msg-user">${t}</div>`;
-chatMessages.scrollTop=chatMessages.scrollHeight;
-}
-function bot(t){
-chatMessages.innerHTML+=`<div class="msg-bot">${t}</div>`;
-chatMessages.scrollTop=chatMessages.scrollHeight;
-}
-function reply(m){
-let r="Tell me more about your project.";
-if(m.includes("price")) r="₱3k–₱15k depending on project. Want a quote?";
-else if(m.includes("service")) r="Photography, branding, creative direction.";
-else if(m.includes("book")) r="Use contact form to book.";
-else if(m.includes("location")) r="Available nationwide.";
-else if(m.includes("portfolio")) r="Browse above.";
-bot(r);
 }
 
 /* NAV ACTIVE */
