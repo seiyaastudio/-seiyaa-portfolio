@@ -53,7 +53,7 @@ background:rgba(0,0,0,.6);
 backdrop-filter:blur(14px);
 }
 .logo{font-family:'Playfair Display';letter-spacing:3px}
-.nav a{color:var(--muted);margin-left:25px;text-decoration:none;position:relative}
+.nav a{color:var(--muted);margin-left:25px;text-decoration:none}
 .nav a.active,.nav a:hover{color:#fff}
 
 /* HERO */
@@ -123,7 +123,7 @@ color:#000;
 /* GRID */
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:20px;
 }
 
@@ -133,9 +133,7 @@ border-radius:16px;
 overflow:hidden;
 aspect-ratio:4/5;
 cursor:pointer;
-opacity:1;
-transform:scale(1);
-transition:opacity .4s ease, transform .4s ease;
+transition:.4s;
 }
 
 .item.hide{
@@ -177,9 +175,7 @@ justify-content:center;
 align-items:center;
 z-index:2000;
 }
-
 .lightbox.active{display:flex}
-
 .lightbox img{
 max-width:95%;
 max-height:95%;
@@ -229,11 +225,7 @@ background:#fff;
 border:none;
 cursor:pointer;
 }
-.success{
-display:none;
-color:#0f0;
-margin-top:10px;
-}
+.success{display:none;color:#0f0;margin-top:10px}
 
 /* FOOTER */
 .footer{
@@ -346,18 +338,26 @@ font-size:12px
 <!-- PORTRAIT -->
 <div class="item" data-cat="portrait"><img loading="lazy" src="images/_DSC8255.jpg"><div class="overlay">Portrait</div></div>
 <div class="item" data-cat="portrait"><img loading="lazy" src="images/_DSC7851.jpg"><div class="overlay">Portrait</div></div>
+<div class="item" data-cat="portrait"><img loading="lazy" src="images/_DSC7665.jpg"><div class="overlay">Portrait</div></div>
+<div class="item" data-cat="portrait"><img loading="lazy" src="images/_DSC7676.jpg"><div class="overlay">Portrait</div></div>
 
 <!-- FASHION -->
 <div class="item" data-cat="fashion"><img loading="lazy" src="images/_DSC8261.jpg"><div class="overlay">Fashion</div></div>
 <div class="item" data-cat="fashion"><img loading="lazy" src="images/_DSC7860.jpg"><div class="overlay">Fashion</div></div>
+<div class="item" data-cat="fashion"><img loading="lazy" src="images/_DSC7679.jpg"><div class="overlay">Fashion</div></div>
+<div class="item" data-cat="fashion"><img loading="lazy" src="images/_DSC7685.jpg"><div class="overlay">Fashion</div></div>
 
 <!-- STREET -->
 <div class="item" data-cat="street"><img loading="lazy" src="images/_DSC8267.jpg"><div class="overlay">Street</div></div>
 <div class="item" data-cat="street"><img loading="lazy" src="images/_DSC7886.jpg"><div class="overlay">Street</div></div>
+<div class="item" data-cat="street"><img loading="lazy" src="images/_DSC7694.jpg"><div class="overlay">Street</div></div>
+<div class="item" data-cat="street"><img loading="lazy" src="images/_DSC8303.jpg"><div class="overlay">Street</div></div>
 
 <!-- CREATIVE -->
 <div class="item" data-cat="creative"><img loading="lazy" src="images/_DSC8303.jpg"><div class="overlay">Creative</div></div>
 <div class="item" data-cat="creative"><img loading="lazy" src="images/_DSC7900.jpg"><div class="overlay">Creative</div></div>
+<div class="item" data-cat="creative"><img loading="lazy" src="images/_DSC8091.jpg"><div class="overlay">Creative</div></div>
+<div class="item" data-cat="creative"><img loading="lazy" src="images/_DSC8105.jpg"><div class="overlay">Creative</div></div>
 
 </div>
 </section>
@@ -414,13 +414,12 @@ font-size:12px
 
 <script>
 
-/* PROGRESS */
+/* PROGRESS + ACTIVE NAV */
 window.onscroll=()=>{
 let h=document.documentElement;
 let sc=(h.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
 document.getElementById("progress").style.width=sc+"%";
 
-/* ACTIVE NAV */
 document.querySelectorAll("section").forEach(sec=>{
 let top=window.scrollY;
 if(top>=sec.offsetTop-100){
@@ -509,7 +508,7 @@ if(msg.includes("price")) r="Rates range ₱3k–₱15k depending on shoot.";
 else if(msg.includes("service")) r="I offer portraits, fashion, street, and branding shoots.";
 else if(msg.includes("book")) r="Use the contact form below to book.";
 else if(msg.includes("location")) r="Available nationwide.";
-else if(msg.includes("portfolio")) r="Check the categories above.";
+else if(msg.includes("portfolio")) r="Explore the categories above.";
 addBot(r);
 }
 
