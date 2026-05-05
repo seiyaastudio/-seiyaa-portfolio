@@ -53,12 +53,7 @@ background:rgba(0,0,0,.6);
 backdrop-filter:blur(14px);
 }
 .logo{font-family:'Playfair Display';letter-spacing:3px}
-.nav a{
-color:var(--muted);
-margin-left:25px;
-text-decoration:none;
-transition:.3s;
-}
+.nav a{color:var(--muted);margin-left:25px;text-decoration:none}
 .nav a.active,.nav a:hover{color:#fff}
 
 /* HERO */
@@ -77,12 +72,9 @@ background:url('images/_DSC8255.jpg') center/cover;
 opacity:.25;
 }
 .hero-content{position:relative;max-width:650px;}
-.hero h1{
-font-family:'Playfair Display';
-font-size:64px;
-line-height:1.1;
-}
+.hero h1{font-family:'Playfair Display';font-size:64px}
 .hero p{color:var(--muted);margin:20px 0}
+
 .btn{
 padding:14px 30px;
 border:1px solid #fff;
@@ -91,70 +83,40 @@ color:#fff;
 margin-right:10px;
 transition:.3s;
 }
-.btn:hover{
-background:#fff;
-color:#000;
-box-shadow:var(--glow);
-}
+.btn:hover{background:#fff;color:#000;box-shadow:var(--glow)}
 
 /* SECTION */
 .section{padding:120px 8%}
-.section h2{
-font-family:'Playfair Display';
-font-size:36px;
-margin-bottom:10px;
-}
+.section h2{font-family:'Playfair Display';font-size:36px;margin-bottom:10px}
+.section p{color:var(--muted);margin-bottom:40px;max-width:700px}
 
 /* FILTER */
-.filters{
-display:flex;
-gap:10px;
-flex-wrap:wrap;
-margin-bottom:40px;
-}
+.filters{display:flex;gap:10px;margin-bottom:30px;flex-wrap:wrap}
 .filter-btn{
 padding:8px 16px;
 border:1px solid var(--border);
 cursor:pointer;
 transition:.3s;
 }
-.filter-btn.active{
-background:#fff;
-color:#000;
-}
+.filter-btn.active{background:#fff;color:#000}
 
 /* GRID */
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
 gap:20px;
 }
+
 .item{
 position:relative;
 border-radius:16px;
 overflow:hidden;
 aspect-ratio:4/5;
 cursor:pointer;
-transition:.4s;
+opacity:1;
+transform:scale(1);
+transition:.5s;
 }
-.item img{
-width:100%;
-height:100%;
-object-fit:cover;
-transition:.6s;
-}
-.item:hover img{transform:scale(1.1)}
-.overlay{
-position:absolute;
-bottom:0;
-width:100%;
-padding:12px;
-background:linear-gradient(to top,rgba(0,0,0,.8),transparent);
-opacity:0;
-transition:.3s;
-font-size:13px;
-}
-.item:hover .overlay{opacity:1}
 
 .item.hide{
 opacity:0;
@@ -162,6 +124,27 @@ transform:scale(.9);
 pointer-events:none;
 position:absolute;
 }
+
+.item img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:.6s cubic-bezier(.22,1,.36,1);
+}
+
+.item:hover img{transform:scale(1.1)}
+
+.overlay{
+position:absolute;
+bottom:0;
+width:100%;
+padding:10px;
+background:linear-gradient(transparent,rgba(0,0,0,.8));
+font-size:12px;
+opacity:0;
+transition:.3s;
+}
+.item:hover .overlay{opacity:1}
 
 /* LIGHTBOX */
 .lightbox{
@@ -179,91 +162,80 @@ max-width:95%;
 max-height:95%;
 object-fit:contain;
 border-radius:16px;
+animation:zoom .4s ease;
+}
+@keyframes zoom{
+from{transform:scale(.8);opacity:0}
+to{transform:scale(1);opacity:1}
 }
 
-/* FUNNEL */
+/* SERVICES */
+.services{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+.card{
+background:var(--glass);
+border:1px solid var(--border);
+padding:25px;
+border-radius:14px;
+transition:.3s;
+}
+.card:hover{transform:translateY(-6px);box-shadow:var(--glow)}
+
+/* PROCESS FUNNEL */
 .funnel{
 display:flex;
 flex-direction:column;
-align-items:center;
-gap:25px;
+gap:15px;
+max-width:600px;
+margin:auto;
 }
 .step{
-width:100%;
-max-width:700px;
-padding:25px;
+padding:20px;
 border:1px solid var(--border);
 background:var(--glass);
-border-radius:16px;
 cursor:pointer;
-transition:.4s;
+transition:.3s;
 }
 .step.active{
-background:#fff;
-color:#000;
 transform:scale(1.05);
-}
-.step-content{
-max-height:0;
-overflow:hidden;
-transition:.4s;
-margin-top:10px;
-}
-.step.active .step-content{
-max-height:200px;
+box-shadow:var(--glow);
 }
 
 /* TEAM */
-.team{
-padding:80px 8%;
-border-top:1px solid var(--border);
-background:#080808;
-text-align:center;
-}
-.team h3{
-font-family:'Playfair Display';
-font-size:28px;
-margin-bottom:30px;
-}
-.team-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:20px;
-}
+.team{padding:100px 8%;text-align:center}
+.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
 .team-card{
-padding:20px;
+padding:25px;
 border:1px solid var(--border);
-border-radius:14px;
 background:var(--glass);
+cursor:pointer;
 transition:.3s;
 }
-.team-card:hover{
-transform:translateY(-6px);
-box-shadow:var(--glow);
-}
-.team-role{font-size:12px;color:var(--muted)}
-.team-name{font-weight:600;margin-top:5px}
+.team-card.active{transform:scale(1.05);box-shadow:var(--glow)}
+.team-details{display:none}
+.team-card.active .team-details{display:block;margin-top:10px}
+
+/* CTA */
+.cta{text-align:center;padding:100px 8%;background:linear-gradient(180deg,#050505,#111)}
 
 /* FORM */
-.form{
-display:flex;
-flex-direction:column;
-gap:12px;
-max-width:400px;
-}
+.form{display:flex;flex-direction:column;gap:12px;max-width:400px}
 .form input,.form textarea{
-background:#000;
-border:1px solid #333;
-padding:12px;
-color:#fff;
+background:#000;border:1px solid #333;padding:12px;color:#fff;
 }
-.form button{
-padding:14px;
-background:#fff;
-border:none;
-cursor:pointer;
-}
+.form button{padding:14px;background:#fff;border:none;cursor:pointer}
 .success{display:none;color:#0f0}
+
+/* FOOTER */
+.footer{
+padding:40px 8%;
+text-align:center;
+border-top:1px solid var(--border);
+color:var(--muted);
+}
 
 /* CHAT */
 .chat-btn{
@@ -287,24 +259,17 @@ background:#111;
 border:1px solid #333;
 display:none;
 flex-direction:column;
-z-index:999;
 }
-.chat-messages{
-flex:1;
-overflow-y:auto;
-padding:10px;
-font-size:13px;
-}
+.chat-messages{flex:1;overflow-y:auto;padding:10px}
 .chat-input{display:flex}
 .chat-input input{flex:1;background:none;border:none;color:#fff;padding:10px}
 .chat-input button{background:#fff;border:none;padding:10px}
-.quick{display:flex;flex-wrap:wrap;gap:6px;padding:6px}
+.quick{display:flex;gap:6px;flex-wrap:wrap;padding:6px}
 .quick span{background:#222;padding:6px;border-radius:20px;cursor:pointer;font-size:12px}
 
 /* MOBILE */
 @media(max-width:768px){
-.hero h1{font-size:42px}
-.section{padding:80px 6%}
+.hero h1{font-size:40px}
 }
 </style>
 </head>
@@ -317,7 +282,7 @@ font-size:13px;
 <div class="logo">EIGHTYSIX MEDIA</div>
 <div>
 <a href="#portfolio">Work</a>
-<a href="#process">Process</a>
+<a href="#services">Services</a>
 <a href="#contact">Contact</a>
 </div>
 </div>
@@ -325,7 +290,7 @@ font-size:13px;
 <section class="hero">
 <div class="hero-content">
 <h1>Cinematic Identity for Modern Brands</h1>
-<p>Seiyaa — Photographer. Eightysix Media — Creative Studio.</p>
+<p>Seiyaa — Photographer | Eightysix Media — Creative Studio</p>
 <a href="#portfolio" class="btn">View Work</a>
 <a href="#contact" class="btn">Book Shoot</a>
 </div>
@@ -342,83 +307,89 @@ font-size:13px;
 <div class="filter-btn" data-filter="creative">Creative</div>
 </div>
 
-<div class="grid">
+<div class="grid" id="grid">
 
-<!-- FULL IMAGE SET -->
-<img hidden src="images/_DSC8255.jpg">
-<img hidden src="images/_DSC8261.jpg">
-<img hidden src="images/_DSC8267.jpg">
-<img hidden src="images/_DSC8303.jpg">
-<img hidden src="images/_DSC8330.jpg">
-<img hidden src="images/_DSC7851.jpg">
-<img hidden src="images/_DSC7860.jpg">
-<img hidden src="images/_DSC7867.jpg">
-<img hidden src="images/_DSC7886.jpg">
-<img hidden src="images/_DSC7900.jpg">
-<img hidden src="images/_DSC7665.jpg">
-<img hidden src="images/_DSC7676.jpg">
-<img hidden src="images/_DSC7679.jpg">
-<img hidden src="images/_DSC7685.jpg">
-<img hidden src="images/_DSC7694.jpg">
-<img hidden src="images/_DSC8091.jpg">
-<img hidden src="images/_DSC8092.jpg">
-<img hidden src="images/_DSC8093.jpg">
-<img hidden src="images/_DSC8105.jpg">
-<img hidden src="images/_DSC8112.jpg">
+<!-- 20 IMAGES COMPLETE -->
+<div class="item" data-cat="portrait"><img src="images/_DSC8255.jpg" loading="lazy"><div class="overlay">Portrait</div></div>
+<div class="item" data-cat="portrait"><img src="images/_DSC8261.jpg" loading="lazy"><div class="overlay">Portrait</div></div>
+<div class="item" data-cat="portrait"><img src="images/_DSC8267.jpg" loading="lazy"><div class="overlay">Portrait</div></div>
+<div class="item" data-cat="portrait"><img src="images/_DSC8303.jpg" loading="lazy"><div class="overlay">Portrait</div></div>
+<div class="item" data-cat="portrait"><img src="images/_DSC8330.jpg" loading="lazy"><div class="overlay">Portrait</div></div>
 
-<script>
-const categories=["portrait","fashion","street","creative"];
-const imgs=[
-"_DSC8255.jpg","_DSC8261.jpg","_DSC8267.jpg","_DSC8303.jpg","_DSC8330.jpg",
-"_DSC7851.jpg","_DSC7860.jpg","_DSC7867.jpg","_DSC7886.jpg","_DSC7900.jpg",
-"_DSC7665.jpg","_DSC7676.jpg","_DSC7679.jpg","_DSC7685.jpg","_DSC7694.jpg",
-"_DSC8091.jpg","_DSC8092.jpg","_DSC8093.jpg","_DSC8105.jpg","_DSC8112.jpg"
-];
+<div class="item" data-cat="fashion"><img src="images/_DSC7851.jpg" loading="lazy"><div class="overlay">Fashion</div></div>
+<div class="item" data-cat="fashion"><img src="images/_DSC7860.jpg" loading="lazy"><div class="overlay">Fashion</div></div>
+<div class="item" data-cat="fashion"><img src="images/_DSC7867.jpg" loading="lazy"><div class="overlay">Fashion</div></div>
+<div class="item" data-cat="fashion"><img src="images/_DSC7886.jpg" loading="lazy"><div class="overlay">Fashion</div></div>
+<div class="item" data-cat="fashion"><img src="images/_DSC7900.jpg" loading="lazy"><div class="overlay">Fashion</div></div>
 
-const grid=document.currentScript.parentElement;
+<div class="item" data-cat="street"><img src="images/_DSC7665.jpg" loading="lazy"><div class="overlay">Street</div></div>
+<div class="item" data-cat="street"><img src="images/_DSC7676.jpg" loading="lazy"><div class="overlay">Street</div></div>
+<div class="item" data-cat="street"><img src="images/_DSC7679.jpg" loading="lazy"><div class="overlay">Street</div></div>
+<div class="item" data-cat="street"><img src="images/_DSC7685.jpg" loading="lazy"><div class="overlay">Street</div></div>
+<div class="item" data-cat="street"><img src="images/_DSC7694.jpg" loading="lazy"><div class="overlay">Street</div></div>
 
-imgs.forEach((src,i)=>{
-let cat=categories[i%4];
-let div=document.createElement("div");
-div.className="item";
-div.dataset.cat=cat;
-div.innerHTML=`<img src="images/${src}" loading="lazy"><div class="overlay">${cat}</div>`;
-grid.appendChild(div);
-});
-</script>
+<div class="item" data-cat="creative"><img src="images/_DSC8091.jpg" loading="lazy"><div class="overlay">Creative</div></div>
+<div class="item" data-cat="creative"><img src="images/_DSC8092.jpg" loading="lazy"><div class="overlay">Creative</div></div>
+<div class="item" data-cat="creative"><img src="images/_DSC8093.jpg" loading="lazy"><div class="overlay">Creative</div></div>
+<div class="item" data-cat="creative"><img src="images/_DSC8105.jpg" loading="lazy"><div class="overlay">Creative</div></div>
+<div class="item" data-cat="creative"><img src="images/_DSC8112.jpg" loading="lazy"><div class="overlay">Creative</div></div>
 
 </div>
 </section>
 
-<section class="section" id="process">
-<h2>Process Funnel</h2>
+<section class="section">
+<h2>Process</h2>
 <div class="funnel">
-<div class="step" onclick="toggleStep(this)">
-<h3>01. Inquiry</h3>
-<div class="step-content">Send your concept.</div>
-</div>
-<div class="step" onclick="toggleStep(this)">
-<h3>02. Planning</h3>
-<div class="step-content">We align direction.</div>
-</div>
-<div class="step" onclick="toggleStep(this)">
-<h3>03. Shoot</h3>
-<div class="step-content">Professional guided shoot.</div>
-</div>
-<div class="step" onclick="toggleStep(this)">
-<h3>04. Delivery</h3>
-<div class="step-content">Final cinematic images.</div>
-</div>
+<div class="step" onclick="toggleStep(this)">01 Inquiry</div>
+<div class="step" onclick="toggleStep(this)">02 Planning</div>
+<div class="step" onclick="toggleStep(this)">03 Shoot</div>
+<div class="step" onclick="toggleStep(this)">04 Delivery</div>
 </div>
 </section>
 
 <section class="team">
-<h3>Core Team</h3>
+<h2>Core Team</h2>
 <div class="team-grid">
-<div class="team-card"><div class="team-role">Main Photographer</div><div class="team-name">Rain Casas</div></div>
-<div class="team-card"><div class="team-role">Lighting Assistant & Mobile Photographer</div><div class="team-name">Tristan Buerano</div></div>
-<div class="team-card"><div class="team-role">Lighting Assistant & Mobile Photographer</div><div class="team-name">Xaris Joshua Baltazar</div></div>
+
+<div class="team-card active" onclick="toggleTeam(this)">
+<h3>Rain Casas</h3>
+<p>Main Photographer • Main Videographer</p>
+<div class="team-details">
+Creative Director specializing in cinematic storytelling and brand visuals.
 </div>
+</div>
+
+<div class="team-card" onclick="toggleTeam(this)">
+<h3>Tristan Buerano</h3>
+<p>Lighting Assistant • Mobile Photographer</p>
+<div class="team-details">
+Supports lighting and captures BTS content.
+</div>
+</div>
+
+<div class="team-card" onclick="toggleTeam(this)">
+<h3>Xaris Joshua Baltazar</h3>
+<p>Lighting Assistant • Mobile Photographer</p>
+<div class="team-details">
+Handles lighting execution and mobile visuals.
+</div>
+</div>
+
+</div>
+</section>
+
+<section class="section" id="services">
+<h2>Services</h2>
+<div class="services">
+<div class="card"><h3>Photography</h3><p>High-end visuals that convert.</p></div>
+<div class="card"><h3>Creative Direction</h3><p>Concept-driven storytelling.</p></div>
+<div class="card"><h3>Brand Visuals</h3><p>Marketing-focused imagery.</p></div>
+</div>
+</section>
+
+<section class="cta">
+<h2>Ready to Build Your Visual Identity?</h2>
+<a href="#contact" class="btn">Book Now</a>
 </section>
 
 <section class="section" id="contact">
@@ -431,6 +402,16 @@ grid.appendChild(div);
 <div class="success" id="success">Opening email...</div>
 </form>
 </section>
+
+<div class="footer">
+© 2026 Eightysix Media  
+<br><br>
+Main Photographer: Rain Casas  
+<br>
+Lighting Assistant & Mobile Photographer: Tristan Buerano  
+<br>
+Lighting Assistant & Mobile Photographer: Xaris Joshua Baltazar
+</div>
 
 <div class="lightbox" id="lightbox"><img id="lightbox-img"></div>
 
@@ -458,61 +439,52 @@ let sc=(h.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
 document.getElementById("progress").style.width=sc+"%";
 };
 
-/* NAV ACTIVE */
-const sections=document.querySelectorAll("section");
-const navLinks=document.querySelectorAll(".nav a");
-window.addEventListener("scroll",()=>{
-let current="";
-sections.forEach(sec=>{
-if(window.scrollY>=sec.offsetTop-200){
-current=sec.id;
-}
-});
-navLinks.forEach(a=>{
-a.classList.remove("active");
-if(a.getAttribute("href")==="#"+current){
-a.classList.add("active");
-}
-});
-});
-
 /* FILTER */
 document.querySelectorAll(".filter-btn").forEach(btn=>{
 btn.onclick=()=>{
 document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
 btn.classList.add("active");
 let f=btn.dataset.filter;
+
 document.querySelectorAll(".item").forEach(i=>{
-i.classList.toggle("hide",f!=="all" && i.dataset.cat!==f);
+if(f==="all" || i.dataset.cat===f){
+i.classList.remove("hide");
+}else{
+i.classList.add("hide");
+}
 });
 };
 });
 
 /* LIGHTBOX */
-document.addEventListener("click",e=>{
-if(e.target.closest(".item img")){
-document.getElementById("lightbox-img").src=e.target.src;
+document.querySelectorAll(".item img").forEach(img=>{
+img.onclick=()=>{
+document.getElementById("lightbox-img").src=img.src;
 document.getElementById("lightbox").classList.add("active");
-}
+};
 });
 document.getElementById("lightbox").onclick=()=>document.getElementById("lightbox").classList.remove("active");
 
-/* FUNNEL */
-function toggleStep(el){
-document.querySelectorAll(".step").forEach(s=>{
-if(s!==el)s.classList.remove("active");
-});
-el.classList.toggle("active");
-}
-
-/* EMAIL */
+/* FORM */
 function sendEmail(e){
 e.preventDefault();
-let name=nameInput.value;
-let email=emailInput.value;
-let msg=msgInput.value;
+let name=name.value;
+let email=email.value;
+let msg=msg.value;
 window.location.href=`mailto:rainiercasas28@gmail.com?subject=Booking from ${name}&body=${msg} (${email})`;
-success.style.display="block";
+document.getElementById("success").style.display="block";
+}
+
+/* FUNNEL */
+function toggleStep(el){
+document.querySelectorAll(".step").forEach(s=>s.classList.remove("active"));
+el.classList.add("active");
+}
+
+/* TEAM */
+function toggleTeam(el){
+document.querySelectorAll(".team-card").forEach(c=>c.classList.remove("active"));
+el.classList.add("active");
 }
 
 /* CHAT */
@@ -520,41 +492,45 @@ function toggleChat(){
 let box=document.getElementById("chatBox");
 box.style.display=box.style.display==="flex"?"none":"flex";
 if(!box.dataset.init){
-addBot("Hey 👋 I can help with pricing, booking, and services.");
+addBot("Hi 👋 Ask me about pricing, services, or booking.");
 box.dataset.init=true;
 }
 }
 
 function quick(q){
-chatInput.value=q;
+document.getElementById("chatInput").value=q;
 sendMsg();
 }
 
 function sendMsg(){
-let msg=chatInput.value.toLowerCase();
+let input=document.getElementById("chatInput");
+let msg=input.value.toLowerCase();
 if(!msg)return;
 addUser(msg);
 setTimeout(()=>reply(msg),500);
-chatInput.value="";
+input.value="";
 }
 
 function addUser(t){
-chatMessages.innerHTML+=`<div>> ${t}</div>`;
-chatMessages.scrollTop=chatMessages.scrollHeight;
+let c=document.getElementById("chatMessages");
+c.innerHTML+=`<div>> ${t}</div>`;
+c.scrollTop=c.scrollHeight;
 }
 
 function addBot(t){
-chatMessages.innerHTML+=`<div style="color:#aaa;">AI: ${t}</div>`;
-chatMessages.scrollTop=chatMessages.scrollHeight;
+let c=document.getElementById("chatMessages");
+c.innerHTML+=`<div style="color:#aaa;">AI: ${t}</div>`;
+c.scrollTop=c.scrollHeight;
 }
 
 function reply(msg){
-let r="I can help you with bookings.";
-if(msg.includes("price")) r="Pricing ₱3k–₱15k.";
-else if(msg.includes("service")) r="Photography, branding.";
-else if(msg.includes("book")) r="Use contact form.";
+let r="I can help with bookings.";
+if(msg.includes("price")) r="Pricing ranges ₱3k–₱15k.";
+else if(msg.includes("service")) r="Photography, branding, creative direction.";
+else if(msg.includes("book")) r="Use contact form to book.";
 else if(msg.includes("location")) r="Available nationwide.";
-else if(msg.includes("portfolio")) r="Check above.";
+else if(msg.includes("portfolio")) r="Browse categories above.";
+
 addBot(r);
 }
 
