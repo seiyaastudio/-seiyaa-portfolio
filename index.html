@@ -9,226 +9,98 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{
-background:#050505;
-color:#fff;
-font-family:'Inter',sans-serif;
-overflow-x:hidden;
-scroll-behavior:smooth;
-}
+body{background:#050505;color:#fff;font-family:'Inter',sans-serif}
 
 /* PROGRESS */
-.progress{
-position:fixed;
-top:0;left:0;height:3px;width:0%;
-background:linear-gradient(90deg,#00e0ff,#fff);
-z-index:9999;
-}
+.progress{position:fixed;top:0;height:3px;width:0;background:#00e0ff;z-index:9999}
 
 /* NAV */
 .nav{
-position:fixed;
-top:0;width:100%;
-padding:20px 8%;
-display:flex;
-justify-content:space-between;
-z-index:1000;
-background:rgba(0,0,0,.6);
-backdrop-filter:blur(12px);
+position:fixed;width:100%;padding:20px 8%;
+display:flex;justify-content:space-between;
+background:rgba(0,0,0,.6);backdrop-filter:blur(10px);z-index:1000;
 }
-.nav a{color:#aaa;text-decoration:none;margin-left:25px;font-size:14px}
-.nav a.active,.nav a:hover{color:#fff}
+.nav a{color:#aaa;margin-left:20px;text-decoration:none}
+.nav a.active{color:#fff}
 
 /* HERO */
-.hero{
-height:100vh;
-position:relative;
-display:flex;
-align-items:center;
-padding:0 8%;
-}
-.hero img{
-position:absolute;inset:0;
-width:100%;height:100%;object-fit:cover;
-}
-.hero::after{
-content:"";
-position:absolute;inset:0;
-background:linear-gradient(to bottom,rgba(0,0,0,.2),rgba(0,0,0,.9));
-}
-.hero-content{position:relative;z-index:2;max-width:700px}
-.hero h1{font-size:90px;font-family:'Playfair Display';line-height:1}
-.hero p{color:#ccc;margin-top:20px}
+.hero{height:100vh;position:relative;display:flex;align-items:center;padding:0 8%}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.2),#000)}
+.hero-content{position:relative;z-index:2}
+.hero h1{font-size:80px;font-family:'Playfair Display'}
+.hero p{color:#aaa;margin-top:15px}
 
 /* SECTION */
-.section{padding:120px 8%}
+.section{padding:100px 8%}
 
 /* SPLIT */
-.split{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:40px;
-align-items:center;
-}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:40px}
 
-/* TYPOGRAPHY */
-.big{
-font-size:80px;
-font-family:'Playfair Display';
-line-height:1;
-}
-.small{color:#aaa;margin-top:20px}
+/* TYPO */
+.big{font-size:60px;font-family:'Playfair Display'}
+.small{color:#aaa;margin-top:15px}
 
-/* FULL */
-.full{
+/* PORTFOLIO */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.item{
 position:relative;
-height:80vh;
-margin:120px 0;
+overflow:hidden;
+border-radius:12px;
+opacity:1;
+transform:scale(1);
+transition:.4s;
 }
-.full img{width:100%;height:100%;object-fit:cover}
-.full::after{
-content:"";
-position:absolute;inset:0;
-background:linear-gradient(to bottom,rgba(0,0,0,.2),rgba(0,0,0,.85));
+.item.hide{
+opacity:0;
+transform:scale(.9);
+pointer-events:none;
 }
-.full-text{
-position:absolute;
-bottom:40px;
-left:8%;
-z-index:2;
-}
-
-/* COLLAGE */
-.collage{
-display:grid;
-grid-template-columns:2fr 1fr;
-gap:20px;
-}
-.collage-right{
-display:grid;
-grid-template-rows:1fr 1fr;
-gap:20px;
-}
-
-/* GRID */
-.grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:20px;
-}
+.item img{width:100%;height:100%;object-fit:cover}
 
 /* FILTER */
-.filters{
-display:flex;
-gap:10px;
-margin-bottom:40px;
-}
-.filter{
-padding:8px 18px;
-border:1px solid #333;
-cursor:pointer;
-}
-.filter.active{
-background:#fff;color:#000;
-}
-
-/* HOVER */
-img{
-transition:transform .6s cubic-bezier(.22,1,.36,1);
-cursor:pointer;
-}
-img:hover{transform:scale(1.05)}
+.filters{display:flex;gap:10px;margin-bottom:30px}
+.filter{padding:8px 16px;border:1px solid #333;cursor:pointer}
+.filter.active{background:#fff;color:#000}
 
 /* LIGHTBOX */
 .lightbox{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.95);
-display:none;
-justify-content:center;
-align-items:center;
-z-index:2000;
+position:fixed;inset:0;background:#000;
+display:none;justify-content:center;align-items:center;z-index:2000;
 }
-.lightbox img{
-max-width:95%;
-max-height:95%;
-object-fit:contain;
-}
-
-/* SCROLL */
-.fade{
-opacity:0;
-transform:translateY(60px);
-transition:1s ease;
-}
-.fade.show{
-opacity:1;
-transform:translateY(0);
-}
+.lightbox img{max-width:95%;max-height:95%}
 
 /* CTA */
-.cta{
-height:80vh;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-}
-.cta h1{
-font-size:100px;
-font-family:'Playfair Display';
-}
+.cta{text-align:center;padding:120px 8%}
+.cta h1{font-size:90px;font-family:'Playfair Display'}
 
 /* CONTACT */
-.form{
-max-width:400px;
-display:flex;
-flex-direction:column;
-gap:10px;
-}
+.form{max-width:400px;display:flex;flex-direction:column;gap:10px}
 .form input,.form textarea{
-background:#000;
-border:1px solid #333;
-padding:12px;color:#fff;
+background:#000;border:1px solid #333;padding:12px;color:#fff
 }
-.form button{
-background:#00e0ff;
-border:none;padding:12px;cursor:pointer;
-}
+.form button{background:#00e0ff;border:none;padding:12px;cursor:pointer}
 .success{display:none;color:#0f0}
 
 /* CHAT */
 .chat-btn{
-position:fixed;
-bottom:20px;right:20px;
-background:#00e0ff;
-padding:14px;border-radius:50%;
-cursor:pointer;
+position:fixed;bottom:20px;right:20px;
+background:#00e0ff;padding:14px;border-radius:50%;cursor:pointer
 }
 .chat-box{
-position:fixed;
-bottom:80px;right:20px;
-width:320px;height:420px;
-background:#111;
-display:none;
-flex-direction:column;
-border:1px solid #333;
+position:fixed;bottom:80px;right:20px;width:320px;height:420px;
+background:#111;display:none;flex-direction:column;border:1px solid #333
 }
 .chat-msg{flex:1;overflow-y:auto;padding:10px;font-size:13px}
 .chat-input{display:flex}
 .chat-input input{flex:1;padding:10px;background:none;border:none;color:#fff}
 .chat-input button{background:#00e0ff;border:none;padding:10px}
-.quick{display:flex;gap:5px;padding:5px;flex-wrap:wrap}
-.quick span{background:#222;padding:6px;border-radius:20px;cursor:pointer;font-size:12px}
 
 /* MOBILE */
 @media(max-width:768px){
-.hero h1{font-size:50px}
-.big{font-size:40px}
+.hero h1{font-size:42px}
 .split{grid-template-columns:1fr}
-.collage{grid-template-columns:1fr}
 .grid{grid-template-columns:1fr}
-.cta h1{font-size:60px}
 }
 </style>
 </head>
@@ -249,86 +121,52 @@ border:1px solid #333;
 <section class="hero">
 <img src="images/_DSC8255.jpg">
 <div class="hero-content">
-<h1>DREAM VISUALS</h1>
-<p>Seiyaa Cinematic Identity</p>
+<h1>CINEMATIC VISUALS</h1>
+<p>By Seiyaa</p>
 </div>
 </section>
 
 <!-- CONCEPT -->
-<section class="section fade">
+<section class="section">
 <div class="split">
 <div>
 <div class="big">CONCEPT</div>
-<p class="small">A cinematic exploration of identity, light and motion.  
-Every frame is intentional and built for storytelling.</p>
+<p class="small">Visual storytelling designed for identity and impact.</p>
 </div>
 <img src="images/_DSC8267.jpg">
 </div>
 </section>
 
-<!-- STORY -->
-<div class="full fade">
-<img src="images/_DSC7851.jpg">
-<div class="full-text">
-<h2>#REACTION</h2>
-<p class="small">Moments captured between reality and narrative.</p>
-</div>
-</div>
-
-<!-- FILTER -->
-<section class="section fade" id="portfolio">
+<!-- PORTFOLIO -->
+<section class="section" id="portfolio">
 <div class="filters">
 <div class="filter active" data="all">All</div>
 <div class="filter" data="portrait">Portrait</div>
 <div class="filter" data="fashion">Fashion</div>
 <div class="filter" data="street">Street</div>
-<div class="filter" data="creative">Creative</div>
 </div>
 
-<div class="collage">
-<img src="images/_DSC7886.jpg" class="item portrait">
-<div class="collage-right">
-<img src="images/_DSC8303.jpg" class="item fashion">
-<img src="images/_DSC8261.jpg" class="item creative">
-</div>
-</div>
-
-<div class="grid" style="margin-top:20px">
-<img src="images/_DSC7676.jpg" class="item street">
-<img src="images/_DSC7679.jpg" class="item street">
-<img src="images/_DSC7685.jpg" class="item street">
-<img src="images/_DSC7694.jpg" class="item street">
-<img src="images/_DSC8091.jpg" class="item portrait">
-<img src="images/_DSC8105.jpg" class="item fashion">
-</div>
-
-</section>
-
-<!-- MOOD -->
-<section class="section fade">
-<div class="split">
-<img src="images/_DSC8093.jpg">
-<div>
-<div class="big">MOOD & TONE</div>
-<p class="small">Warm cinematic tones, deep shadows and layered light create a timeless atmosphere.</p>
-</div>
+<div class="grid">
+<div class="item portrait"><img src="images/_DSC8255.jpg"></div>
+<div class="item fashion"><img src="images/_DSC8261.jpg"></div>
+<div class="item street"><img src="images/_DSC8267.jpg"></div>
+<div class="item portrait"><img src="images/_DSC8303.jpg"></div>
+<div class="item street"><img src="images/_DSC7851.jpg"></div>
+<div class="item fashion"><img src="images/_DSC7886.jpg"></div>
 </div>
 </section>
 
 <!-- CTA -->
-<section class="cta fade">
-<div>
-<h1>THANK YOU</h1>
-<p class="small">rainiercasas28@gmail.com</p>
-</div>
+<section class="cta">
+<h1>LET'S CREATE</h1>
+<p class="small">Book your shoot today</p>
 </section>
 
 <!-- CONTACT -->
-<section class="section fade" id="contact">
-<h2>Contact</h2>
+<section class="section" id="contact">
 <form class="form" onsubmit="sendMail(event)">
 <input id="name" required placeholder="Name">
-<input id="email" type="email" required placeholder="Email">
+<input id="email" required type="email" placeholder="Email">
 <textarea id="msg" required placeholder="Project"></textarea>
 <button>Send</button>
 <div class="success" id="success">Opening email...</div>
@@ -342,17 +180,8 @@ Every frame is intentional and built for storytelling.</p>
 
 <!-- CHAT -->
 <div class="chat-btn" onclick="toggleChat()">💬</div>
-
 <div class="chat-box" id="chatBox">
 <div class="chat-msg" id="chat"></div>
-
-<div class="quick">
-<span onclick="quick('price')">Pricing</span>
-<span onclick="quick('booking')">Booking</span>
-<span onclick="quick('services')">Services</span>
-<span onclick="quick('location')">Location</span>
-</div>
-
 <div class="chat-input">
 <input id="input">
 <button onclick="send()">Send</button>
@@ -364,35 +193,37 @@ Every frame is intentional and built for storytelling.</p>
 /* PROGRESS */
 window.addEventListener("scroll",()=>{
 let h=document.documentElement;
-let sc=(h.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
-progress.style.width=sc+"%";
+progress.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100+"%";
 });
 
-/* SCROLL */
-const faders=document.querySelectorAll(".fade");
+/* NAV ACTIVE */
+const links=document.querySelectorAll(".nav a");
 window.addEventListener("scroll",()=>{
-faders.forEach(el=>{
-if(el.getBoundingClientRect().top < window.innerHeight-100){
-el.classList.add("show");
+links.forEach(link=>{
+let sec=document.querySelector(link.getAttribute("href"));
+if(sec && sec.offsetTop<=scrollY+100){
+links.forEach(l=>l.classList.remove("active"));
+link.classList.add("active");
 }
 });
 });
-window.dispatchEvent(new Event('scroll'));
 
 /* FILTER */
 document.querySelectorAll(".filter").forEach(btn=>{
 btn.onclick=()=>{
 document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));
 btn.classList.add("active");
+
 let val=btn.getAttribute("data");
+
 document.querySelectorAll(".item").forEach(el=>{
-el.style.display=(val==="all"||el.classList.contains(val))?"block":"none";
+el.classList.toggle("hide",!(val==="all"||el.classList.contains(val)));
 });
 };
 });
 
-/* LIGHTBOX */
-document.querySelectorAll("img").forEach(img=>{
+/* LIGHTBOX FIX */
+document.querySelectorAll(".item img").forEach(img=>{
 img.onclick=()=>{
 lightbox.style.display="flex";
 lightboxImg.src=img.src;
@@ -403,49 +234,26 @@ lightbox.onclick=()=>lightbox.style.display="none";
 /* EMAIL */
 function sendMail(e){
 e.preventDefault();
-window.location.href=`mailto:rainiercasas28@gmail.com`;
 success.style.display="block";
+window.location.href=`mailto:rainiercasas28@gmail.com`;
 }
 
-/* CHAT */
+/* CHAT UPGRADE */
 function toggleChat(){
 chatBox.style.display=chatBox.style.display==="flex"?"none":"flex";
-if(!chatBox.dataset.init){
-bot("Hi 👋 Ask about pricing, booking or services.");
-chatBox.dataset.init=true;
-}
-}
-
-function quick(q){
-input.value=q;
-send();
 }
 
 function send(){
 let msg=input.value.toLowerCase();
 if(!msg)return;
-user(msg);
-setTimeout(()=>reply(msg),500);
+chat.innerHTML+=`<div>> ${msg}</div>`;
+let r="Tell me more about your project.";
+if(msg.includes("price")) r="Pricing ranges ₱3k–₱15k.";
+if(msg.includes("book")) r="Use contact form below.";
+if(msg.includes("service")) r="Portrait, fashion, cinematic.";
+chat.innerHTML+=`<div style="color:#aaa;">AI: ${r}</div>`;
 input.value="";
-}
-
-function user(t){
-chat.innerHTML+=`<div>> ${t}</div>`;
-chat.scrollTop=chat.scrollHeight;
-}
-
-function bot(t){
-chat.innerHTML+=`<div style="color:#aaa;">AI: ${t}</div>`;
-chat.scrollTop=chat.scrollHeight;
-}
-
-function reply(m){
-let r="I can help you.";
-if(m.includes("price")) r="Packages ₱3k–₱15k.";
-if(m.includes("booking")) r="Use contact form to book.";
-if(m.includes("services")) r="Portrait, fashion, street shoots.";
-if(m.includes("location")) r="Based in Philippines.";
-bot(r);
+chat.scrollTop=9999;
 }
 
 </script>
