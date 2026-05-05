@@ -43,9 +43,9 @@ width:420px;
 height:420px;
 background:radial-gradient(circle,rgba(255,255,255,0.08),transparent 70%);
 pointer-events:none;
-z-index:0;
 transform:translate(-50%,-50%);
 filter:blur(80px);
+z-index:0;
 }
 
 /* NAV */
@@ -77,7 +77,7 @@ position:relative;
 content:"";
 position:absolute;
 inset:0;
-background:url('images/portrait1.jpg') center/cover;
+background:url('images/_DSC8255.jpg') center/cover;
 opacity:.35;
 }
 .hero-content{position:relative;z-index:2}
@@ -308,30 +308,30 @@ To add new images:
 
 <div class="grid">
 
-<div class="item featured" data-cat="portrait"><img src="images/portrait1.jpg" loading="lazy"><div class="overlay">PORTRAIT</div></div>
-<div class="item featured" data-cat="portrait"><img src="images/portrait2.jpg" loading="lazy"><div class="overlay">PORTRAIT</div></div>
+<!-- 20 IMAGES EXACT (DSC BASED) -->
+<div class="item featured" data-cat="portrait"><img src="images/_DSC8255.jpg" loading="lazy"><div class="overlay">PORTRAIT</div></div>
+<div class="item featured" data-cat="portrait"><img src="images/_DSC8261.jpg" loading="lazy"><div class="overlay">PORTRAIT</div></div>
+<div class="item" data-cat="portrait"><img src="images/_DSC8267.jpg" loading="lazy"><div class="overlay">PORTRAIT</div></div>
+<div class="item" data-cat="portrait"><img src="images/_DSC8303.jpg" loading="lazy"><div class="overlay">PORTRAIT</div></div>
+<div class="item" data-cat="portrait"><img src="images/_DSC8330.jpg" loading="lazy"><div class="overlay">PORTRAIT</div></div>
 
-<div class="item" data-cat="portrait"><img src="images/portrait3.jpg" loading="lazy"><div class="overlay">PORTRAIT</div></div>
-<div class="item" data-cat="portrait"><img src="images/portrait4.jpg" loading="lazy"><div class="overlay">PORTRAIT</div></div>
-<div class="item" data-cat="portrait"><img src="images/portrait5.jpg" loading="lazy"><div class="overlay">PORTRAIT</div></div>
+<div class="item" data-cat="fashion"><img src="images/_DSC7851.jpg" loading="lazy"><div class="overlay">FASHION</div></div>
+<div class="item" data-cat="fashion"><img src="images/_DSC7860.jpg" loading="lazy"><div class="overlay">FASHION</div></div>
+<div class="item" data-cat="fashion"><img src="images/_DSC7867.jpg" loading="lazy"><div class="overlay">FASHION</div></div>
+<div class="item" data-cat="fashion"><img src="images/_DSC7886.jpg" loading="lazy"><div class="overlay">FASHION</div></div>
+<div class="item" data-cat="fashion"><img src="images/_DSC7900.jpg" loading="lazy"><div class="overlay">FASHION</div></div>
 
-<div class="item" data-cat="fashion"><img src="images/fashion1.jpg" loading="lazy"><div class="overlay">FASHION</div></div>
-<div class="item" data-cat="fashion"><img src="images/fashion2.jpg" loading="lazy"><div class="overlay">FASHION</div></div>
-<div class="item" data-cat="fashion"><img src="images/fashion3.jpg" loading="lazy"><div class="overlay">FASHION</div></div>
-<div class="item" data-cat="fashion"><img src="images/fashion4.jpg" loading="lazy"><div class="overlay">FASHION</div></div>
-<div class="item" data-cat="fashion"><img src="images/fashion5.jpg" loading="lazy"><div class="overlay">FASHION</div></div>
+<div class="item" data-cat="street"><img src="images/_DSC7665.jpg" loading="lazy"><div class="overlay">STREET</div></div>
+<div class="item" data-cat="street"><img src="images/_DSC7676.jpg" loading="lazy"><div class="overlay">STREET</div></div>
+<div class="item" data-cat="street"><img src="images/_DSC7679.jpg" loading="lazy"><div class="overlay">STREET</div></div>
+<div class="item" data-cat="street"><img src="images/_DSC7685.jpg" loading="lazy"><div class="overlay">STREET</div></div>
+<div class="item" data-cat="street"><img src="images/_DSC7694.jpg" loading="lazy"><div class="overlay">STREET</div></div>
 
-<div class="item" data-cat="street"><img src="images/street1.jpg" loading="lazy"><div class="overlay">STREET</div></div>
-<div class="item" data-cat="street"><img src="images/street2.jpg" loading="lazy"><div class="overlay">STREET</div></div>
-<div class="item" data-cat="street"><img src="images/street3.jpg" loading="lazy"><div class="overlay">STREET</div></div>
-<div class="item" data-cat="street"><img src="images/street4.jpg" loading="lazy"><div class="overlay">STREET</div></div>
-<div class="item" data-cat="street"><img src="images/street5.jpg" loading="lazy"><div class="overlay">STREET</div></div>
-
-<div class="item" data-cat="creative"><img src="images/creative1.jpg" loading="lazy"><div class="overlay">CREATIVE</div></div>
-<div class="item" data-cat="creative"><img src="images/creative2.jpg" loading="lazy"><div class="overlay">CREATIVE</div></div>
-<div class="item" data-cat="creative"><img src="images/creative3.jpg" loading="lazy"><div class="overlay">CREATIVE</div></div>
-<div class="item" data-cat="creative"><img src="images/creative4.jpg" loading="lazy"><div class="overlay">CREATIVE</div></div>
-<div class="item" data-cat="creative"><img src="images/creative5.jpg" loading="lazy"><div class="overlay">CREATIVE</div></div>
+<div class="item" data-cat="creative"><img src="images/_DSC8091.jpg" loading="lazy"><div class="overlay">CREATIVE</div></div>
+<div class="item" data-cat="creative"><img src="images/_DSC8092.jpg" loading="lazy"><div class="overlay">CREATIVE</div></div>
+<div class="item" data-cat="creative"><img src="images/_DSC8093.jpg" loading="lazy"><div class="overlay">CREATIVE</div></div>
+<div class="item" data-cat="creative"><img src="images/_DSC8105.jpg" loading="lazy"><div class="overlay">CREATIVE</div></div>
+<div class="item" data-cat="creative"><img src="images/_DSC8112.jpg" loading="lazy"><div class="overlay">CREATIVE</div></div>
 
 </div>
 </section>
@@ -377,11 +377,9 @@ document.querySelectorAll(".filter-btn").forEach(btn=>{
 btn.onclick=()=>{
 document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
 btn.classList.add("active");
-
 let f=btn.dataset.filter;
 document.querySelectorAll(".item").forEach(i=>{
-let show = f==="all" || i.dataset.cat===f;
-i.classList.toggle("hide",!show);
+i.classList.toggle("hide",f!=="all" && i.dataset.cat!==f);
 });
 };
 });
@@ -412,7 +410,6 @@ bot("Hi 👋 Ask about pricing, services, booking, location, portfolio.");
 chatBox.dataset.init=true;
 }
 }
-
 function sendMsg(){
 let msg=chatInput.value.toLowerCase();
 if(!msg)return;
@@ -420,14 +417,12 @@ user(msg);
 setTimeout(()=>reply(msg),300);
 chatInput.value="";
 }
-
 function user(t){chatMessages.innerHTML+=`<div class="msg-user">${t}</div>`;}
 function bot(t){chatMessages.innerHTML+=`<div class="msg-bot">${t}</div>`;}
-
 function reply(m){
 let r="Tell me more about your project.";
 if(m.includes("price")) r="Pricing ranges ₱3k–₱15k depending on scope.";
-else if(m.includes("service")) r="We offer photography, branding, and creative direction.";
+else if(m.includes("service")) r="We offer photography, branding, creative direction.";
 else if(m.includes("book")) r="Use the contact form to secure your shoot.";
 else if(m.includes("location")) r="We are available nationwide.";
 else if(m.includes("portfolio")) r="Scroll above to explore our work.";
