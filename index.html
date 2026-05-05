@@ -29,226 +29,95 @@ z-index:1000;
 background:linear-gradient(to bottom,rgba(0,0,0,.8),transparent);
 }
 
-.logo{
-font-family:'Playfair Display';
-letter-spacing:3px;
-}
+.logo{font-family:'Playfair Display';letter-spacing:3px;}
 
 .nav a{
-color:#aaa;
-text-decoration:none;
-margin-left:30px;
-transition:.3s;
+color:#aaa;text-decoration:none;margin-left:30px;
 }
 .nav a:hover{color:#fff}
 
 /* HERO */
-.hero{
-height:100vh;
-position:relative;
-overflow:hidden;
-}
+.hero{height:100vh;position:relative;overflow:hidden;}
 .hero img{
-position:absolute;
-width:100%;
-height:100%;
-object-fit:cover;
-opacity:0;
-transition:opacity 1.5s ease;
+position:absolute;width:100%;height:100%;
+object-fit:cover;opacity:0;transition:opacity 1.5s ease;
 }
 .hero img.active{opacity:1}
 
-.overlay{
-position:absolute;
-width:100%;
-height:100%;
-background:linear-gradient(to bottom,rgba(0,0,0,.2),rgba(0,0,0,.95));
-}
-
-.hero-content{
-position:absolute;
-bottom:120px;
-left:8%;
-max-width:600px;
-}
-
-.hero h1{
-font-family:'Playfair Display';
-font-size:64px;
-margin-bottom:10px;
-}
-
-.hero p{
-color:#ccc;
-margin-bottom:20px;
-}
-
-.hero-buttons a{
-display:inline-block;
-margin-right:15px;
-padding:12px 28px;
-border:1px solid #fff;
-text-decoration:none;
-color:#fff;
-transition:.3s;
-}
-.hero-buttons a:hover{
-background:#fff;
-color:#000;
-}
-
 /* SECTION */
-.section{
-padding:120px 8%;
+.section{padding:120px 8%;}
+.section h2{font-family:'Playfair Display';font-size:34px;margin-bottom:20px;}
+.section p{color:#bbb;max-width:700px;margin-bottom:40px;}
+
+/* CINEMATIC */
+.cinematic{display:grid;grid-template-columns:2fr 1fr;gap:30px;}
+.cinematic.reverse{grid-template-columns:1fr 2fr;}
+.cinematic-main img,
+.cinematic-side img{
+width:100%;height:100%;object-fit:cover;border-radius:12px;cursor:pointer;
 }
-.section h2{
-font-family:'Playfair Display';
-font-size:34px;
-margin-bottom:20px;
-}
-.section p{
-color:#bbb;
-max-width:700px;
-margin-bottom:40px;
+.cinematic-side{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+
+@media(max-width:768px){
+.cinematic{grid-template-columns:1fr;}
 }
 
-/* GRID */
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-gap:30px;
-perspective:1000px;
-}
-
-.grid img{
-width:100%;
-border-radius:12px;
-cursor:pointer;
-transition:transform 0.6s cubic-bezier(0.22,1,0.36,1),
-box-shadow 0.6s ease,
-filter 0.6s ease;
-}
-
-.grid img:hover{
-transform:scale(1.05) translateY(-4px);
-box-shadow:0 25px 80px rgba(0,0,0,0.45);
-filter:brightness(1.05);
-}
-
-/* SERVICES */
-.services{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:30px;
-}
-.service-box{
-border:1px solid #222;
-padding:25px;
-border-radius:10px;
-transition:.3s;
-}
-.service-box:hover{
-transform:translateY(-5px);
-border-color:#444;
-}
-
-/* PROCESS FUNNEL */
-.process{
-display:flex;
-flex-direction:column;
-align-items:center;
-gap:20px;
-}
-
+/* FUNNEL PROCESS */
+.process{display:flex;flex-direction:column;align-items:center;gap:20px;}
 .process div{
-background:#0a0a0a;
-border:1px solid #222;
-padding:20px;
-border-radius:10px;
-width:100%;
-max-width:700px;
-text-align:center;
-transition:.3s;
+background:#0a0a0a;border:1px solid #222;padding:20px;border-radius:10px;
+text-align:center;transition:.3s;
 }
-
-.process div:hover{
-transform:translateY(-5px);
-border-color:#444;
-}
-
+.process div:hover{transform:translateY(-5px);border-color:#444;}
 .process div:nth-child(1){width:100%}
 .process div:nth-child(2){width:85%}
 .process div:nth-child(3){width:70%}
 .process div:nth-child(4){width:55%}
 
-/* CONTACT */
-.contact a{
-display:inline-block;
-margin-right:20px;
-color:#fff;
-text-decoration:none;
-border-bottom:1px solid #fff;
-}
-
-/* LIGHTBOX (UPGRADED ANIMATION) */
+/* LIGHTBOX */
 .lightbox{
-position:fixed;
-width:100%;
-height:100%;
+position:fixed;width:100%;height:100%;
 background:rgba(0,0,0,.95);
-display:none;
-justify-content:center;
-align-items:center;
-z-index:2000;
-overflow:hidden;
+display:none;justify-content:center;align-items:center;
+z-index:2000;overflow:hidden;
 }
 
 .lightbox img{
 position:absolute;
-transition:all .5s cubic-bezier(0.22,1,0.36,1);
 border-radius:12px;
+transition:all .5s cubic-bezier(0.22,1,0.36,1);
 }
 
 /* SCROLL */
-.fade{
-opacity:0;
-transform:translateY(40px);
-transition:1s ease;
-}
-.fade.show{
-opacity:1;
-transform:translateY(0);
+.fade{opacity:0;transform:translateY(40px);transition:1s;}
+.fade.show{opacity:1;transform:translateY(0);}
+
+/* AI CHAT */
+.chat-btn{
+position:fixed;bottom:30px;right:30px;
+background:#fff;color:#000;padding:12px 18px;
+border-radius:30px;cursor:pointer;z-index:999;
 }
 
-/* CINEMATIC */
-.cinematic{
-display:grid;
-grid-template-columns:2fr 1fr;
-gap:30px;
+.chat-box{
+position:fixed;bottom:90px;right:30px;
+width:300px;height:400px;background:#111;
+border:1px solid #333;display:none;
+flex-direction:column;
 }
 
-.cinematic.reverse{
-grid-template-columns:1fr 2fr;
-}
+.chat-messages{flex:1;padding:10px;overflow-y:auto;font-size:14px;}
+.chat-input{display:flex;border-top:1px solid #333;}
+.chat-input input{flex:1;background:none;border:none;color:#fff;padding:10px;}
+.chat-input button{background:#fff;border:none;padding:10px;}
 
-.cinematic-main img,
-.cinematic-side img{
-width:100%;
-height:100%;
-object-fit:cover;
-border-radius:12px;
+/* MUSIC */
+.music-btn{
+position:fixed;bottom:30px;left:30px;
+background:#fff;color:#000;padding:10px;border-radius:50%;
 cursor:pointer;
 }
 
-.cinematic-side{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:20px;
-}
-
-@media(max-width:768px){
-.cinematic{grid-template-columns:1fr;}
-}
 </style>
 </head>
 
@@ -269,28 +138,6 @@ gap:20px;
 <img src="images/_DSC8255.jpg" class="active">
 <img src="images/_DSC7867.jpg">
 <img src="images/_DSC8091.jpg">
-
-<div class="overlay"></div>
-
-<div class="hero-content">
-<h1>We Don’t Shoot Photos.<br>We Build Visual Identity.</h1>
-<p>Cinematic street and fashion photography built for brands, models, and standout visuals.</p>
-
-<div class="hero-buttons">
-<a href="#portfolio">View Work</a>
-<a href="https://www.instagram.com/seiyaasstudio/" target="_blank">Instagram</a>
-</div>
-</div>
-</section>
-
-<!-- ABOUT -->
-<section class="section fade">
-<h2>About</h2>
-<p>
-Seiyaa Studio is a photography brand focused on cinematic street and fashion visuals.  
-We create bold, editorial-style imagery that elevate personal brands, models, and businesses.  
-Every shoot is built around concept, lighting, and storytelling — not just taking photos, but creating identity.
-</p>
 </section>
 
 <!-- PORTFOLIO -->
@@ -298,9 +145,7 @@ Every shoot is built around concept, lighting, and storytelling — not just tak
 
 <h2>Urban Market Series</h2>
 <div class="cinematic">
-<div class="cinematic-main">
-<img src="images/_DSC8255.jpg">
-</div>
+<div class="cinematic-main"><img src="images/_DSC8255.jpg"></div>
 <div class="cinematic-side">
 <img src="images/_DSC8261.jpg">
 <img src="images/_DSC8267.jpg">
@@ -311,9 +156,7 @@ Every shoot is built around concept, lighting, and storytelling — not just tak
 
 <h2 style="margin-top:120px;">Gas Station Editorial</h2>
 <div class="cinematic reverse">
-<div class="cinematic-main">
-<img src="images/_DSC7851.jpg">
-</div>
+<div class="cinematic-main"><img src="images/_DSC7851.jpg"></div>
 <div class="cinematic-side">
 <img src="images/_DSC7860.jpg">
 <img src="images/_DSC7867.jpg">
@@ -324,9 +167,7 @@ Every shoot is built around concept, lighting, and storytelling — not just tak
 
 <h2 style="margin-top:120px;">Night Street Cinematics</h2>
 <div class="cinematic">
-<div class="cinematic-main">
-<img src="images/_DSC7665.jpg">
-</div>
+<div class="cinematic-main"><img src="images/_DSC7665.jpg"></div>
 <div class="cinematic-side">
 <img src="images/_DSC7676.jpg">
 <img src="images/_DSC7679.jpg">
@@ -337,9 +178,7 @@ Every shoot is built around concept, lighting, and storytelling — not just tak
 
 <h2 style="margin-top:120px;">Rebel / Underground Series</h2>
 <div class="cinematic reverse">
-<div class="cinematic-main">
-<img src="images/_DSC8091.jpg">
-</div>
+<div class="cinematic-main"><img src="images/_DSC8091.jpg"></div>
 <div class="cinematic-side">
 <img src="images/_DSC8092.jpg">
 <img src="images/_DSC8093.jpg">
@@ -350,54 +189,43 @@ Every shoot is built around concept, lighting, and storytelling — not just tak
 
 </section>
 
-<!-- SERVICES -->
-<section class="section fade" id="services">
-<h2>Services</h2>
-<div class="services">
-<div class="service-box">
-<h3>Model Portfolio Shoot</h3>
-<p>Clean, cinematic visuals.</p>
-</div>
-<div class="service-box">
-<h3>Brand / Product Shoot</h3>
-<p>High-impact visuals.</p>
-</div>
-<div class="service-box">
-<h3>Creative Concept Shoots</h3>
-<p>Story-driven visuals.</p>
-</div>
-<div class="service-box">
-<h3>X-Deal Collaboration</h3>
-<p>Selected collabs.</p>
-</div>
-</div>
-</section>
-
 <!-- PROCESS -->
 <section class="section fade">
 <h2>Process</h2>
 <div class="process">
-<div><strong>01. Inquiry</strong> — Send your idea</div>
-<div><strong>02. Planning</strong> — Align direction</div>
-<div><strong>03. Shoot</strong> — Execution</div>
-<div><strong>04. Delivery</strong> — Final visuals</div>
+<div>01 Inquiry</div>
+<div>02 Planning</div>
+<div>03 Shoot</div>
+<div>04 Delivery</div>
 </div>
 </section>
 
 <!-- CONTACT -->
 <section class="section fade" id="contact">
 <h2>Contact</h2>
-<p>Ready to create something cinematic?</p>
-<div class="contact">
-<a href="https://www.instagram.com/seiyaasstudio/" target="_blank">Instagram</a>
 <a href="mailto:rainiercasas28@gmail.com">Email</a>
-</div>
 </section>
 
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
 <img id="lightbox-img">
 </div>
+
+<!-- AI -->
+<div class="chat-btn" onclick="toggleChat()">AI</div>
+<div class="chat-box" id="chat">
+<div class="chat-messages" id="chatMessages"></div>
+<div class="chat-input">
+<input id="chatInput">
+<button onclick="sendMsg()">Send</button>
+</div>
+</div>
+
+<!-- MUSIC -->
+<audio id="bgMusic" loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+<div class="music-btn" onclick="toggleMusic()">♫</div>
 
 <script>
 
@@ -421,17 +249,25 @@ el.classList.add("show");
 });
 window.dispatchEvent(new Event('scroll'));
 
-/* ADVANCED LIGHTBOX ANIMATION */
-const images=document.querySelectorAll(".cinematic img");
+/* LIGHTBOX + SWIPE */
+const imgs=document.querySelectorAll(".cinematic img");
 const lightbox=document.getElementById("lightbox");
 const lightboxImg=document.getElementById("lightbox-img");
 
-let rect;
+let currentIndex=0;
+let gallery=[];
 
-images.forEach(img=>{
+imgs.forEach((img,i)=>{
 img.onclick=()=>{
-rect=img.getBoundingClientRect();
+gallery=[...img.closest('.cinematic').querySelectorAll('img')];
+currentIndex=gallery.indexOf(img);
 
+openLightbox(img);
+};
+});
+
+function openLightbox(img){
+const rect=img.getBoundingClientRect();
 lightbox.style.display="flex";
 lightboxImg.src=img.src;
 
@@ -447,20 +283,51 @@ lightboxImg.style.width="80vw";
 lightboxImg.style.height="80vh";
 lightboxImg.style.transform="translate(-50%,-50%)";
 });
-};
+}
+
+lightbox.onclick=()=>lightbox.style.display="none";
+
+/* SWIPE */
+let startX=0;
+
+lightbox.addEventListener("touchstart",e=>{
+startX=e.touches[0].clientX;
 });
 
-lightbox.onclick=()=>{
-lightboxImg.style.top=rect.top+"px";
-lightboxImg.style.left=rect.left+"px";
-lightboxImg.style.width=rect.width+"px";
-lightboxImg.style.height=rect.height+"px";
-lightboxImg.style.transform="none";
+lightbox.addEventListener("touchend",e=>{
+let endX=e.changedTouches[0].clientX;
 
-setTimeout(()=>{
-lightbox.style.display="none";
-},400);
-};
+if(endX<startX-50){
+currentIndex=(currentIndex+1)%gallery.length;
+}
+if(endX>startX+50){
+currentIndex=(currentIndex-1+gallery.length)%gallery.length;
+}
+
+lightboxImg.src=gallery[currentIndex].src;
+});
+
+/* AI */
+function toggleChat(){
+let chat=document.getElementById("chat");
+chat.style.display=chat.style.display==="flex"?"none":"flex";
+}
+
+function sendMsg(){
+let input=document.getElementById("chatInput");
+let box=document.getElementById("chatMessages");
+
+box.innerHTML+=`<div>> ${input.value}</div>`;
+box.innerHTML+=`<div style="color:#aaa;">AI: DM us for bookings.</div>`;
+
+input.value="";
+}
+
+/* MUSIC */
+let music=document.getElementById("bgMusic");
+function toggleMusic(){
+music.paused?music.play():music.pause();
+}
 
 </script>
 
