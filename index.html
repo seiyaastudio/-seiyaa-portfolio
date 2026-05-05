@@ -3,18 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Seiyaa Studio — Cinematic Identity Photography</title>
+<title>Seiyaa Studio — Cinematic Identity System</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
 :root{
 --bg:#050505;
---card:#0d0d0d;
+--card:#0e0e0e;
 --border:#1f1f1f;
 --text:#ffffff;
---muted:#9a9a9a;
+--muted:#9c9c9c;
 --accent:#ffffff;
 --radius:14px;
 }
@@ -39,64 +38,120 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 z-index:1000;
-background:linear-gradient(to bottom,rgba(0,0,0,.9),transparent);
+background:linear-gradient(to bottom,rgba(0,0,0,.85),transparent);
 backdrop-filter:blur(6px);
 }
-.logo{font-family:'Playfair Display';letter-spacing:3px}
-.nav a{color:var(--muted);margin-left:25px;text-decoration:none;font-size:14px}
+.logo{
+font-family:'Playfair Display';
+letter-spacing:3px;
+font-size:18px;
+}
+.nav a{
+color:var(--muted);
+margin-left:24px;
+text-decoration:none;
+font-size:14px;
+}
 .nav a:hover{color:#fff}
 
 /* HERO */
-.hero{height:100vh;position:relative;overflow:hidden}
+.hero{
+height:100vh;
+position:relative;
+overflow:hidden;
+}
 .hero img{
-position:absolute;width:100%;height:100%;
-object-fit:cover;opacity:0;transition:opacity 1.5s ease;
+position:absolute;
+width:100%;
+height:100%;
+object-fit:cover;
+opacity:0;
+transition:opacity 1.5s ease;
 }
 .hero img.active{opacity:1}
 
 .overlay{
-position:absolute;width:100%;height:100%;
+position:absolute;
+width:100%;
+height:100%;
 background:linear-gradient(to bottom,rgba(0,0,0,.2),rgba(0,0,0,.95));
 }
 
 .hero-content{
-position:absolute;bottom:120px;left:8%;
+position:absolute;
+bottom:120px;
+left:8%;
 max-width:600px;
+animation:fadeUp 1.2s ease forwards;
 }
 
 .hero h1{
 font-family:'Playfair Display';
 font-size:64px;
-margin-bottom:10px;
+line-height:1.1;
+margin-bottom:12px;
 }
-.hero p{color:var(--muted);margin-bottom:20px}
+
+.hero p{
+color:var(--muted);
+margin-bottom:20px;
+}
 
 .cta a{
-display:inline-block;padding:12px 28px;
-border:1px solid #fff;text-decoration:none;color:#fff;
-margin-right:10px;font-size:14px;
+display:inline-block;
+padding:12px 28px;
+border:1px solid #fff;
+text-decoration:none;
+color:#fff;
+margin-right:10px;
+font-size:14px;
 }
-.cta a:hover{background:#fff;color:#000}
+.cta a:hover{
+background:#fff;
+color:#000;
+}
 
 /* SECTION */
-.section{padding:120px 8%}
+.section{
+padding:120px 8%;
+}
 .section h2{
 font-family:'Playfair Display';
-font-size:36px;margin-bottom:20px;
+font-size:36px;
+margin-bottom:20px;
 }
-.section p{color:var(--muted);max-width:700px;margin-bottom:40px}
+.section p{
+color:var(--muted);
+max-width:700px;
+margin-bottom:40px;
+}
+
+/* TRUST */
+.trust{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+}
+.trust div{
+background:var(--card);
+border:1px solid var(--border);
+padding:20px;
+border-radius:var(--radius);
+}
 
 /* PORTFOLIO */
 .cinematic{
 display:grid;
 grid-template-columns:2fr 1fr;
 gap:30px;
-margin-bottom:80px;
+margin-bottom:100px;
 }
 .cinematic.reverse{grid-template-columns:1fr 2fr}
 
 .cinematic img{
-width:100%;height:100%;object-fit:cover;
+width:100%;
+height:100%;
+object-fit:cover;
 border-radius:var(--radius);
 cursor:pointer;
 transition:.4s;
@@ -109,23 +164,6 @@ grid-template-columns:1fr 1fr;
 gap:20px;
 }
 
-@media(max-width:768px){
-.cinematic,.cinematic.reverse{grid-template-columns:1fr}
-.hero h1{font-size:42px}
-}
-
-/* TRUST */
-.trust{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:20px;
-}
-.trust div{
-background:var(--card);
-border:1px solid var(--border);
-padding:20px;border-radius:var(--radius);
-}
-
 /* SERVICES */
 .services{
 display:grid;
@@ -135,17 +173,22 @@ gap:30px;
 .service{
 background:var(--card);
 border:1px solid var(--border);
-padding:25px;border-radius:var(--radius);
+padding:25px;
+border-radius:var(--radius);
 }
 
-/* PROCESS */
+/* PROCESS FUNNEL */
 .process{
-display:flex;flex-direction:column;align-items:center;gap:20px;
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:20px;
 }
 .process div{
 background:var(--card);
 border:1px solid var(--border);
-padding:20px;border-radius:var(--radius);
+padding:20px;
+border-radius:var(--radius);
 width:100%;
 }
 .process div:nth-child(1){max-width:700px}
@@ -153,11 +196,43 @@ width:100%;
 .process div:nth-child(3){max-width:500px}
 .process div:nth-child(4){max-width:400px}
 
+/* PRICING */
+.pricing{
+background:var(--card);
+border:1px solid var(--border);
+padding:30px;
+border-radius:var(--radius);
+max-width:600px;
+}
+
+/* FORM */
+.form{
+display:flex;
+flex-direction:column;
+gap:12px;
+max-width:400px;
+}
+.form input,.form textarea{
+background:#000;
+border:1px solid #333;
+padding:12px;
+color:#fff;
+}
+.form button{
+padding:14px;
+background:#fff;
+border:none;
+cursor:pointer;
+}
+
 /* LIGHTBOX */
 .lightbox{
-position:fixed;width:100%;height:100%;
+position:fixed;
+width:100%;
+height:100%;
 background:rgba(0,0,0,.95);
-display:none;z-index:2000;
+display:none;
+z-index:2000;
 }
 .lightbox img{
 position:absolute;
@@ -165,28 +240,40 @@ border-radius:12px;
 transition:.5s cubic-bezier(.22,1,.36,1);
 }
 
-/* CONTACT */
-.contact a{
-display:inline-block;margin-right:15px;
-padding:14px 28px;border:1px solid #fff;
-text-decoration:none;color:#fff;
-}
-.contact a:hover{background:#fff;color:#000}
-
-/* STICKY */
+/* STICKY CTA */
 .sticky{
-position:fixed;bottom:0;width:100%;
-background:#000;border-top:1px solid #222;
-display:flex;justify-content:center;padding:10px;z-index:999;
+position:fixed;
+bottom:0;
+width:100%;
+background:#000;
+border-top:1px solid #222;
+display:flex;
+justify-content:center;
+padding:10px;
+z-index:999;
 }
 .sticky a{
-background:#fff;color:#000;padding:12px 28px;text-decoration:none;
+background:#fff;
+color:#000;
+padding:12px 28px;
+text-decoration:none;
 border-radius:6px;
 }
 
-/* SCROLL */
+/* MOBILE */
+@media(max-width:768px){
+.hero h1{font-size:42px}
+.cinematic,.cinematic.reverse{grid-template-columns:1fr}
+}
+
+/* ANIM */
 .fade{opacity:0;transform:translateY(40px);transition:1s}
 .fade.show{opacity:1;transform:translateY(0)}
+
+@keyframes fadeUp{
+from{opacity:0;transform:translateY(40px)}
+to{opacity:1;transform:translateY(0)}
+}
 </style>
 </head>
 
@@ -210,8 +297,8 @@ border-radius:6px;
 <div class="overlay"></div>
 
 <div class="hero-content">
-<h1>Cinematic Visual Identity</h1>
-<p>We create high-impact visuals designed to elevate your brand and presence.</p>
+<h1>We Build Visual Identity.</h1>
+<p>Cinematic photography engineered to elevate your brand and presence.</p>
 <div class="cta">
 <a href="#contact">Book a Shoot</a>
 <a href="https://www.instagram.com/seiyaasstudio/" target="_blank">Instagram</a>
@@ -219,23 +306,14 @@ border-radius:6px;
 </div>
 </section>
 
-<!-- ABOUT -->
-<section class="section fade">
-<h2>About</h2>
-<p>
-Seiyaa Studio specializes in cinematic street and fashion photography.
-Every frame is crafted to build identity, not just capture moments.
-</p>
-</section>
-
 <!-- TRUST -->
 <section class="section fade">
-<h2>Why Choose Us</h2>
+<h2>Why Choose Seiyaa</h2>
 <div class="trust">
-<div>✔ Cinematic Quality</div>
-<div>✔ Professional Direction</div>
+<div>✔ Cinematic Premium Quality</div>
+<div>✔ Guided Direction</div>
+<div>✔ High-Converting Visuals</div>
 <div>✔ Fast Delivery</div>
-<div>✔ Social-Ready Output</div>
 </div>
 </section>
 
@@ -292,8 +370,8 @@ Every frame is crafted to build identity, not just capture moments.
 <section class="section fade" id="services">
 <h2>Services</h2>
 <div class="services">
-<div class="service"><h3>Model Portfolio</h3><p>Professional visual identity</p></div>
-<div class="service"><h3>Brand Campaign</h3><p>Commercial-grade visuals</p></div>
+<div class="service"><h3>Model Portfolio</h3><p>Professional identity visuals</p></div>
+<div class="service"><h3>Brand Campaign</h3><p>High-impact visuals for business</p></div>
 <div class="service"><h3>Creative Direction</h3><p>Concept to execution</p></div>
 <div class="service"><h3>X-Deal Collaboration</h3><p>Selective partnerships</p></div>
 </div>
@@ -310,15 +388,30 @@ Every frame is crafted to build identity, not just capture moments.
 </div>
 </section>
 
+<!-- PRICING -->
+<section class="section fade">
+<h2>Investment</h2>
+<div class="pricing">
+<p>Most shoots range between <strong>₱3,000 – ₱15,000+</strong></p>
+<p style="color:#888;margin-top:10px;">Custom pricing depending on concept and complexity.</p>
+</div>
+</section>
+
 <!-- CONTACT -->
 <section class="section fade" id="contact">
-<h2>Book a Shoot</h2>
-<p>Let’s create visuals that stand out and convert.</p>
+<h2>Book Now</h2>
 
-<div class="contact">
-<a href="mailto:rainiercasas28@gmail.com">Email</a>
-<a href="https://www.instagram.com/seiyaasstudio/" target="_blank">Instagram</a>
+<form class="form" onsubmit="submitForm(event)">
+<input type="text" placeholder="Full Name" required>
+<input type="email" placeholder="Email" required>
+<textarea placeholder="Tell me about your shoot" required></textarea>
+<button type="submit">Send Inquiry</button>
+</form>
+
+<div style="margin-top:20px;">
+<a href="mailto:rainiercasas28@gmail.com">Email Direct</a>
 </div>
+
 </section>
 
 <!-- LIGHTBOX -->
@@ -326,9 +419,9 @@ Every frame is crafted to build identity, not just capture moments.
 <img id="lightbox-img">
 </div>
 
-<!-- STICKY -->
+<!-- STICKY CTA -->
 <div class="sticky">
-<a href="mailto:rainiercasas28@gmail.com">Book Now</a>
+<a href="mailto:rainiercasas28@gmail.com">Book a Shoot</a>
 </div>
 
 <script>
@@ -378,6 +471,12 @@ lightboxImg.style.transform="translate(-50%,-50%)";
 });
 
 lightbox.onclick=()=>lightbox.style.display="none";
+
+/* FORM */
+function submitForm(e){
+e.preventDefault();
+alert("Inquiry sent successfully.");
+}
 
 </script>
 
