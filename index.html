@@ -4,205 +4,403 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Seiyaa Visuals</title>
-<meta name="description" content="Premium Photography & Creative Portfolio">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 <style>
 :root{
-  --bg:#0b0b0c;
-  --text:#ffffff;
-  --accent:#7c5cff;
-  --card:#151517;
+--bg:#060606;
+--card:rgba(255,255,255,0.04);
+--border:rgba(255,255,255,0.08);
+--text:#ffffff;
+--muted:#9a9a9a;
+--accent:#ffffff;
+--glass:blur(10px);
 }
-*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
-body{background:var(--bg);color:var(--text);overflow-x:hidden}
-a{text-decoration:none;color:inherit}
 
-nav{
-  position:fixed;top:0;width:100%;
-  display:flex;justify-content:space-between;align-items:center;
-  padding:20px 40px;background:rgba(0,0,0,0.6);backdrop-filter:blur(10px);
-  z-index:999;
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+background:var(--bg);
+color:var(--text);
+font-family:'Inter',sans-serif;
+overflow-x:hidden;
+scroll-behavior:smooth;
 }
-nav h1{font-size:18px;font-weight:600}
-nav ul{display:flex;gap:25px}
-nav ul li{list-style:none;cursor:pointer}
 
+/* NAV */
+.nav{
+position:fixed;
+top:0;
+width:100%;
+padding:18px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+z-index:1000;
+background:rgba(0,0,0,.6);
+backdrop-filter:blur(10px);
+}
+
+.logo{
+font-family:'Playfair Display';
+letter-spacing:3px;
+font-size:18px;
+}
+
+.nav-links{
+display:flex;
+}
+
+.nav-links a{
+color:var(--muted);
+text-decoration:none;
+margin-left:25px;
+font-size:14px;
+}
+.nav-links a:hover{color:#fff}
+
+/* HERO */
 .hero{
-  height:100vh;
-  display:flex;flex-direction:column;justify-content:center;align-items:center;
-  text-align:center;padding:20px;
+height:100vh;
+display:flex;
+align-items:center;
+padding:0 8%;
+position:relative;
 }
-.hero h2{font-size:48px;font-weight:700}
-.hero p{margin-top:15px;color:#aaa}
-.cta{
-  margin-top:25px;
-  padding:12px 25px;
-  background:var(--accent);
-  border-radius:30px;
-  cursor:pointer;
-  transition:.3s;
+
+.hero-content{
+max-width:650px;
 }
-.cta:hover{transform:scale(1.05)}
 
-section{padding:100px 40px;max-width:1200px;margin:auto}
+.hero h1{
+font-family:'Playfair Display';
+font-size:64px;
+line-height:1.1;
+margin-bottom:15px;
+}
 
+.hero p{
+color:var(--muted);
+margin-bottom:25px;
+}
+
+.btn{
+display:inline-block;
+padding:12px 28px;
+border:1px solid #fff;
+color:#fff;
+text-decoration:none;
+margin-right:10px;
+transition:.3s;
+}
+.btn:hover{
+background:#fff;
+color:#000;
+}
+
+/* SECTIONS */
+.section{
+padding:120px 8%;
+}
+
+.section h2{
+font-family:'Playfair Display';
+font-size:36px;
+margin-bottom:20px;
+}
+
+.section p{
+color:var(--muted);
+max-width:700px;
+margin-bottom:40px;
+}
+
+/* PORTFOLIO */
 .grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:20px;
-}
-.card{
-  background:var(--card);
-  border-radius:15px;
-  overflow:hidden;
-  transition:.3s;
-}
-.card img{width:100%;display:block}
-.card:hover{transform:translateY(-8px)}
-
-.about p{color:#bbb;line-height:1.6;margin-top:10px}
-
-.contact input, .contact textarea{
-  width:100%;padding:12px;margin-top:10px;
-  border:none;border-radius:8px;background:#1f1f22;color:#fff;
-}
-.contact button{
-  margin-top:15px;padding:12px 20px;border:none;
-  background:var(--accent);border-radius:20px;color:#fff;cursor:pointer;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:20px;
 }
 
-footer{
-  text-align:center;padding:30px;color:#777;font-size:14px
+.grid-item{
+position:relative;
+overflow:hidden;
+border-radius:12px;
+}
+
+.grid img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:.5s;
+}
+
+.grid-item:hover img{
+transform:scale(1.1);
+}
+
+.grid-overlay{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.5);
+opacity:0;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:.3s;
+}
+
+.grid-item:hover .grid-overlay{
+opacity:1;
+}
+
+/* SERVICES */
+.services{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.service{
+background:var(--card);
+border:1px solid var(--border);
+padding:25px;
+border-radius:12px;
+backdrop-filter:blur(10px);
+}
+
+/* CONTACT */
+.form{
+display:flex;
+flex-direction:column;
+gap:12px;
+max-width:400px;
+}
+
+.form input,.form textarea{
+background:#000;
+border:1px solid #333;
+padding:12px;
+color:#fff;
+}
+
+.form button{
+padding:14px;
+background:#fff;
+border:none;
+cursor:pointer;
+}
+
+/* FOOTER */
+.footer{
+padding:40px 8%;
+text-align:center;
+color:var(--muted);
+border-top:1px solid var(--border);
 }
 
 /* CHATBOT */
 .chat-btn{
-  position:fixed;bottom:20px;right:20px;
-  width:60px;height:60px;border-radius:50%;
-  background:var(--accent);display:flex;align-items:center;justify-content:center;
-  cursor:pointer;font-size:24px;
+position:fixed;
+bottom:20px;
+right:20px;
+background:#fff;
+color:#000;
+padding:12px 18px;
+border-radius:30px;
+cursor:pointer;
+z-index:999;
 }
-.chat-box{
-  position:fixed;bottom:90px;right:20px;
-  width:300px;background:#111;border-radius:15px;
-  display:none;flex-direction:column;overflow:hidden;
-}
-.chat-header{padding:10px;background:var(--accent)}
-.chat-body{height:250px;overflow-y:auto;padding:10px;font-size:14px}
-.chat-input{display:flex}
-.chat-input input{flex:1;padding:10px;border:none;background:#222;color:#fff}
-.chat-input button{padding:10px;background:var(--accent);border:none;color:#fff}
 
-.msg{margin:5px 0}
-.user{text-align:right;color:#7c5cff}
-.bot{text-align:left;color:#fff}
+.chat-box{
+position:fixed;
+bottom:80px;
+right:20px;
+width:320px;
+height:420px;
+background:#111;
+border:1px solid #333;
+display:none;
+flex-direction:column;
+z-index:999;
+}
+
+.chat-messages{
+flex:1;
+padding:10px;
+overflow-y:auto;
+font-size:14px;
+}
+
+.chat-input{
+display:flex;
+border-top:1px solid #333;
+}
+
+.chat-input input{
+flex:1;
+background:none;
+border:none;
+color:#fff;
+padding:10px;
+}
+
+.chat-input button{
+background:#fff;
+border:none;
+padding:10px;
+}
+
+/* ANIMATION */
+.fade{
+opacity:0;
+transform:translateY(40px);
+transition:1s;
+}
+.fade.show{
+opacity:1;
+transform:translateY(0);
+}
+
+@media(max-width:768px){
+.hero h1{font-size:42px}
+}
 </style>
 </head>
 
 <body>
 
-<nav>
-<h1>Seiyaa</h1>
-<ul>
-<li onclick="scrollToSection('about')">About</li>
-<li onclick="scrollToSection('portfolio')">Portfolio</li>
-<li onclick="scrollToSection('contact')">Contact</li>
-</ul>
-</nav>
-
-<div class="hero">
-<h2>Visuals That Capture Emotion</h2>
-<p>Premium Photography & Creative Direction</p>
-<div class="cta" onclick="scrollToSection('portfolio')">View Work</div>
+<!-- NAV -->
+<div class="nav">
+<div class="logo">SEIYAA VISUALS</div>
+<div class="nav-links">
+<a href="#portfolio">Work</a>
+<a href="#services">Services</a>
+<a href="#contact">Contact</a>
+</div>
 </div>
 
-<section id="about" class="about">
-<h2>About Me</h2>
-<p>I create cinematic, high-impact visuals designed to stand out. My work blends storytelling, lighting mastery, and modern aesthetics to elevate brands and individuals.</p>
+<!-- HERO -->
+<section class="hero">
+<div class="hero-content">
+<h1>Cinematic Visual Identity</h1>
+<p>We create bold, high-impact visuals that elevate your brand and presence.</p>
+<a href="#portfolio" class="btn">View Work</a>
+<a href="#contact" class="btn">Hire Me</a>
+</div>
 </section>
 
-<section id="portfolio">
+<!-- PORTFOLIO -->
+<section class="section fade" id="portfolio">
 <h2>Portfolio</h2>
+
 <div class="grid">
-<div class="card"><img src="https://picsum.photos/400?1"></div>
-<div class="card"><img src="https://picsum.photos/400?2"></div>
-<div class="card"><img src="https://picsum.photos/400?3"></div>
-<div class="card"><img src="https://picsum.photos/400?4"></div>
+<div class="grid-item"><img src="images/_DSC8255.jpg"><div class="grid-overlay">View</div></div>
+<div class="grid-item"><img src="images/_DSC8261.jpg"><div class="grid-overlay">View</div></div>
+<div class="grid-item"><img src="images/_DSC7867.jpg"><div class="grid-overlay">View</div></div>
+<div class="grid-item"><img src="images/_DSC8091.jpg"><div class="grid-overlay">View</div></div>
+<div class="grid-item"><img src="images/_DSC8303.jpg"><div class="grid-overlay">View</div></div>
+<div class="grid-item"><img src="images/_DSC8330.jpg"><div class="grid-overlay">View</div></div>
 </div>
 </section>
 
-<section id="contact" class="contact">
-<h2>Contact</h2>
-<input type="text" placeholder="Your Name">
-<input type="email" placeholder="Email">
-<textarea rows="4" placeholder="Message"></textarea>
-<button onclick="alert('Message Sent')">Send Message</button>
+<!-- ABOUT -->
+<section class="section fade">
+<h2>About</h2>
+<p>
+Seiyaa Visuals is a creative brand focused on cinematic storytelling through photography.
+We don’t just capture images — we build identity, presence, and impact.
+</p>
 </section>
 
-<footer>
-© 2026 Seiyaa Visuals
-</footer>
+<!-- SERVICES -->
+<section class="section fade" id="services">
+<h2>Services</h2>
 
-<!-- CHATBOT -->
-<div class="chat-btn" onclick="toggleChat()">💬</div>
+<div class="services">
+<div class="service"><h3>Photography</h3><p>Professional cinematic shoots for brands and individuals.</p></div>
+<div class="service"><h3>Creative Direction</h3><p>Concept development and visual storytelling.</p></div>
+<div class="service"><h3>Brand Visuals</h3><p>High-impact visuals for marketing and social media.</p></div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section class="section fade" id="contact">
+<h2>Contact</h2>
+
+<form class="form" onsubmit="submitForm(event)">
+<input type="text" placeholder="Name" required>
+<input type="email" placeholder="Email" required>
+<textarea placeholder="Message" required></textarea>
+<button type="submit">Send</button>
+</form>
+</section>
+
+<!-- FOOTER -->
+<div class="footer">
+© 2026 Seiyaa Visuals
+</div>
+
+<!-- CHAT -->
+<div class="chat-btn" onclick="toggleChat()">Chat</div>
 
 <div class="chat-box" id="chatBox">
-<div class="chat-header">Ask Me</div>
-<div class="chat-body" id="chatBody"></div>
+<div class="chat-messages" id="chatMessages"></div>
 <div class="chat-input">
-<input type="text" id="chatInput" placeholder="Ask something...">
+<input id="chatInput">
 <button onclick="sendMsg()">Send</button>
 </div>
 </div>
 
 <script>
-function scrollToSection(id){
-document.getElementById(id).scrollIntoView({behavior:"smooth"})
+
+/* SCROLL ANIMATION */
+document.querySelectorAll('.fade').forEach(el=>{
+window.addEventListener('scroll',()=>{
+if(el.getBoundingClientRect().top<window.innerHeight-100){
+el.classList.add('show');
+}
+});
+});
+
+/* FORM */
+function submitForm(e){
+e.preventDefault();
+alert("Message sent!");
 }
 
+/* CHATBOT */
 function toggleChat(){
-const box=document.getElementById("chatBox")
-box.style.display=box.style.display==="flex"?"none":"flex"
+let box=document.getElementById("chatBox");
+box.style.display=box.style.display==="flex"?"none":"flex";
+box.style.display="flex";
 }
 
 function sendMsg(){
-const input=document.getElementById("chatInput")
-const msg=input.value.trim()
-if(!msg) return
+let input=document.getElementById("chatInput");
+let msg=input.value.toLowerCase();
+let chat=document.getElementById("chatMessages");
 
-addMsg(msg,"user")
-input.value=""
+chat.innerHTML+=`<div>> ${msg}</div>`;
 
-setTimeout(()=>reply(msg),500)
+let reply="I can help you with bookings, pricing, or services.";
+
+if(msg.includes("price")) reply="Pricing ranges from ₱3,000 to ₱15,000 depending on the shoot.";
+else if(msg.includes("service")) reply="I offer photography, creative direction, and branding visuals.";
+else if(msg.includes("book")) reply="You can book via the contact form or email directly.";
+else if(msg.includes("contact")) reply="Use the contact section or email me directly.";
+else if(msg.includes("about")) reply="Seiyaa Visuals creates cinematic identity-focused visuals.";
+
+chat.innerHTML+=`<div style="color:#aaa;">AI: ${reply}</div>`;
+
+input.value="";
+chat.scrollTop=chat.scrollHeight;
 }
 
-function addMsg(text,type){
-const div=document.createElement("div")
-div.className="msg "+type
-div.innerText=text
-document.getElementById("chatBody").appendChild(div)
-document.getElementById("chatBody").scrollTop=9999
-}
-
-function reply(msg){
-msg=msg.toLowerCase()
-
-let response="I'm not sure, but you can contact me for more info."
-
-if(msg.includes("price")||msg.includes("rate"))
-response="Pricing depends on the shoot. Message me for a custom quote."
-
-else if(msg.includes("service"))
-response="I offer photography, creative direction, and visual branding."
-
-else if(msg.includes("contact"))
-response="You can reach me through the contact section below."
-
-else if(msg.includes("who")||msg.includes("you"))
-response="I'm Seiyaa, a visual creator focused on premium content."
-
-addMsg(response,"bot")
-}
 </script>
 
 </body>
