@@ -57,7 +57,7 @@ content:"";
 position:absolute;
 inset:0;
 background:url('images/_DSC8255.jpg') center/cover no-repeat;
-opacity:.2;
+opacity:.25;
 }
 .hero-content{
 position:relative;
@@ -83,31 +83,41 @@ transition:.3s;
 .section h2{font-family:'Playfair Display';font-size:36px;margin-bottom:20px;}
 .section p{color:var(--muted);max-width:700px;margin-bottom:40px;}
 
-/* PORTFOLIO */
+/* THEMES */
+.theme{margin-bottom:100px;}
+.theme-title{font-size:18px;margin-bottom:20px;color:#bbb;}
+
+/* GRID */
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
 gap:20px;
 }
+
 .grid-item{
 position:relative;
 overflow:hidden;
-border-radius:14px;
+border-radius:16px;
 cursor:pointer;
+aspect-ratio:4/5;
+background:#000;
 }
+
 .grid-item img{
 width:100%;
 height:100%;
 object-fit:cover;
-transition:.6s cubic-bezier(.22,1,.36,1);
+transition:transform .7s cubic-bezier(.22,1,.36,1);
 }
+
 .grid-item:hover img{
 transform:scale(1.08);
 }
+
 .overlay{
 position:absolute;
 inset:0;
-background:rgba(0,0,0,.4);
+background:rgba(0,0,0,.35);
 opacity:0;
 display:flex;
 align-items:center;
@@ -120,20 +130,23 @@ transition:.4s;
 .lightbox{
 position:fixed;
 inset:0;
-background:rgba(0,0,0,.95);
+background:rgba(0,0,0,.96);
 display:none;
 justify-content:center;
 align-items:center;
 z-index:2000;
 }
+
 .lightbox img{
 max-width:90%;
 max-height:90%;
-border-radius:16px;
-animation:zoomIn .5s ease;
+object-fit:contain;
+border-radius:18px;
+animation:zoom .5s cubic-bezier(.22,1,.36,1);
 }
-@keyframes zoomIn{
-from{transform:scale(.7);opacity:0;}
+
+@keyframes zoom{
+from{transform:scale(.8);opacity:0;}
 to{transform:scale(1);opacity:1;}
 }
 
@@ -228,7 +241,6 @@ border:none;
 padding:10px;
 }
 
-/* QUICK QUESTIONS */
 .quick{
 display:flex;
 flex-wrap:wrap;
@@ -243,7 +255,7 @@ cursor:pointer;
 font-size:12px;
 }
 
-/* NOTIFICATION */
+/* NOTIFY */
 .notify{
 position:fixed;
 bottom:90px;
@@ -252,10 +264,10 @@ background:#fff;
 color:#000;
 padding:12px;
 border-radius:10px;
-animation:fadeIn .5s ease;
+animation:fade .5s ease;
 z-index:998;
 }
-@keyframes fadeIn{
+@keyframes fade{
 from{opacity:0;transform:translateY(20px);}
 to{opacity:1;transform:translateY(0);}
 }
@@ -272,7 +284,6 @@ to{opacity:1;transform:translateY(0);}
 
 <body>
 
-<!-- NAV -->
 <div class="nav">
 <div class="logo">SEIYAA VISUALS</div>
 <div class="nav-links">
@@ -283,46 +294,74 @@ to{opacity:1;transform:translateY(0);}
 </div>
 </div>
 
-<!-- HERO -->
 <section class="hero">
 <div class="hero-content">
 <h1>Cinematic Visual Identity</h1>
-<p>We craft visuals that elevate presence and convert attention into impact.</p>
+<p>We build visuals that command attention and elevate your presence.</p>
 <a href="#portfolio" class="btn">View Work</a>
 <a href="#contact" class="btn">Hire Me</a>
 </div>
 </section>
 
-<!-- PORTFOLIO -->
 <section class="section fade" id="portfolio">
 <h2>Portfolio</h2>
+
+<div class="theme">
+<div class="theme-title">Urban Market</div>
 <div class="grid">
-<div class="grid-item"><img src="images/_DSC8255.jpg"><div class="overlay">View</div></div>
-<div class="grid-item"><img src="images/_DSC8261.jpg"><div class="overlay">View</div></div>
-<div class="grid-item"><img src="images/_DSC7867.jpg"><div class="overlay">View</div></div>
-<div class="grid-item"><img src="images/_DSC8091.jpg"><div class="overlay">View</div></div>
-<div class="grid-item"><img src="images/_DSC8303.jpg"><div class="overlay">View</div></div>
-<div class="grid-item"><img src="images/_DSC8330.jpg"><div class="overlay">View</div></div>
+<div class="grid-item"><img src="images/_DSC8255.jpg"><div class="overlay"></div></div>
+<div class="grid-item"><img src="images/_DSC8261.jpg"><div class="overlay"></div></div>
+<div class="grid-item"><img src="images/_DSC8267.jpg"><div class="overlay"></div></div>
+<div class="grid-item"><img src="images/_DSC8303.jpg"><div class="overlay"></div></div>
 </div>
+</div>
+
+<div class="theme">
+<div class="theme-title">Gas Station</div>
+<div class="grid">
+<div class="grid-item"><img src="images/_DSC7851.jpg"><div class="overlay"></div></div>
+<div class="grid-item"><img src="images/_DSC7860.jpg"><div class="overlay"></div></div>
+<div class="grid-item"><img src="images/_DSC7886.jpg"><div class="overlay"></div></div>
+<div class="grid-item"><img src="images/_DSC7900.jpg"><div class="overlay"></div></div>
+</div>
+</div>
+
+<div class="theme">
+<div class="theme-title">Night Cinematics</div>
+<div class="grid">
+<div class="grid-item"><img src="images/_DSC7665.jpg"><div class="overlay"></div></div>
+<div class="grid-item"><img src="images/_DSC7676.jpg"><div class="overlay"></div></div>
+<div class="grid-item"><img src="images/_DSC7685.jpg"><div class="overlay"></div></div>
+<div class="grid-item"><img src="images/_DSC7694.jpg"><div class="overlay"></div></div>
+</div>
+</div>
+
+<div class="theme">
+<div class="theme-title">Underground</div>
+<div class="grid">
+<div class="grid-item"><img src="images/_DSC8091.jpg"><div class="overlay"></div></div>
+<div class="grid-item"><img src="images/_DSC8092.jpg"><div class="overlay"></div></div>
+<div class="grid-item"><img src="images/_DSC8105.jpg"><div class="overlay"></div></div>
+<div class="grid-item"><img src="images/_DSC8112.jpg"><div class="overlay"></div></div>
+</div>
+</div>
+
 </section>
 
-<!-- ABOUT -->
 <section class="section fade" id="about">
 <h2>About</h2>
-<p>Seiyaa Visuals builds cinematic imagery that transforms identity into visual power. Every shoot is designed for impact, storytelling, and conversion.</p>
+<p>Seiyaa Visuals creates cinematic, high-impact imagery engineered for identity, storytelling, and conversion.</p>
 </section>
 
-<!-- SERVICES -->
 <section class="section fade" id="services">
 <h2>Services</h2>
 <div class="services">
-<div class="card"><h3>Photography</h3><p>Premium cinematic shoots.</p></div>
-<div class="card"><h3>Creative Direction</h3><p>Concept & execution.</p></div>
-<div class="card"><h3>Brand Visuals</h3><p>High-impact marketing content.</p></div>
+<div class="card"><h3>Photography</h3><p>High-end cinematic shoots</p></div>
+<div class="card"><h3>Creative Direction</h3><p>Concept to execution</p></div>
+<div class="card"><h3>Brand Visuals</h3><p>Marketing-focused visuals</p></div>
 </div>
 </section>
 
-<!-- CONTACT -->
 <section class="section fade" id="contact">
 <h2>Contact</h2>
 <form class="form" onsubmit="submitForm(event)">
@@ -333,33 +372,27 @@ to{opacity:1;transform:translateY(0);}
 </form>
 </section>
 
-<!-- FOOTER -->
 <div class="footer">© 2026 Seiyaa Visuals</div>
 
-<!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
 <img id="lightbox-img">
 </div>
 
-<!-- CHAT -->
 <div class="chat-btn" onclick="toggleChat()">Chat</div>
 
 <div class="chat-box" id="chatBox">
 <div class="chat-messages" id="chatMessages"></div>
-
 <div class="quick">
 <span onclick="quickAsk('pricing')">Pricing</span>
 <span onclick="quickAsk('services')">Services</span>
 <span onclick="quickAsk('booking')">Book</span>
 </div>
-
 <div class="chat-input">
-<input id="chatInput" placeholder="Ask something...">
+<input id="chatInput">
 <button onclick="sendMsg()">Send</button>
 </div>
 </div>
 
-<!-- NOTIFICATION -->
 <div class="notify" id="notify">New message from AI 👋</div>
 
 <script>
@@ -399,61 +432,54 @@ box.dataset.opened=true;
 }
 }
 
-/* QUICK ASK */
 function quickAsk(q){
 document.getElementById("chatInput").value=q;
 sendMsg();
 }
 
-/* SEND */
 function sendMsg(){
 let input=document.getElementById("chatInput");
-let msg=input.value.trim().toLowerCase();
+let msg=input.value.toLowerCase();
 if(!msg)return;
 
 addUser(msg);
 typing();
 
-setTimeout(()=>{
-reply(msg);
-},700);
-
+setTimeout(()=>{reply(msg)},700);
 input.value="";
 }
 
-function addUser(text){
-let chat=document.getElementById("chatMessages");
-chat.innerHTML+=`<div>> ${text}</div>`;
-chat.scrollTop=chat.scrollHeight;
+function addUser(t){
+let c=document.getElementById("chatMessages");
+c.innerHTML+=`<div>> ${t}</div>`;
+c.scrollTop=c.scrollHeight;
 }
 
-function addBot(text){
-let chat=document.getElementById("chatMessages");
-chat.innerHTML+=`<div style="color:#aaa;">AI: ${text}</div>`;
-chat.scrollTop=chat.scrollHeight;
+function addBot(t){
+let c=document.getElementById("chatMessages");
+c.innerHTML+=`<div style="color:#aaa;">AI: ${t}</div>`;
+c.scrollTop=c.scrollHeight;
 }
 
 function typing(){
-let chat=document.getElementById("chatMessages");
-chat.innerHTML+=`<div class="typing">AI is typing...</div>`;
-chat.scrollTop=chat.scrollHeight;
+let c=document.getElementById("chatMessages");
+c.innerHTML+=`<div class="typing">AI typing...</div>`;
 }
 
 function reply(msg){
 document.querySelector(".typing").remove();
 
-let r="I can guide you through services or booking.";
-
-if(msg.includes("price")) r="Pricing ranges ₱3k–₱15k depending on concept.";
-else if(msg.includes("service")) r="We offer photography, creative direction, and branding visuals.";
-else if(msg.includes("book")) r="You can book via the contact form.";
-else if(msg.includes("contact")) r="Use the contact section below.";
-else if(msg.includes("about")) r="Seiyaa Visuals creates cinematic identity-driven visuals.";
+let r="I can help with bookings, services, or pricing.";
+if(msg.includes("price")) r="Pricing ranges ₱3k–₱15k.";
+else if(msg.includes("service")) r="We offer photography, creative direction, branding.";
+else if(msg.includes("book")) r="You can book using the contact form.";
+else if(msg.includes("contact")) r="Scroll to contact section.";
+else if(msg.includes("about")) r="Seiyaa Visuals builds cinematic identity.";
 
 addBot(r);
 }
 
-/* NOTIFICATION */
+/* NOTIFY */
 setTimeout(()=>{
 document.getElementById("notify").style.display="none";
 },4000);
