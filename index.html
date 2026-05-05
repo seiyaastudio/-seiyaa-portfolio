@@ -36,16 +36,16 @@ overflow-x:hidden;
 scroll-behavior:smooth;
 }
 
-/* CURSOR GRADIENT */
+/* CURSOR LIGHT */
 .cursor{
 position:fixed;
-width:420px;
-height:420px;
-background:radial-gradient(circle,rgba(255,255,255,0.08),transparent 70%);
+width:500px;
+height:500px;
+background:radial-gradient(circle,rgba(255,255,255,0.06),transparent 70%);
 pointer-events:none;
+z-index:0;
 transform:translate(-50%,-50%);
 filter:blur(80px);
-z-index:0;
 }
 
 /* NAV */
@@ -81,28 +81,15 @@ background:url('images/_DSC8255.jpg') center/cover;
 opacity:.35;
 }
 .hero-content{position:relative;z-index:2}
-.hero h1{font-family:'Playfair Display';font-size:64px}
-.hero-words{margin-top:10px;color:var(--muted);letter-spacing:2px}
+.hero h1{font-family:'Playfair Display';font-size:68px;line-height:1.05}
+.hero-words{margin-top:20px;font-size:12px;letter-spacing:3px;color:var(--muted);height:20px}
 
 /* SECTION */
 .section{padding:120px 8%}
-.section h2{font-family:'Playfair Display';font-size:42px;margin-bottom:30px}
-
-/* BUTTON */
-.btn{
-padding:12px 24px;
-border:1px solid #fff;
-transition:.3s;
-cursor:pointer;
-}
-.btn:hover{
-background:#fff;
-color:#000;
-box-shadow:var(--glow);
-}
+.section h2{font-family:'Playfair Display';font-size:44px;margin-bottom:30px}
 
 /* FILTER */
-.filters{display:flex;gap:10px;margin-bottom:40px;flex-wrap:wrap}
+.filters{display:flex;gap:10px;margin-bottom:50px;flex-wrap:wrap}
 .filter-btn{
 padding:10px 18px;
 border:1px solid var(--border);
@@ -126,7 +113,7 @@ border-radius:14px;
 overflow:hidden;
 aspect-ratio:4/5;
 cursor:pointer;
-transition:.5s;
+transition:.5s cubic-bezier(.22,1,.36,1);
 opacity:1;
 transform:scale(1);
 }
@@ -136,7 +123,7 @@ aspect-ratio:4/3;
 }
 .item.hide{
 opacity:0;
-transform:scale(.85);
+transform:scale(.8);
 pointer-events:none;
 }
 .item img{
@@ -164,14 +151,14 @@ transition:.3s;
 .lightbox{
 position:fixed;
 inset:0;
-background:rgba(0,0,0,.95);
+background:rgba(0,0,0,.96);
 display:flex;
 justify-content:center;
 align-items:center;
+z-index:3000;
 opacity:0;
 pointer-events:none;
 transition:.3s;
-z-index:2000;
 }
 .lightbox.active{
 opacity:1;
@@ -187,12 +174,7 @@ transition:.4s;
 .lightbox.active img{transform:scale(1)}
 
 /* CONTACT */
-.form{
-display:flex;
-flex-direction:column;
-gap:12px;
-max-width:420px;
-}
+.form{max-width:420px;display:flex;flex-direction:column;gap:12px}
 .form input,.form textarea{
 background:#000;
 border:1px solid #333;
@@ -204,12 +186,9 @@ padding:14px;
 background:#fff;
 border:none;
 cursor:pointer;
+transition:.3s;
 }
-.success{
-display:none;
-color:#0f0;
-font-size:13px;
-}
+.success{display:none;color:#0f0}
 
 /* CHAT */
 .chat-btn{
@@ -218,7 +197,7 @@ bottom:20px;
 right:20px;
 background:#fff;
 color:#000;
-padding:14px;
+padding:14px 18px;
 border-radius:30px;
 cursor:pointer;
 z-index:999;
@@ -227,40 +206,30 @@ z-index:999;
 position:fixed;
 bottom:80px;
 right:20px;
-width:340px;
-height:500px;
-background:#111;
+width:360px;
+height:520px;
+background:#0b0b0b;
 border:1px solid #333;
 display:none;
 flex-direction:column;
 z-index:999;
-border-radius:12px;
+border-radius:14px;
+overflow:hidden;
 }
 .chat-messages{
 flex:1;
 overflow-y:auto;
-padding:10px;
+padding:12px;
 display:flex;
 flex-direction:column;
 gap:8px;
 }
-.msg-user{
-align-self:flex-end;
-background:#fff;
-color:#000;
-padding:8px 12px;
-border-radius:10px;
-}
-.msg-bot{
-align-self:flex-start;
-background:#222;
-padding:8px 12px;
-border-radius:10px;
-}
+.msg-user{align-self:flex-end;background:#fff;color:#000;padding:8px 12px;border-radius:12px}
+.msg-bot{align-self:flex-start;background:#1a1a1a;padding:8px 12px;border-radius:12px}
 
 /* MOBILE */
 @media(max-width:768px){
-.hero h1{font-size:40px}
+.hero h1{font-size:42px}
 .section{padding:80px 6%}
 .item.featured{grid-column:span 1}
 }
@@ -306,34 +275,7 @@ To add new images:
 3. Set correct data-cat
 -->
 
-<div class="grid">
-
-<!-- 20 IMAGES EXACT (DSC BASED) -->
-<div class="item featured" data-cat="portrait"><img src="images/_DSC8255.jpg" loading="lazy"><div class="overlay">PORTRAIT</div></div>
-<div class="item featured" data-cat="portrait"><img src="images/_DSC8261.jpg" loading="lazy"><div class="overlay">PORTRAIT</div></div>
-<div class="item" data-cat="portrait"><img src="images/_DSC8267.jpg" loading="lazy"><div class="overlay">PORTRAIT</div></div>
-<div class="item" data-cat="portrait"><img src="images/_DSC8303.jpg" loading="lazy"><div class="overlay">PORTRAIT</div></div>
-<div class="item" data-cat="portrait"><img src="images/_DSC8330.jpg" loading="lazy"><div class="overlay">PORTRAIT</div></div>
-
-<div class="item" data-cat="fashion"><img src="images/_DSC7851.jpg" loading="lazy"><div class="overlay">FASHION</div></div>
-<div class="item" data-cat="fashion"><img src="images/_DSC7860.jpg" loading="lazy"><div class="overlay">FASHION</div></div>
-<div class="item" data-cat="fashion"><img src="images/_DSC7867.jpg" loading="lazy"><div class="overlay">FASHION</div></div>
-<div class="item" data-cat="fashion"><img src="images/_DSC7886.jpg" loading="lazy"><div class="overlay">FASHION</div></div>
-<div class="item" data-cat="fashion"><img src="images/_DSC7900.jpg" loading="lazy"><div class="overlay">FASHION</div></div>
-
-<div class="item" data-cat="street"><img src="images/_DSC7665.jpg" loading="lazy"><div class="overlay">STREET</div></div>
-<div class="item" data-cat="street"><img src="images/_DSC7676.jpg" loading="lazy"><div class="overlay">STREET</div></div>
-<div class="item" data-cat="street"><img src="images/_DSC7679.jpg" loading="lazy"><div class="overlay">STREET</div></div>
-<div class="item" data-cat="street"><img src="images/_DSC7685.jpg" loading="lazy"><div class="overlay">STREET</div></div>
-<div class="item" data-cat="street"><img src="images/_DSC7694.jpg" loading="lazy"><div class="overlay">STREET</div></div>
-
-<div class="item" data-cat="creative"><img src="images/_DSC8091.jpg" loading="lazy"><div class="overlay">CREATIVE</div></div>
-<div class="item" data-cat="creative"><img src="images/_DSC8092.jpg" loading="lazy"><div class="overlay">CREATIVE</div></div>
-<div class="item" data-cat="creative"><img src="images/_DSC8093.jpg" loading="lazy"><div class="overlay">CREATIVE</div></div>
-<div class="item" data-cat="creative"><img src="images/_DSC8105.jpg" loading="lazy"><div class="overlay">CREATIVE</div></div>
-<div class="item" data-cat="creative"><img src="images/_DSC8112.jpg" loading="lazy"><div class="overlay">CREATIVE</div></div>
-
-</div>
+<div class="grid" id="grid"></div>
 </section>
 
 <!-- CONTACT -->
@@ -355,7 +297,7 @@ To add new images:
 <div class="chat-messages" id="chatMessages"></div>
 <div style="display:flex;">
 <input id="chatInput" style="flex:1;padding:10px;background:none;border:none;color:#fff">
-<button onclick="sendMsg()">Send</button>
+<button onclick="sendMsg()" style="background:#fff;border:none;padding:10px">Send</button>
 </div>
 </div>
 
@@ -368,9 +310,29 @@ cursor.style.top=e.clientY+"px";
 });
 
 /* HERO WORDS */
-const words=["CINEMATIC","MOOD","STORY","EDITORIAL","IDENTITY"];
+const words=["CINEMATIC","EDITORIAL","IDENTITY","MOOD","STORY"];
 let wi=0;
-setInterval(()=>{heroWords.textContent=words[wi];wi=(wi+1)%words.length;},1500);
+setInterval(()=>{heroWords.textContent=words[wi];wi=(wi+1)%words.length},1500);
+
+/* IMAGES (20 EXACT) */
+const images=[
+["_DSC8255","portrait"],["_DSC8261","portrait"],["_DSC8267","portrait"],["_DSC8303","portrait"],["_DSC8330","portrait"],
+["_DSC7851","fashion"],["_DSC7860","fashion"],["_DSC7867","fashion"],["_DSC7886","fashion"],["_DSC7900","fashion"],
+["_DSC7665","street"],["_DSC7676","street"],["_DSC7679","street"],["_DSC7685","street"],["_DSC7694","street"],
+["_DSC8091","creative"],["_DSC8092","creative"],["_DSC8093","creative"],["_DSC8105","creative"],["_DSC8112","creative"]
+];
+
+function render(){
+grid.innerHTML="";
+images.forEach((i,index)=>{
+grid.innerHTML+=`
+<div class="item ${index<2?'featured':''}" data-cat="${i[1]}">
+<img src="images/${i[0]}.jpg" loading="lazy">
+<div class="overlay">${i[1].toUpperCase()}</div>
+</div>`;
+});
+}
+render();
 
 /* FILTER */
 document.querySelectorAll(".filter-btn").forEach(btn=>{
@@ -421,11 +383,11 @@ function user(t){chatMessages.innerHTML+=`<div class="msg-user">${t}</div>`;}
 function bot(t){chatMessages.innerHTML+=`<div class="msg-bot">${t}</div>`;}
 function reply(m){
 let r="Tell me more about your project.";
-if(m.includes("price")) r="Pricing ranges ₱3k–₱15k depending on scope.";
-else if(m.includes("service")) r="We offer photography, branding, creative direction.";
-else if(m.includes("book")) r="Use the contact form to secure your shoot.";
-else if(m.includes("location")) r="We are available nationwide.";
-else if(m.includes("portfolio")) r="Scroll above to explore our work.";
+if(m.includes("price")) r="Rates ₱3k–₱15k depending on project.";
+else if(m.includes("service")) r="Photography, creative direction, branding.";
+else if(m.includes("book")) r="Use contact form to secure booking.";
+else if(m.includes("location")) r="Available nationwide.";
+else if(m.includes("portfolio")) r="Scroll above to explore work.";
 bot(r);
 }
 
