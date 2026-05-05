@@ -124,9 +124,7 @@ perspective:1000px;
 width:100%;
 border-radius:12px;
 cursor:pointer;
-
-transition:
-transform 0.6s cubic-bezier(0.22,1,0.36,1),
+transition:transform 0.6s cubic-bezier(0.22,1,0.36,1),
 box-shadow 0.6s ease,
 filter 0.6s ease;
 }
@@ -154,11 +152,40 @@ transform:translateY(-5px);
 border-color:#444;
 }
 
-/* PROCESS */
-.process div{
-margin-bottom:15px;
-color:#ccc;
+/* PROCESS FUNNEL */
+.process{
+max-width:700px;
+margin:auto;
+display:flex;
+flex-direction:column;
+gap:25px;
 }
+
+.process-step{
+padding:20px 25px;
+background:linear-gradient(145deg,#0a0a0a,#111);
+border:1px solid #222;
+border-radius:12px;
+transition:0.4s;
+}
+
+.process-step:hover{
+transform:translateY(-5px);
+border-color:#444;
+box-shadow:0 20px 50px rgba(0,0,0,0.4);
+}
+
+.process-step span{
+font-weight:bold;
+display:block;
+margin-bottom:5px;
+}
+
+/* funnel shape */
+.process-step:nth-child(1){width:100%;}
+.process-step:nth-child(2){width:85%;margin:auto;}
+.process-step:nth-child(3){width:70%;margin:auto;}
+.process-step:nth-child(4){width:55%;margin:auto;}
 
 /* CONTACT */
 .contact a{
@@ -195,65 +222,32 @@ transition:1s ease;
 opacity:1;
 transform:translateY(0);
 }
-/* ===== CINEMATIC PORTFOLIO ===== */
+
+/* CINEMATIC */
 .cinematic{
 display:grid;
 grid-template-columns:2fr 1fr;
 gap:30px;
-align-items:stretch;
 }
-
 .cinematic.reverse{
 grid-template-columns:1fr 2fr;
 }
-
-.cinematic-main img{
-width:100%;
-height:100%;
-object-fit:cover;
-border-radius:12px;
-}
-
-.cinematic-side{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:20px;
-}
-
-.cinematic-side img{
-width:100%;
-height:100%;
-object-fit:cover;
-border-radius:12px;
-}
-
 .cinematic img{
+width:100%;
+height:100%;
+object-fit:cover;
+border-radius:12px;
 cursor:pointer;
-transition:transform 0.6s cubic-bezier(0.22,1,0.36,1),
-box-shadow 0.6s ease,
-filter 0.6s ease;
 }
 
-.cinematic img:hover{
-transform:scale(1.04) translateY(-4px);
-box-shadow:0 25px 80px rgba(0,0,0,0.45);
-filter:brightness(1.05);
-}
-/* MOBILE FIX */
 @media(max-width:768px){
-.cinematic{
-grid-template-columns:1fr;
-}
-.cinematic.reverse{
-grid-template-columns:1fr;
-}
+.cinematic{grid-template-columns:1fr;}
 }
 </style>
 </head>
 
 <body>
 
-<!-- NAV -->
 <div class="nav">
 <div class="logo">SEIYAA STUDIO</div>
 <div>
@@ -263,7 +257,6 @@ grid-template-columns:1fr;
 </div>
 </div>
 
-<!-- HERO -->
 <section class="hero">
 <img src="images/_DSC8255.jpg" class="active">
 <img src="images/_DSC7867.jpg">
@@ -282,143 +275,52 @@ grid-template-columns:1fr;
 </div>
 </section>
 
-<!-- ABOUT -->
 <section class="section fade">
 <h2>About</h2>
 <p>
-Seiyaa Studio is a photography brand focused on cinematic street and fashion visuals.  
-We create bold, editorial-style imagery that elevate personal brands, models, and businesses.  
-Every shoot is built around concept, lighting, and storytelling — not just taking photos, but creating identity.
+Seiyaa Studio creates cinematic visuals designed to elevate identity, not just capture moments.
 </p>
 </section>
 
-<!-- PORTFOLIO -->
 <section class="section fade" id="portfolio">
-
 <h2>Urban Market Series</h2>
-
 <div class="cinematic">
-
-  <!-- FEATURE IMAGE -->
-  <div class="cinematic-main">
-    <img src="images/_DSC8255.jpg" loading="lazy" alt="Market main">
-  </div>
-
-  <!-- SIDE GRID -->
-  <div class="cinematic-side">
-    <img src="images/_DSC8261.jpg" loading="lazy">
-    <img src="images/_DSC8267.jpg" loading="lazy">
-    <img src="images/_DSC8303.jpg" loading="lazy">
-    <img src="images/_DSC8330.jpg" loading="lazy">
-  </div>
-
+<img src="images/_DSC8255.jpg">
+<img src="images/_DSC8261.jpg">
 </div>
-
-<h2 style="margin-top:120px;">Gas Station Editorial</h2>
-
-<div class="cinematic reverse">
-
-  <div class="cinematic-main">
-    <img src="images/_DSC7851.jpg" loading="lazy">
-  </div>
-
-  <div class="cinematic-side">
-    <img src="images/_DSC7860.jpg" loading="lazy">
-    <img src="images/_DSC7867.jpg" loading="lazy">
-    <img src="images/_DSC7886.jpg" loading="lazy">
-    <img src="images/_DSC7900.jpg" loading="lazy">
-  </div>
-
-</div>
-
-<h2 style="margin-top:120px;">Night Street Cinematics</h2>
-
-<div class="cinematic">
-
-  <div class="cinematic-main">
-    <img src="images/_DSC7665.jpg" loading="lazy">
-  </div>
-
-  <div class="cinematic-side">
-    <img src="images/_DSC7676.jpg" loading="lazy">
-    <img src="images/_DSC7679.jpg" loading="lazy">
-    <img src="images/_DSC7685.jpg" loading="lazy">
-    <img src="images/_DSC7694.jpg" loading="lazy">
-  </div>
-
-</div>
-
-<h2 style="margin-top:120px;">Rebel / Underground Series</h2>
-
-<div class="cinematic reverse">
-
-  <div class="cinematic-main">
-    <img src="images/_DSC8091.jpg" loading="lazy">
-  </div>
-
-  <div class="cinematic-side">
-    <img src="images/_DSC8092.jpg" loading="lazy">
-    <img src="images/_DSC8093.jpg" loading="lazy">
-    <img src="images/_DSC8105.jpg" loading="lazy">
-    <img src="images/_DSC8112.jpg" loading="lazy">
-  </div>
-
-</div>
-
 </section>
 
-<!-- SERVICES -->
 <section class="section fade" id="services">
 <h2>Services</h2>
-
 <div class="services">
-
-<div class="service-box">
-<h3>Model Portfolio Shoot</h3>
-<p>Clean, cinematic, and editorial visuals for aspiring and professional models.</p>
-</div>
-
-<div class="service-box">
-<h3>Brand / Product Shoot</h3>
-<p>High-impact visuals for clothing brands, businesses, and campaigns.</p>
-</div>
-
-<div class="service-box">
-<h3>Creative Concept Shoots</h3>
-<p>Planned shoots with styling, direction, and strong visual storytelling.</p>
-</div>
-
-<div class="service-box">
-<h3>X-Deal Collaboration</h3>
-<p>Selected collaborations based on concept and creative alignment.</p>
-</div>
-
+<div class="service-box"><h3>Model Portfolio</h3></div>
+<div class="service-box"><h3>Brand Shoots</h3></div>
+<div class="service-box"><h3>Creative Direction</h3></div>
 </div>
 </section>
 
-<!-- PROCESS -->
 <section class="section fade">
 <h2>Process</h2>
+
 <div class="process">
-<div><strong>01. Inquiry</strong> — Send your idea or concept</div>
-<div><strong>02. Planning</strong> — We align on visual direction</div>
-<div><strong>03. Shoot</strong> — Guided posing and lighting</div>
-<div><strong>04. Delivery</strong> — High-quality edited images</div>
+<div class="process-step"><span>01. Inquiry</span>Send your idea</div>
+<div class="process-step"><span>02. Planning</span>We align direction</div>
+<div class="process-step"><span>03. Shoot</span>Guided execution</div>
+<div class="process-step"><span>04. Delivery</span>Final visuals</div>
 </div>
+
 </section>
 
-<!-- CONTACT -->
 <section class="section fade" id="contact">
 <h2>Contact</h2>
 <p>Ready to create something cinematic?</p>
 
 <div class="contact">
 <a href="https://www.instagram.com/seiyaasstudio/" target="_blank">Instagram</a>
-<a href="mailto:youremail@gmail.com">Email</a>
+<a href="mailto:rainiercasas28@gmail.com">Email</a>
 </div>
 </section>
 
-<!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
 <img id="lightbox-img">
 </div>
