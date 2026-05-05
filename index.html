@@ -3,19 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Seiyaa Visuals</title>
+<title>Eightysix Media</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
 :root{
---bg:#060606;
+--bg:#050505;
 --card:rgba(255,255,255,0.04);
 --border:rgba(255,255,255,0.08);
 --text:#ffffff;
 --muted:#9a9a9a;
 --accent:#ffffff;
---glass:blur(10px);
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
@@ -38,88 +37,97 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 z-index:1000;
-background:rgba(0,0,0,.6);
+background:rgba(0,0,0,.7);
 backdrop-filter:blur(10px);
 }
-
 .logo{
 font-family:'Playfair Display';
 letter-spacing:3px;
 font-size:18px;
 }
-
-.nav-links{
-display:flex;
-}
-
+.nav-links{display:flex}
 .nav-links a{
 color:var(--muted);
-text-decoration:none;
 margin-left:25px;
-font-size:14px;
+text-decoration:none;
 }
 .nav-links a:hover{color:#fff}
 
 /* HERO */
 .hero{
 height:100vh;
-display:flex;
-align-items:center;
-padding:0 8%;
 position:relative;
+overflow:hidden;
+}
+.hero img{
+position:absolute;
+width:100%;
+height:100%;
+object-fit:cover;
+opacity:0;
+transition:opacity 1.5s ease;
+}
+.hero img.active{opacity:1}
+
+.overlay{
+position:absolute;
+width:100%;
+height:100%;
+background:linear-gradient(to bottom,rgba(0,0,0,.2),rgba(0,0,0,.95));
 }
 
 .hero-content{
-max-width:650px;
+position:absolute;
+bottom:120px;
+left:8%;
+max-width:600px;
 }
-
 .hero h1{
 font-family:'Playfair Display';
 font-size:64px;
-line-height:1.1;
-margin-bottom:15px;
+margin-bottom:10px;
 }
-
 .hero p{
 color:var(--muted);
-margin-bottom:25px;
+margin-bottom:20px;
 }
-
 .btn{
 display:inline-block;
 padding:12px 28px;
 border:1px solid #fff;
-color:#fff;
 text-decoration:none;
+color:#fff;
 margin-right:10px;
-transition:.3s;
 }
-.btn:hover{
-background:#fff;
-color:#000;
-}
+.btn:hover{background:#fff;color:#000}
 
-/* SECTIONS */
-.section{
-padding:120px 8%;
-}
-
+/* SECTION */
+.section{padding:120px 8%}
 .section h2{
 font-family:'Playfair Display';
 font-size:36px;
 margin-bottom:20px;
 }
-
 .section p{
 color:var(--muted);
 max-width:700px;
 margin-bottom:40px;
 }
 
-/* PORTFOLIO */
+/* THEMES */
+.theme{
+margin-bottom:120px;
+}
+.theme h3{
+font-size:20px;
+margin-bottom:20px;
+color:#ccc;
+}
+
+/* PORTFOLIO GRID */
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
 gap:20px;
 }
 
@@ -127,13 +135,14 @@ gap:20px;
 position:relative;
 overflow:hidden;
 border-radius:12px;
+cursor:pointer;
 }
 
-.grid img{
+.grid-item img{
 width:100%;
 height:100%;
 object-fit:cover;
-transition:.5s;
+transition:.6s;
 }
 
 .grid-item:hover img{
@@ -146,12 +155,12 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,.5);
+background:rgba(0,0,0,.4);
 opacity:0;
 display:flex;
 align-items:center;
 justify-content:center;
-transition:.3s;
+transition:.4s;
 }
 
 .grid-item:hover .grid-overlay{
@@ -164,13 +173,11 @@ display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:25px;
 }
-
 .service{
 background:var(--card);
 border:1px solid var(--border);
 padding:25px;
 border-radius:12px;
-backdrop-filter:blur(10px);
 }
 
 /* CONTACT */
@@ -180,14 +187,12 @@ flex-direction:column;
 gap:12px;
 max-width:400px;
 }
-
 .form input,.form textarea{
 background:#000;
 border:1px solid #333;
 padding:12px;
 color:#fff;
 }
-
 .form button{
 padding:14px;
 background:#fff;
@@ -195,12 +200,21 @@ border:none;
 cursor:pointer;
 }
 
-/* FOOTER */
-.footer{
-padding:40px 8%;
-text-align:center;
-color:var(--muted);
-border-top:1px solid var(--border);
+/* LIGHTBOX */
+.lightbox{
+position:fixed;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.95);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:2000;
+}
+.lightbox img{
+max-width:90%;
+max-height:90%;
+border-radius:12px;
 }
 
 /* CHATBOT */
@@ -240,7 +254,6 @@ font-size:14px;
 display:flex;
 border-top:1px solid #333;
 }
-
 .chat-input input{
 flex:1;
 background:none;
@@ -248,11 +261,18 @@ border:none;
 color:#fff;
 padding:10px;
 }
-
 .chat-input button{
 background:#fff;
 border:none;
 padding:10px;
+}
+
+/* FOOTER */
+.footer{
+padding:40px 8%;
+text-align:center;
+color:var(--muted);
+border-top:1px solid var(--border);
 }
 
 /* ANIMATION */
@@ -276,7 +296,7 @@ transform:translateY(0);
 
 <!-- NAV -->
 <div class="nav">
-<div class="logo">SEIYAA VISUALS</div>
+<div class="logo">EIGHTYSIX MEDIA</div>
 <div class="nav-links">
 <a href="#portfolio">Work</a>
 <a href="#services">Services</a>
@@ -286,9 +306,14 @@ transform:translateY(0);
 
 <!-- HERO -->
 <section class="hero">
+<img src="images/_DSC8255.jpg" class="active">
+<img src="images/_DSC7867.jpg">
+<img src="images/_DSC8091.jpg">
+<div class="overlay"></div>
+
 <div class="hero-content">
 <h1>Cinematic Visual Identity</h1>
-<p>We create bold, high-impact visuals that elevate your brand and presence.</p>
+<p>We create high-impact visuals that elevate your brand and presence.</p>
 <a href="#portfolio" class="btn">View Work</a>
 <a href="#contact" class="btn">Hire Me</a>
 </div>
@@ -298,40 +323,61 @@ transform:translateY(0);
 <section class="section fade" id="portfolio">
 <h2>Portfolio</h2>
 
+<div class="theme">
+<h3>Urban Market</h3>
 <div class="grid">
 <div class="grid-item"><img src="images/_DSC8255.jpg"><div class="grid-overlay">View</div></div>
 <div class="grid-item"><img src="images/_DSC8261.jpg"><div class="grid-overlay">View</div></div>
-<div class="grid-item"><img src="images/_DSC7867.jpg"><div class="grid-overlay">View</div></div>
-<div class="grid-item"><img src="images/_DSC8091.jpg"><div class="grid-overlay">View</div></div>
+<div class="grid-item"><img src="images/_DSC8267.jpg"><div class="grid-overlay">View</div></div>
 <div class="grid-item"><img src="images/_DSC8303.jpg"><div class="grid-overlay">View</div></div>
-<div class="grid-item"><img src="images/_DSC8330.jpg"><div class="grid-overlay">View</div></div>
 </div>
-</section>
+</div>
 
-<!-- ABOUT -->
-<section class="section fade">
-<h2>About</h2>
-<p>
-Seiyaa Visuals is a creative brand focused on cinematic storytelling through photography.
-We don’t just capture images — we build identity, presence, and impact.
-</p>
+<div class="theme">
+<h3>Gas Station Editorial</h3>
+<div class="grid">
+<div class="grid-item"><img src="images/_DSC7851.jpg"></div>
+<div class="grid-item"><img src="images/_DSC7860.jpg"></div>
+<div class="grid-item"><img src="images/_DSC7867.jpg"></div>
+<div class="grid-item"><img src="images/_DSC7886.jpg"></div>
+</div>
+</div>
+
+<div class="theme">
+<h3>Night Cinematics</h3>
+<div class="grid">
+<div class="grid-item"><img src="images/_DSC7665.jpg"></div>
+<div class="grid-item"><img src="images/_DSC7676.jpg"></div>
+<div class="grid-item"><img src="images/_DSC7685.jpg"></div>
+<div class="grid-item"><img src="images/_DSC7694.jpg"></div>
+</div>
+</div>
+
+<div class="theme">
+<h3>Underground Rebel</h3>
+<div class="grid">
+<div class="grid-item"><img src="images/_DSC8091.jpg"></div>
+<div class="grid-item"><img src="images/_DSC8092.jpg"></div>
+<div class="grid-item"><img src="images/_DSC8105.jpg"></div>
+<div class="grid-item"><img src="images/_DSC8112.jpg"></div>
+</div>
+</div>
+
 </section>
 
 <!-- SERVICES -->
 <section class="section fade" id="services">
 <h2>Services</h2>
-
 <div class="services">
-<div class="service"><h3>Photography</h3><p>Professional cinematic shoots for brands and individuals.</p></div>
-<div class="service"><h3>Creative Direction</h3><p>Concept development and visual storytelling.</p></div>
-<div class="service"><h3>Brand Visuals</h3><p>High-impact visuals for marketing and social media.</p></div>
+<div class="service"><h3>Photography</h3><p>Professional cinematic shoots</p></div>
+<div class="service"><h3>Creative Direction</h3><p>Concept to execution</p></div>
+<div class="service"><h3>Brand Visuals</h3><p>High-impact marketing visuals</p></div>
 </div>
 </section>
 
 <!-- CONTACT -->
 <section class="section fade" id="contact">
 <h2>Contact</h2>
-
 <form class="form" onsubmit="submitForm(event)">
 <input type="text" placeholder="Name" required>
 <input type="email" placeholder="Email" required>
@@ -340,9 +386,14 @@ We don’t just capture images — we build identity, presence, and impact.
 </form>
 </section>
 
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+<img id="lightbox-img">
+</div>
+
 <!-- FOOTER -->
 <div class="footer">
-© 2026 Seiyaa Visuals
+© 2026 Eightysix Media
 </div>
 
 <!-- CHAT -->
@@ -358,7 +409,16 @@ We don’t just capture images — we build identity, presence, and impact.
 
 <script>
 
-/* SCROLL ANIMATION */
+/* HERO SLIDER */
+let slides=document.querySelectorAll(".hero img");
+let i=0;
+setInterval(()=>{
+slides[i].classList.remove("active");
+i=(i+1)%slides.length;
+slides[i].classList.add("active");
+},4000);
+
+/* SCROLL */
 document.querySelectorAll('.fade').forEach(el=>{
 window.addEventListener('scroll',()=>{
 if(el.getBoundingClientRect().top<window.innerHeight-100){
@@ -366,6 +426,17 @@ el.classList.add('show');
 }
 });
 });
+
+/* LIGHTBOX */
+document.querySelectorAll('.grid img').forEach(img=>{
+img.onclick=()=>{
+document.getElementById('lightbox').style.display="flex";
+document.getElementById('lightbox-img').src=img.src;
+};
+});
+document.getElementById('lightbox').onclick=()=>{
+document.getElementById('lightbox').style.display="none";
+};
 
 /* FORM */
 function submitForm(e){
@@ -377,7 +448,6 @@ alert("Message sent!");
 function toggleChat(){
 let box=document.getElementById("chatBox");
 box.style.display=box.style.display==="flex"?"none":"flex";
-box.style.display="flex";
 }
 
 function sendMsg(){
@@ -389,11 +459,11 @@ chat.innerHTML+=`<div>> ${msg}</div>`;
 
 let reply="I can help you with bookings, pricing, or services.";
 
-if(msg.includes("price")) reply="Pricing ranges from ₱3,000 to ₱15,000 depending on the shoot.";
-else if(msg.includes("service")) reply="I offer photography, creative direction, and branding visuals.";
-else if(msg.includes("book")) reply="You can book via the contact form or email directly.";
-else if(msg.includes("contact")) reply="Use the contact section or email me directly.";
-else if(msg.includes("about")) reply="Seiyaa Visuals creates cinematic identity-focused visuals.";
+if(msg.includes("price")) reply="Pricing ranges from ₱3,000 to ₱15,000.";
+else if(msg.includes("service")) reply="We offer photography, creative direction, and brand visuals.";
+else if(msg.includes("book")) reply="Use the contact form to book your shoot.";
+else if(msg.includes("contact")) reply="You can message through the contact form.";
+else if(msg.includes("about")) reply="Eightysix Media creates cinematic high-end visuals.";
 
 chat.innerHTML+=`<div style="color:#aaa;">AI: ${reply}</div>`;
 
