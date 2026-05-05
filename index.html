@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Seiyaa Studio</title>
+<title>Seiyaa Studio — Cinematic Visual Identity</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
@@ -11,10 +11,11 @@
 :root{
 --bg:#050505;
 --card:#0d0d0d;
---border:#1f1f1f;
+--border:#1e1e1e;
 --text:#ffffff;
---muted:#9a9a9a;
+--muted:#a0a0a0;
 --accent:#ffffff;
+--radius:14px;
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
@@ -32,7 +33,7 @@ overflow-x:hidden;
 position:fixed;
 top:0;
 width:100%;
-padding:20px 8%;
+padding:18px 8%;
 display:flex;
 justify-content:space-between;
 align-items:center;
@@ -50,7 +51,7 @@ font-size:18px;
 .nav a{
 color:var(--muted);
 text-decoration:none;
-margin-left:25px;
+margin-left:24px;
 font-size:14px;
 transition:.3s;
 }
@@ -92,17 +93,23 @@ animation:fadeUp 1.2s ease forwards;
 font-family:'Playfair Display';
 font-size:64px;
 line-height:1.1;
-margin-bottom:15px;
+margin-bottom:12px;
 }
 
 .hero p{
 color:var(--muted);
-margin-bottom:20px;
+margin-bottom:18px;
+}
+
+.badge{
+font-size:13px;
+color:#bbb;
+margin-bottom:10px;
 }
 
 .cta-group a{
 display:inline-block;
-padding:12px 26px;
+padding:12px 28px;
 border:1px solid #fff;
 text-decoration:none;
 color:#fff;
@@ -115,10 +122,8 @@ background:#fff;
 color:#000;
 }
 
-/* SECTION */
-.section{
-padding:120px 8%;
-}
+/* SECTIONS */
+.section{padding:120px 8%}
 .section h2{
 font-family:'Playfair Display';
 font-size:34px;
@@ -145,13 +150,11 @@ grid-template-columns:1fr 2fr;
 width:100%;
 height:100%;
 object-fit:cover;
-border-radius:14px;
+border-radius:var(--radius);
 cursor:pointer;
-transition:.5s;
+transition:.4s;
 }
-.cinematic img:hover{
-transform:scale(1.03);
-}
+.cinematic img:hover{transform:scale(1.03)}
 
 .cinematic-side{
 display:grid;
@@ -160,10 +163,23 @@ gap:20px;
 }
 
 @media(max-width:768px){
-.cinematic,
-.cinematic.reverse{
+.cinematic,.cinematic.reverse{
 grid-template-columns:1fr;
 }
+.hero h1{font-size:42px}
+}
+
+/* TRUST */
+.trust{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+}
+.trust div{
+border:1px solid var(--border);
+padding:20px;
+border-radius:var(--radius);
+background:var(--card);
 }
 
 /* SERVICES */
@@ -172,18 +188,14 @@ display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:30px;
 }
-
-.service-box{
+.service{
 border:1px solid var(--border);
 padding:25px;
-border-radius:12px;
+border-radius:var(--radius);
 background:var(--card);
 transition:.3s;
 }
-.service-box:hover{
-transform:translateY(-6px);
-border-color:#333;
-}
+.service:hover{transform:translateY(-6px)}
 
 /* PROCESS FUNNEL */
 .process{
@@ -196,18 +208,37 @@ gap:20px;
 background:var(--card);
 border:1px solid var(--border);
 padding:20px;
-border-radius:12px;
+border-radius:var(--radius);
 text-align:center;
-width:100%;
 transition:.3s;
 }
-.process div:hover{
-transform:translateY(-5px);
+.process div:nth-child(1){width:100%}
+.process div:nth-child(2){width:85%}
+.process div:nth-child(3){width:70%}
+.process div:nth-child(4){width:55%}
+
+/* PRICING */
+.pricing{
+border:1px solid var(--border);
+padding:30px;
+border-radius:var(--radius);
+background:var(--card);
+max-width:500px;
 }
-.process div:nth-child(1){max-width:700px}
-.process div:nth-child(2){max-width:600px}
-.process div:nth-child(3){max-width:500px}
-.process div:nth-child(4){max-width:400px}
+
+/* CONTACT */
+.contact-buttons a{
+display:inline-block;
+margin-right:15px;
+padding:14px 28px;
+border:1px solid #fff;
+text-decoration:none;
+color:#fff;
+transition:.3s;
+}
+.contact-buttons a:hover{
+background:#fff;color:#000;
+}
 
 /* LIGHTBOX */
 .lightbox{
@@ -219,7 +250,6 @@ height:100%;
 background:rgba(0,0,0,.95);
 display:none;
 z-index:2000;
-overflow:hidden;
 }
 .lightbox img{
 position:absolute;
@@ -227,24 +257,28 @@ border-radius:12px;
 transition:all .5s cubic-bezier(.22,1,.36,1);
 }
 
-/* CONTACT */
-.contact-buttons a{
-display:inline-block;
-margin-right:15px;
-margin-top:10px;
-padding:12px 24px;
-border:1px solid #fff;
-text-decoration:none;
-color:#fff;
-transition:.3s;
+/* FORM */
+.form{
+display:flex;
+flex-direction:column;
+gap:12px;
+max-width:400px;
 }
-.contact-buttons a:hover{
+.form input,.form textarea{
+background:#000;
+border:1px solid #333;
+padding:10px;
+color:#fff;
+}
+.form button{
+padding:12px;
 background:#fff;
-color:#000;
+border:none;
+cursor:pointer;
 }
 
 /* STICKY CTA */
-.sticky-cta{
+.sticky{
 position:fixed;
 bottom:0;
 width:100%;
@@ -255,25 +289,17 @@ justify-content:center;
 padding:10px;
 z-index:999;
 }
-.sticky-cta a{
+.sticky a{
 background:#fff;
 color:#000;
 padding:12px 28px;
 text-decoration:none;
 border-radius:6px;
-font-size:14px;
 }
 
-/* ANIMATION */
-.fade{
-opacity:0;
-transform:translateY(40px);
-transition:1s;
-}
-.fade.show{
-opacity:1;
-transform:translateY(0);
-}
+/* ANIMATIONS */
+.fade{opacity:0;transform:translateY(40px);transition:1s}
+.fade.show{opacity:1;transform:translateY(0)}
 
 @keyframes fadeUp{
 from{opacity:0;transform:translateY(40px)}
@@ -303,28 +329,32 @@ to{opacity:1;transform:translateY(0)}
 <div class="overlay"></div>
 
 <div class="hero-content">
-<h1>We Build Visual Identity.</h1>
-<p>Cinematic photography for brands, models, and standout presence.</p>
+<div class="badge">⚡ Limited booking slots available</div>
+<h1>We Don’t Take Photos.<br>We Build Identity.</h1>
+<p>Cinematic visuals engineered to elevate your brand, presence, and influence.</p>
 
-<div style="font-size:13px;color:#aaa;">⚡ Limited bookings this month</div>
-
-<div class="cta-group" style="margin-top:20px;">
-<a href="#contact">Book Now</a>
-<a href="https://www.instagram.com/seiyaasstudio/" target="_blank">Instagram</a>
+<div class="cta-group">
+<a href="#contact">Book a Shoot</a>
+<a href="https://www.instagram.com/seiyaasstudio/" target="_blank">View Instagram</a>
 </div>
 </div>
 </section>
 
-<!-- ABOUT -->
+<!-- TRUST -->
 <section class="section fade">
-<h2>About</h2>
-<p>We create high-impact cinematic visuals designed to elevate identity, not just capture moments.</p>
+<h2>Why Choose Us</h2>
+<div class="trust">
+<div>✔ Cinematic Visual Quality</div>
+<div>✔ Guided Direction (No Awkward Posing)</div>
+<div>✔ Fast Delivery</div>
+<div>✔ Built for Social & Brand Impact</div>
+</div>
 </section>
 
 <!-- PORTFOLIO -->
 <section class="section fade" id="portfolio">
+<h2>Portfolio</h2>
 
-<h2>Urban Market Series</h2>
 <div class="cinematic">
 <img src="images/_DSC8255.jpg">
 <div class="cinematic-side">
@@ -335,26 +365,15 @@ to{opacity:1;transform:translateY(0)}
 </div>
 </div>
 
-<h2 style="margin-top:120px;">Gas Station Editorial</h2>
-<div class="cinematic reverse">
-<img src="images/_DSC7851.jpg">
-<div class="cinematic-side">
-<img src="images/_DSC7860.jpg">
-<img src="images/_DSC7867.jpg">
-<img src="images/_DSC7886.jpg">
-<img src="images/_DSC7900.jpg">
-</div>
-</div>
-
 </section>
 
 <!-- SERVICES -->
 <section class="section fade" id="services">
 <h2>Services</h2>
 <div class="services">
-<div class="service-box"><h3>Model Portfolio</h3><p>Cinematic identity visuals</p></div>
-<div class="service-box"><h3>Brand Shoots</h3><p>High-converting visual assets</p></div>
-<div class="service-box"><h3>Creative Direction</h3><p>Concept-driven storytelling</p></div>
+<div class="service"><h3>Model Portfolio</h3><p>High-end visuals for personal branding</p></div>
+<div class="service"><h3>Brand Campaign</h3><p>Commercial-ready visual assets</p></div>
+<div class="service"><h3>Creative Direction</h3><p>Concept, styling, and execution</p></div>
 </div>
 </section>
 
@@ -369,15 +388,32 @@ to{opacity:1;transform:translateY(0)}
 </div>
 </section>
 
+<!-- PRICING -->
+<section class="section fade">
+<h2>Investment</h2>
+<div class="pricing">
+<p>Most shoots range from <strong>₱3,000 – ₱15,000+</strong></p>
+<p style="color:#888;margin-top:10px;">Custom pricing based on concept and complexity.</p>
+</div>
+</section>
+
 <!-- CONTACT -->
 <section class="section fade" id="contact">
-<h2>Book a Shoot</h2>
-<p>Let’s create visuals that actually stand out.</p>
+<h2>Book Now</h2>
+<p>Let’s create visuals that stand out and convert.</p>
 
 <div class="contact-buttons">
-<a href="mailto:rainiercasas28@gmail.com">Book Now</a>
-<a href="https://www.instagram.com/seiyaasstudio/" target="_blank">DM Instagram</a>
+<a href="mailto:rainiercasas28@gmail.com">Email</a>
+<a href="https://www.instagram.com/seiyaasstudio/" target="_blank">Instagram</a>
 </div>
+
+<form class="form" onsubmit="submitForm(event)">
+<input type="text" placeholder="Your Name" required>
+<input type="email" placeholder="Your Email" required>
+<textarea placeholder="Tell me about your shoot" required></textarea>
+<button type="submit">Send Inquiry</button>
+</form>
+
 </section>
 
 <!-- LIGHTBOX -->
@@ -385,14 +421,14 @@ to{opacity:1;transform:translateY(0)}
 <img id="lightbox-img">
 </div>
 
-<!-- STICKY CTA -->
-<div class="sticky-cta">
+<!-- STICKY -->
+<div class="sticky">
 <a href="mailto:rainiercasas28@gmail.com">Book a Shoot</a>
 </div>
 
 <script>
 
-/* HERO SLIDER */
+/* HERO */
 let slides=document.querySelectorAll(".hero img");
 let i=0;
 setInterval(()=>{
@@ -402,17 +438,15 @@ slides[i].classList.add("active");
 },4000);
 
 /* SCROLL */
-const faders=document.querySelectorAll(".fade");
+document.querySelectorAll(".fade").forEach(el=>{
 window.addEventListener("scroll",()=>{
-faders.forEach(el=>{
-if(el.getBoundingClientRect().top < window.innerHeight-100){
+if(el.getBoundingClientRect().top<window.innerHeight-100){
 el.classList.add("show");
 }
 });
 });
-window.dispatchEvent(new Event('scroll'));
 
-/* LIGHTBOX ANIMATION */
+/* LIGHTBOX */
 const imgs=document.querySelectorAll(".cinematic img");
 const lightbox=document.getElementById("lightbox");
 const lightboxImg=document.getElementById("lightbox-img");
@@ -420,7 +454,6 @@ const lightboxImg=document.getElementById("lightbox-img");
 imgs.forEach(img=>{
 img.onclick=()=>{
 let rect=img.getBoundingClientRect();
-
 lightbox.style.display="block";
 lightboxImg.src=img.src;
 
@@ -439,9 +472,13 @@ lightboxImg.style.transform="translate(-50%,-50%)";
 };
 });
 
-lightbox.onclick=()=>{
-lightbox.style.display="none";
-};
+lightbox.onclick=()=>lightbox.style.display="none";
+
+/* FORM */
+function submitForm(e){
+e.preventDefault();
+alert("Inquiry sent successfully. We'll contact you soon.");
+}
 
 </script>
 
