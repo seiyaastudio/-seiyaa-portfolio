@@ -200,6 +200,26 @@ transition:1s ease;
 opacity:1;
 transform:translateY(0);
 }
+  /* ===== SLIDER (NEW SYSTEM) ===== */
+.slider{
+position:relative;
+width:100%;
+height:70vh;
+overflow:hidden;
+border-radius:12px;
+}
+
+.slide-img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:opacity 0.4s ease;
+cursor:pointer;
+}
+
+.slider:active .slide-img{
+cursor:grabbing;
+}
 /* ===== CINEMATIC PORTFOLIO ===== */
 .cinematic{
 display:grid;
@@ -301,77 +321,50 @@ Every shoot is built around concept, lighting, and storytelling — not just tak
 <section class="section fade" id="portfolio">
 
 <h2>Urban Market Series</h2>
-
-<div class="cinematic">
-
-  <!-- FEATURE IMAGE -->
-  <div class="cinematic-main">
-    <img src="images/_DSC8255.jpg" loading="lazy" alt="Market main">
-  </div>
-
-  <!-- SIDE GRID -->
-  <div class="cinematic-side">
-    <img src="images/_DSC8261.jpg" loading="lazy">
-    <img src="images/_DSC8267.jpg" loading="lazy">
-    <img src="images/_DSC8303.jpg" loading="lazy">
-    <img src="images/_DSC8330.jpg" loading="lazy">
-  </div>
-
+<div class="slider" data-images="
+images/_DSC8255.jpg,
+images/_DSC8261.jpg,
+images/_DSC8267.jpg,
+images/_DSC8303.jpg,
+images/_DSC8330.jpg
+">
+<img src="images/_DSC8255.jpg" class="slide-img">
 </div>
 
 <h2 style="margin-top:120px;">Gas Station Editorial</h2>
-
-<div class="cinematic reverse">
-
-  <div class="cinematic-main">
-    <img src="images/_DSC7851.jpg" loading="lazy">
-  </div>
-
-  <div class="cinematic-side">
-    <img src="images/_DSC7860.jpg" loading="lazy">
-    <img src="images/_DSC7867.jpg" loading="lazy">
-    <img src="images/_DSC7886.jpg" loading="lazy">
-    <img src="images/_DSC7900.jpg" loading="lazy">
-  </div>
-
+<div class="slider" data-images="
+images/_DSC7851.jpg,
+images/_DSC7860.jpg,
+images/_DSC7867.jpg,
+images/_DSC7886.jpg,
+images/_DSC7900.jpg
+">
+<img src="images/_DSC7851.jpg" class="slide-img">
 </div>
 
 <h2 style="margin-top:120px;">Night Street Cinematics</h2>
-
-<div class="cinematic">
-
-  <div class="cinematic-main">
-    <img src="images/_DSC7665.jpg" loading="lazy">
-  </div>
-
-  <div class="cinematic-side">
-    <img src="images/_DSC7676.jpg" loading="lazy">
-    <img src="images/_DSC7679.jpg" loading="lazy">
-    <img src="images/_DSC7685.jpg" loading="lazy">
-    <img src="images/_DSC7694.jpg" loading="lazy">
-  </div>
-
+<div class="slider" data-images="
+images/_DSC7665.jpg,
+images/_DSC7676.jpg,
+images/_DSC7679.jpg,
+images/_DSC7685.jpg,
+images/_DSC7694.jpg
+">
+<img src="images/_DSC7665.jpg" class="slide-img">
 </div>
 
 <h2 style="margin-top:120px;">Rebel / Underground Series</h2>
-
-<div class="cinematic reverse">
-
-  <div class="cinematic-main">
-    <img src="images/_DSC8091.jpg" loading="lazy">
-  </div>
-
-  <div class="cinematic-side">
-    <img src="images/_DSC8092.jpg" loading="lazy">
-    <img src="images/_DSC8093.jpg" loading="lazy">
-    <img src="images/_DSC8105.jpg" loading="lazy">
-    <img src="images/_DSC8112.jpg" loading="lazy">
-  </div>
-
+<div class="slider" data-images="
+images/_DSC8091.jpg,
+images/_DSC8092.jpg,
+images/_DSC8093.jpg,
+images/_DSC8105.jpg,
+images/_DSC8112.jpg
+">
+<img src="images/_DSC8091.jpg" class="slide-img">
 </div>
 
 </section>
-
 <!-- SERVICES -->
 <section class="section fade" id="services">
 <h2>Services</h2>
@@ -485,19 +478,57 @@ lightboxImg.style.transform = "translate(-50%, -50%)";
 
 lightbox.onclick = () => {
 
-/* BACK TO ORIGINAL POSITION */
-lightboxImg.style.top = currentRect.top + "px";
-lightboxImg.style.left = currentRect.left + "px";
-lightboxImg.style.width = currentRect.width + "px";
-lightboxImg.style.height = currentRect.height + "px";
-lightboxImg.style.transform = "none";
+  /* BACK TO ORIGINAL POSITION */
+  lightboxImg.style.top = currentRect.top + "px";
+  lightboxImg.style.left = currentRect.left + "px";
+  lightboxImg.style.width = currentRect.width + "px";
+  lightboxImg.style.height = currentRect.height + "px";
+  lightboxImg.style.transform = "none";
 
-/* HIDE AFTER ANIMATION */
-setTimeout(() => {
-lightbox.style.display = "none";
-}, 400);
+  /* HIDE AFTER ANIMATION */
+  setTimeout(() => {
+    lightbox.style.display = "none";
+  }, 400);
 
 };
+
+/* ===== DRAG SLIDER SYSTEM ===== */
+document.querySelectorAll('.slider').forEach(slider=>{
+  const img = slider.querySelector('.slide-img');
+  const images = slider.dataset.images.split(',');
+
+  let index = 0;
+  let startX = 0;
+  let isDown = false;
+
+  slider.addEventListener('mousedown', e=>{
+    isDown = true;
+    startX = e.clientX;
+  });
+
+  slider.addEventListener('mouseup', e=>{
+    if(!isDown) return;
+    isDown = false;
+
+    let diff = e.clientX - startX;
+
+    if(diff > 50){
+      index = (index - 1 + images.length) % images.length;
+    } else if(diff < -50){
+      index = (index + 1) % images.length;
+    }
+
+    img.style.opacity = 0;
+
+    setTimeout(()=>{
+      img.src = images[index];
+      img.style.opacity = 1;
+    },200);
+  });
+
+  slider.addEventListener('mouseleave', ()=> isDown = false);
+});
+
 </script>
 
 </body>
