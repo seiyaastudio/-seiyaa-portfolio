@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Seiyaa Visuals</title>
+<title>Eightysix Media — Seiyaa Visuals</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
@@ -13,8 +13,9 @@
 --glass:rgba(255,255,255,0.05);
 --border:rgba(255,255,255,0.1);
 --text:#fff;
---muted:#aaa;
+--muted:#9a9a9a;
 --accent:#ffffff;
+--glow:0 0 40px rgba(255,255,255,0.08);
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
@@ -25,6 +26,17 @@ color:var(--text);
 font-family:'Inter',sans-serif;
 overflow-x:hidden;
 scroll-behavior:smooth;
+}
+
+/* SCROLL PROGRESS */
+.progress{
+position:fixed;
+top:0;
+left:0;
+height:3px;
+background:#fff;
+width:0%;
+z-index:2000;
 }
 
 /* NAV */
@@ -41,8 +53,8 @@ background:rgba(0,0,0,.6);
 backdrop-filter:blur(14px);
 }
 .logo{font-family:'Playfair Display';letter-spacing:3px}
-.nav a{color:var(--muted);margin-left:25px;text-decoration:none}
-.nav a:hover{color:#fff}
+.nav a{color:var(--muted);margin-left:25px;text-decoration:none;position:relative}
+.nav a.active,.nav a:hover{color:#fff}
 
 /* HERO */
 .hero{
@@ -60,22 +72,51 @@ background:url('images/_DSC8255.jpg') center/cover;
 opacity:.25;
 }
 .hero-content{position:relative;max-width:650px;}
-.hero h1{font-family:'Playfair Display';font-size:64px;}
+.hero h1{
+font-family:'Playfair Display';
+font-size:64px;
+line-height:1.1;
+}
 .hero p{color:var(--muted);margin:20px 0}
 .btn{
-padding:12px 26px;
+padding:14px 30px;
 border:1px solid #fff;
 text-decoration:none;
 color:#fff;
 margin-right:10px;
 transition:.3s;
 }
-.btn:hover{background:#fff;color:#000}
+.btn:hover{
+background:#fff;
+color:#000;
+box-shadow:var(--glow);
+}
 
 /* SECTION */
 .section{padding:120px 8%}
-.section h2{font-family:'Playfair Display';font-size:36px;margin-bottom:20px}
+.section h2{
+font-family:'Playfair Display';
+font-size:36px;
+margin-bottom:10px;
+}
 .section p{color:var(--muted);margin-bottom:40px;max-width:700px}
+
+/* FILTER */
+.filters{
+display:flex;
+gap:10px;
+margin-bottom:30px;
+flex-wrap:wrap;
+}
+.filter-btn{
+padding:8px 16px;
+border:1px solid var(--border);
+cursor:pointer;
+}
+.filter-btn.active{
+background:#fff;
+color:#000;
+}
 
 /* GRID */
 .grid{
@@ -96,12 +137,14 @@ cursor:pointer;
 width:100%;
 height:100%;
 object-fit:cover;
-transition:transform .7s cubic-bezier(.22,1,.36,1);
+transition:.6s cubic-bezier(.22,1,.36,1);
 }
 
 .item:hover img{transform:scale(1.1)}
 
-/* LIGHTBOX (FULL QUALITY VIEW) */
+.item.hide{display:none}
+
+/* LIGHTBOX */
 .lightbox{
 position:fixed;
 inset:0;
@@ -110,39 +153,15 @@ display:none;
 justify-content:center;
 align-items:center;
 z-index:2000;
-backdrop-filter:blur(10px);
 }
 
 .lightbox.active{display:flex}
 
-.lightbox-content{
-position:relative;
-max-width:95vw;
-max-height:95vh;
-display:flex;
-justify-content:center;
-align-items:center;
-}
-
 .lightbox img{
-max-width:100%;
-max-height:100%;
+max-width:95%;
+max-height:95%;
 object-fit:contain;
 border-radius:16px;
-animation:zoom .6s cubic-bezier(.22,1,.36,1);
-}
-
-@keyframes zoom{
-from{transform:scale(.85);opacity:0;}
-to{transform:scale(1);opacity:1;}
-}
-
-.close{
-position:absolute;
-top:-40px;
-right:0;
-font-size:26px;
-cursor:pointer;
 }
 
 /* SERVICES */
@@ -158,7 +177,15 @@ padding:25px;
 border-radius:14px;
 }
 
-/* CONTACT */
+/* CTA */
+.cta{
+text-align:center;
+padding:100px 8%;
+background:linear-gradient(180deg,#050505,#111);
+}
+.cta h2{font-size:40px;margin-bottom:20px}
+
+/* FORM */
 .form{
 display:flex;
 flex-direction:column;
@@ -177,6 +204,7 @@ background:#fff;
 border:none;
 cursor:pointer;
 }
+.success{display:none;color:#0f0}
 
 /* FOOTER */
 .footer{
@@ -193,12 +221,11 @@ bottom:20px;
 right:20px;
 background:#fff;
 color:#000;
-padding:14px 18px;
+padding:14px;
 border-radius:30px;
 cursor:pointer;
 z-index:999;
 }
-
 .chat-box{
 position:fixed;
 bottom:80px;
@@ -211,66 +238,14 @@ display:none;
 flex-direction:column;
 z-index:999;
 }
+.chat-messages{flex:1;overflow-y:auto;padding:10px}
+.chat-input{display:flex}
+.chat-input input{flex:1;background:none;border:none;color:#fff;padding:10px}
+.chat-input button{background:#fff;border:none;padding:10px}
+.quick{display:flex;flex-wrap:wrap;gap:6px;padding:6px}
+.quick span{background:#222;padding:6px;border-radius:20px;cursor:pointer;font-size:12px}
 
-.chat-messages{
-flex:1;
-padding:10px;
-overflow-y:auto;
-font-size:14px;
-}
-
-.chat-input{
-display:flex;
-border-top:1px solid #333;
-}
-.chat-input input{
-flex:1;
-background:none;
-border:none;
-color:#fff;
-padding:10px;
-}
-.chat-input button{
-background:#fff;
-border:none;
-padding:10px;
-}
-
-.quick{
-display:flex;
-flex-wrap:wrap;
-gap:6px;
-padding:6px;
-}
-.quick span{
-background:#222;
-padding:6px 10px;
-border-radius:20px;
-cursor:pointer;
-font-size:12px;
-}
-
-/* NOTIFY */
-.notify{
-position:fixed;
-bottom:90px;
-right:20px;
-background:#fff;
-color:#000;
-padding:12px;
-border-radius:10px;
-z-index:998;
-animation:fade .4s ease;
-}
-@keyframes fade{
-from{opacity:0;transform:translateY(20px)}
-to{opacity:1;transform:translateY(0)}
-}
-
-/* SCROLL */
-.fade{opacity:0;transform:translateY(40px);transition:1s}
-.fade.show{opacity:1;transform:translateY(0)}
-
+/* MOBILE */
 @media(max-width:768px){
 .hero h1{font-size:42px}
 }
@@ -279,8 +254,10 @@ to{opacity:1;transform:translateY(0)}
 
 <body>
 
+<div class="progress" id="progress"></div>
+
 <div class="nav">
-<div class="logo">SEIYAA VISUALS</div>
+<div class="logo">EIGHTYSIX MEDIA</div>
 <div>
 <a href="#portfolio">Work</a>
 <a href="#about">About</a>
@@ -291,83 +268,79 @@ to{opacity:1;transform:translateY(0)}
 
 <section class="hero">
 <div class="hero-content">
-<h1>Cinematic Visual Identity</h1>
-<p>We create visuals that demand attention and convert audiences.</p>
+<h1>Cinematic Identity for Modern Brands</h1>
+<p>Seiyaa — Photographer. Eightysix Media — Creative Studio.</p>
 <a href="#portfolio" class="btn">View Work</a>
-<a href="#contact" class="btn">Hire Me</a>
+<a href="#contact" class="btn">Book Shoot</a>
 </div>
 </section>
 
-<section class="section fade" id="portfolio">
+<section class="section" id="portfolio">
 <h2>Portfolio</h2>
 
-<div class="grid">
-<div class="item"><img src="images/_DSC8255.jpg"></div>
-<div class="item"><img src="images/_DSC8261.jpg"></div>
-<div class="item"><img src="images/_DSC8267.jpg"></div>
-<div class="item"><img src="images/_DSC8303.jpg"></div>
-
-<div class="item"><img src="images/_DSC7851.jpg"></div>
-<div class="item"><img src="images/_DSC7860.jpg"></div>
-<div class="item"><img src="images/_DSC7886.jpg"></div>
-<div class="item"><img src="images/_DSC7900.jpg"></div>
-
-<div class="item"><img src="images/_DSC7665.jpg"></div>
-<div class="item"><img src="images/_DSC7676.jpg"></div>
-<div class="item"><img src="images/_DSC7685.jpg"></div>
-<div class="item"><img src="images/_DSC7694.jpg"></div>
-
-<div class="item"><img src="images/_DSC8091.jpg"></div>
-<div class="item"><img src="images/_DSC8092.jpg"></div>
-<div class="item"><img src="images/_DSC8105.jpg"></div>
-<div class="item"><img src="images/_DSC8112.jpg"></div>
+<div class="filters">
+<div class="filter-btn active" data-filter="all">All</div>
+<div class="filter-btn" data-filter="portrait">Portrait</div>
+<div class="filter-btn" data-filter="fashion">Fashion</div>
+<div class="filter-btn" data-filter="street">Street</div>
+<div class="filter-btn" data-filter="creative">Creative</div>
 </div>
 
+<div class="grid">
+<div class="item" data-cat="portrait"><img src="images/_DSC8255.jpg"></div>
+<div class="item" data-cat="fashion"><img src="images/_DSC8261.jpg"></div>
+<div class="item" data-cat="street"><img src="images/_DSC8267.jpg"></div>
+<div class="item" data-cat="creative"><img src="images/_DSC8303.jpg"></div>
+
+<div class="item" data-cat="portrait"><img src="images/_DSC7851.jpg"></div>
+<div class="item" data-cat="fashion"><img src="images/_DSC7860.jpg"></div>
+<div class="item" data-cat="street"><img src="images/_DSC7886.jpg"></div>
+<div class="item" data-cat="creative"><img src="images/_DSC7900.jpg"></div>
+</div>
 </section>
 
-<section class="section fade" id="about">
+<section class="section" id="about">
 <h2>About</h2>
-<p>Seiyaa Visuals builds cinematic imagery engineered for identity, storytelling, and brand authority.</p>
+<p>Seiyaa is a cinematic photographer creating bold visual identity. Eightysix Media transforms brands into visual authority.</p>
 </section>
 
-<section class="section fade" id="services">
+<section class="section" id="services">
 <h2>Services</h2>
 <div class="services">
-<div class="card"><h3>Photography</h3><p>Premium cinematic shoots</p></div>
-<div class="card"><h3>Creative Direction</h3><p>Concept to execution</p></div>
-<div class="card"><h3>Brand Visuals</h3><p>Conversion-focused visuals</p></div>
+<div class="card"><h3>Photography</h3><p>High-end visuals that convert.</p></div>
+<div class="card"><h3>Creative Direction</h3><p>Concept-driven storytelling.</p></div>
+<div class="card"><h3>Brand Visuals</h3><p>Marketing-focused imagery.</p></div>
 </div>
 </section>
 
-<section class="section fade" id="contact">
+<section class="cta">
+<h2>Ready to Build Your Visual Identity?</h2>
+<a href="#contact" class="btn">Book Now</a>
+</section>
+
+<section class="section" id="contact">
 <h2>Contact</h2>
-<form class="form" onsubmit="submitForm(event)">
-<input type="text" required placeholder="Name">
-<input type="email" required placeholder="Email">
-<textarea required placeholder="Project details"></textarea>
+<form class="form" onsubmit="sendEmail(event)">
+<input type="text" id="name" required placeholder="Name">
+<input type="email" id="email" required placeholder="Email">
+<textarea id="msg" required placeholder="Project details"></textarea>
 <button type="submit">Send Inquiry</button>
+<div class="success" id="success">Message ready. Opening email…</div>
 </form>
 </section>
 
-<div class="footer">© 2026 Seiyaa Visuals</div>
+<div class="footer">© 2026 Eightysix Media</div>
 
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox">
-<div class="lightbox-content">
-<span class="close" onclick="closeLightbox()">✕</span>
-<img id="lightbox-img">
-</div>
-</div>
+<div class="lightbox" id="lightbox"><img id="lightbox-img"></div>
 
-<!-- CHAT -->
 <div class="chat-btn" onclick="toggleChat()">Chat</div>
 
 <div class="chat-box" id="chatBox">
 <div class="chat-messages" id="chatMessages"></div>
 <div class="quick">
-<span onclick="quickAsk('pricing')">Pricing</span>
-<span onclick="quickAsk('services')">Services</span>
-<span onclick="quickAsk('booking')">Booking</span>
+<span onclick="quick('pricing')">Pricing</span>
+<span onclick="quick('services')">Services</span>
+<span onclick="quick('booking')">Booking</span>
 </div>
 <div class="chat-input">
 <input id="chatInput">
@@ -375,49 +348,60 @@ to{opacity:1;transform:translateY(0)}
 </div>
 </div>
 
-<div class="notify" id="notify">New message 👋</div>
-
 <script>
 
-/* SCROLL */
-document.querySelectorAll('.fade').forEach(el=>{
-window.addEventListener('scroll',()=>{
-if(el.getBoundingClientRect().top < window.innerHeight-100){
-el.classList.add('show');
-}
-});
-});
+/* PROGRESS */
+window.onscroll=()=>{
+let h=document.documentElement;
+let sc=(h.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
+document.getElementById("progress").style.width=sc+"%";
+};
 
-/* FULL QUALITY LIGHTBOX */
-document.querySelectorAll('.item img').forEach(img=>{
-img.onclick=()=>{
-document.getElementById('lightbox-img').src = img.src;
-document.getElementById('lightbox').classList.add('active');
+/* FILTER */
+document.querySelectorAll(".filter-btn").forEach(btn=>{
+btn.onclick=()=>{
+document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
+btn.classList.add("active");
+let f=btn.dataset.filter;
+document.querySelectorAll(".item").forEach(i=>{
+i.classList.toggle("hide",f!=="all" && i.dataset.cat!==f);
+});
 };
 });
 
-function closeLightbox(){
-document.getElementById('lightbox').classList.remove('active');
-}
+/* LIGHTBOX */
+document.querySelectorAll(".item img").forEach(img=>{
+img.onclick=()=>{
+document.getElementById("lightbox-img").src=img.src;
+document.getElementById("lightbox").classList.add("active");
+};
+});
+document.getElementById("lightbox").onclick=()=>document.getElementById("lightbox").classList.remove("active");
 
-/* FORM */
-function submitForm(e){
+/* EMAIL */
+function sendEmail(e){
 e.preventDefault();
-alert("Message sent successfully.");
+let name=document.getElementById("name").value;
+let email=document.getElementById("email").value;
+let msg=document.getElementById("msg").value;
+
+let link=`mailto:rainiercasas28@gmail.com?subject=Booking from ${name}&body=${msg} (${email})`;
+window.location.href=link;
+
+document.getElementById("success").style.display="block";
 }
 
 /* CHAT */
 function toggleChat(){
 let box=document.getElementById("chatBox");
 box.style.display=box.style.display==="flex"?"none":"flex";
-
-if(box.style.display==="flex" && !box.dataset.init){
-addBot("Hey 👋 Welcome! Ask me about pricing, services, or booking.");
+if(!box.dataset.init){
+addBot("Hey 👋 I can help with pricing, booking, and services.");
 box.dataset.init=true;
 }
 }
 
-function quickAsk(q){
+function quick(q){
 document.getElementById("chatInput").value=q;
 sendMsg();
 }
@@ -426,11 +410,8 @@ function sendMsg(){
 let input=document.getElementById("chatInput");
 let msg=input.value.toLowerCase();
 if(!msg)return;
-
 addUser(msg);
-typing();
-
-setTimeout(()=>reply(msg),600);
+setTimeout(()=>reply(msg),500);
 input.value="";
 }
 
@@ -446,28 +427,16 @@ c.innerHTML+=`<div style="color:#aaa;">AI: ${t}</div>`;
 c.scrollTop=c.scrollHeight;
 }
 
-function typing(){
-let c=document.getElementById("chatMessages");
-c.innerHTML+=`<div class="typing">AI typing...</div>`;
-}
-
 function reply(msg){
-document.querySelector(".typing").remove();
-
-let r="I can help you with booking, services, or pricing.";
-if(msg.includes("price")) r="Pricing starts at ₱3k depending on project.";
-else if(msg.includes("service")) r="We offer photography, creative direction, and branding visuals.";
-else if(msg.includes("book")) r="Use the contact form below to book.";
-else if(msg.includes("contact")) r="Scroll down to contact section.";
-else if(msg.includes("about")) r="Seiyaa Visuals builds cinematic identity.";
+let r="I can help you with bookings and services.";
+if(msg.includes("price")) r="Pricing starts at ₱3k–₱15k.";
+else if(msg.includes("service")) r="Photography, creative direction, branding.";
+else if(msg.includes("book")) r="Use the contact form to book.";
+else if(msg.includes("location")) r="Available nationwide.";
+else if(msg.includes("portfolio")) r="Explore categories above.";
 
 addBot(r);
 }
-
-/* NOTIFY */
-setTimeout(()=>{
-document.getElementById("notify").style.display="none";
-},4000);
 
 </script>
 
