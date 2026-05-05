@@ -123,7 +123,7 @@ aspect-ratio:4/3;
 }
 .item.hide{
 opacity:0;
-transform:scale(.8);
+transform:scale(.85);
 pointer-events:none;
 }
 .item img{
@@ -173,6 +173,51 @@ transition:.4s;
 }
 .lightbox.active img{transform:scale(1)}
 
+/* TEAM */
+.team{
+padding:140px 8%;
+text-align:center;
+background:linear-gradient(180deg,#050505,#0a0a0a);
+}
+.team h2{
+font-family:'Playfair Display';
+font-size:50px;
+margin-bottom:20px;
+}
+.team-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:30px;
+}
+.team-card{
+background:var(--glass);
+border:1px solid var(--border);
+padding:25px;
+border-radius:16px;
+cursor:pointer;
+transition:.4s;
+}
+.team-card:hover{
+transform:translateY(-6px);
+box-shadow:var(--glow);
+}
+.team-card.active{
+transform:scale(1.05);
+box-shadow:0 0 80px rgba(255,255,255,.2);
+}
+.team-expand{
+max-height:0;
+overflow:hidden;
+opacity:0;
+transition:.4s;
+text-align:left;
+}
+.team-card.active .team-expand{
+max-height:400px;
+opacity:1;
+margin-top:10px;
+}
+
 /* CONTACT */
 .form{max-width:420px;display:flex;flex-direction:column;gap:12px}
 .form input,.form textarea{
@@ -188,6 +233,7 @@ border:none;
 cursor:pointer;
 transition:.3s;
 }
+.form button:hover{box-shadow:var(--glow)}
 .success{display:none;color:#0f0}
 
 /* CHAT */
@@ -244,6 +290,7 @@ gap:8px;
 <div class="logo">EIGHTYSIX MEDIA</div>
 <div>
 <a href="#portfolio">Work</a>
+<a href="#team">Team</a>
 <a href="#contact">Contact</a>
 </div>
 </div>
@@ -276,6 +323,43 @@ To add new images:
 -->
 
 <div class="grid" id="grid"></div>
+</section>
+
+<!-- TEAM -->
+<section class="team" id="team">
+<h2>Core Team</h2>
+
+<div class="team-grid">
+
+<div class="team-card active" onclick="toggleTeam(this)">
+<h3>Rain Casas</h3>
+<p>Main Photographer • Director</p>
+<div class="team-expand">
+<p>• Cinematic Lighting</p>
+<p>• Creative Direction</p>
+<p>• Brand Identity</p>
+</div>
+</div>
+
+<div class="team-card" onclick="toggleTeam(this)">
+<h3>Tristan Buerano</h3>
+<p>Lighting Assistant</p>
+<div class="team-expand">
+<p>• Lighting Setup</p>
+<p>• Mobile Photography</p>
+</div>
+</div>
+
+<div class="team-card" onclick="toggleTeam(this)">
+<h3>Xaris Baltazar</h3>
+<p>Lighting Assistant</p>
+<div class="team-expand">
+<p>• Light Control</p>
+<p>• Scene Support</p>
+</div>
+</div>
+
+</div>
 </section>
 
 <!-- CONTACT -->
@@ -314,7 +398,7 @@ const words=["CINEMATIC","EDITORIAL","IDENTITY","MOOD","STORY"];
 let wi=0;
 setInterval(()=>{heroWords.textContent=words[wi];wi=(wi+1)%words.length},1500);
 
-/* IMAGES (20 EXACT) */
+/* IMAGES */
 const images=[
 ["_DSC8255","portrait"],["_DSC8261","portrait"],["_DSC8267","portrait"],["_DSC8303","portrait"],["_DSC8330","portrait"],
 ["_DSC7851","fashion"],["_DSC7860","fashion"],["_DSC7867","fashion"],["_DSC7886","fashion"],["_DSC7900","fashion"],
@@ -355,12 +439,21 @@ lightboxImg.src=e.target.src;
 });
 lightbox.onclick=()=>lightbox.classList.remove("active");
 
+/* TEAM */
+function toggleTeam(el){
+document.querySelectorAll(".team-card").forEach(c=>{
+if(c!==el)c.classList.remove("active");
+});
+el.classList.toggle("active");
+}
+
 /* CONTACT */
 function sendEmail(e){
 e.preventDefault();
 let n=name.value.trim(),em=email.value.trim(),m=msg.value.trim();
-if(!n||!em||!m)return;
-window.location.href=`mailto:rainiercasas28@gmail.com?subject=${n}&body=${m} (${em})`;
+let emailValid=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+if(!n||!emailValid.test(em)||!m)return;
+window.location.href=`mailto:rainiercasas28@gmail.com?subject=${encodeURIComponent(n)}&body=${encodeURIComponent(m+" ("+em+")")}`;
 success.style.display="block";
 }
 
@@ -379,13 +472,19 @@ user(msg);
 setTimeout(()=>reply(msg),300);
 chatInput.value="";
 }
-function user(t){chatMessages.innerHTML+=`<div class="msg-user">${t}</div>`;}
-function bot(t){chatMessages.innerHTML+=`<div class="msg-bot">${t}</div>`;}
+function user(t){
+chatMessages.innerHTML+=`<div class="msg-user">${t}</div>`;
+chatMessages.scrollTop=chatMessages.scrollHeight;
+}
+function bot(t){
+chatMessages.innerHTML+=`<div class="msg-bot">${t}</div>`;
+chatMessages.scrollTop=chatMessages.scrollHeight;
+}
 function reply(m){
 let r="Tell me more about your project.";
-if(m.includes("price")) r="Rates ₱3k–₱15k depending on project.";
-else if(m.includes("service")) r="Photography, creative direction, branding.";
-else if(m.includes("book")) r="Use contact form to secure booking.";
+if(m.includes("price")) r="Rates ₱3k–₱15k depending on scope. Want a quote?";
+else if(m.includes("service")) r="We offer photography, creative direction, branding.";
+else if(m.includes("book")) r="You can book via contact form.";
 else if(m.includes("location")) r="Available nationwide.";
 else if(m.includes("portfolio")) r="Scroll above to explore work.";
 bot(r);
