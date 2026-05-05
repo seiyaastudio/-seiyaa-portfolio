@@ -10,46 +10,65 @@
 <style>
 :root{
 --bg:#020611;
---accent:#00cfff;
+--accent:#00e0ff;
 --text:#ffffff;
 --muted:#8aa3b8;
---glass:rgba(255,255,255,0.05);
+--glass:rgba(255,255,255,0.06);
+--border:rgba(255,255,255,0.1);
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
 
 body{
 font-family:'Inter',sans-serif;
-background:linear-gradient(180deg,#020611,#041a2d);
+background:radial-gradient(circle at top,#041a2d,#020611);
 color:#fff;
 overflow-x:hidden;
 scroll-behavior:smooth;
 }
 
-/* SCROLL BAR */
+/* SCROLL PROGRESS */
 .progress{
 position:fixed;
 top:0;
 left:0;
 height:3px;
-background:linear-gradient(90deg,#00cfff,#fff);
 width:0%;
+background:linear-gradient(90deg,#00e0ff,#ffffff);
 z-index:9999;
 }
 
 /* NAV */
 .nav{
 position:fixed;
+top:0;
 width:100%;
 padding:20px 8%;
 display:flex;
 justify-content:space-between;
-background:rgba(0,0,0,.4);
-backdrop-filter:blur(12px);
+align-items:center;
 z-index:1000;
+background:rgba(0,0,0,.5);
+backdrop-filter:blur(14px);
 }
-.nav a{color:#aaa;margin-left:25px;text-decoration:none}
-.nav a:hover{color:#fff}
+.logo{
+font-family:'Playfair Display';
+letter-spacing:3px;
+}
+.nav-links a{
+color:#aaa;
+margin-left:25px;
+text-decoration:none;
+position:relative;
+}
+.nav-links a.active,
+.nav-links a:hover{
+color:#fff;
+}
+.menu-toggle{
+display:none;
+cursor:pointer;
+}
 
 /* HERO */
 .hero{
@@ -66,63 +85,95 @@ inset:0;
 background:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e') center/cover;
 opacity:.25;
 }
+.hero-content{
+position:relative;
+max-width:650px;
+}
 .hero h1{
 font-family:'Playfair Display';
 font-size:64px;
+line-height:1.1;
 }
-.hero p{color:var(--muted);margin:20px 0}
+.hero p{
+color:var(--muted);
+margin:20px 0;
+}
 .btn{
+padding:14px 30px;
 border:1px solid #fff;
-padding:12px 28px;
 text-decoration:none;
 color:#fff;
+margin-right:10px;
+transition:.3s;
 }
-.btn:hover{background:#fff;color:#000}
+.btn:hover{
+background:#fff;
+color:#000;
+box-shadow:0 0 30px rgba(255,255,255,0.2);
+}
 
-/* SECTIONS */
-.section{padding:120px 8%}
+/* SECTION */
+.section{
+padding:120px 8%;
+}
 .section h2{
 font-family:'Playfair Display';
 font-size:36px;
 margin-bottom:20px;
 }
+.section p{
+color:var(--muted);
+max-width:700px;
+margin-bottom:40px;
+}
 
-/* PORTFOLIO */
+/* FILTER */
 .filters{
 display:flex;
 gap:10px;
+flex-wrap:wrap;
 margin-bottom:30px;
 }
-.filters button{
-background:none;
-border:1px solid #555;
-color:#aaa;
-padding:6px 14px;
+.filter-btn{
+padding:8px 18px;
+border:1px solid var(--border);
 cursor:pointer;
+transition:.3s;
 }
-.filters button.active{background:#fff;color:#000}
+.filter-btn.active{
+background:#fff;
+color:#000;
+}
 
+/* GRID */
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
 gap:20px;
 }
 .item{
 aspect-ratio:4/5;
+border-radius:16px;
 overflow:hidden;
-border-radius:14px;
 cursor:pointer;
-position:relative;
+opacity:1;
+transform:scale(1);
+transition:.4s ease;
+}
+.item.hide{
+opacity:0;
+transform:scale(.9);
+pointer-events:none;
 }
 .item img{
 width:100%;
 height:100%;
 object-fit:cover;
-transition:.6s;
+transition:.6s cubic-bezier(.22,1,.36,1);
 }
-.item:hover img{transform:scale(1.1)}
-
-.hide{display:none}
+.item:hover img{
+transform:scale(1.08);
+}
 
 /* LIGHTBOX */
 .lightbox{
@@ -134,10 +185,12 @@ justify-content:center;
 align-items:center;
 z-index:2000;
 }
+.lightbox.active{display:flex}
 .lightbox img{
 max-width:95%;
 max-height:95%;
 object-fit:contain;
+border-radius:14px;
 }
 
 /* CTA */
@@ -146,59 +199,149 @@ text-align:center;
 padding:100px 8%;
 background:linear-gradient(180deg,#041a2d,#000);
 }
-.cta h2{font-size:40px;margin-bottom:20px}
+.cta h2{
+font-size:40px;
+margin-bottom:20px;
+}
+
+/* SERVICES */
+.services{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+.card{
+background:var(--glass);
+border:1px solid var(--border);
+padding:25px;
+border-radius:14px;
+transition:.3s;
+}
+.card:hover{
+transform:translateY(-5px);
+box-shadow:0 20px 60px rgba(0,0,0,.5);
+}
 
 /* FORM */
 .form{
-max-width:400px;
+max-width:420px;
 display:flex;
 flex-direction:column;
-gap:10px;
+gap:12px;
 }
 .form input,.form textarea{
-padding:12px;
 background:#000;
 border:1px solid #333;
+padding:12px;
 color:#fff;
 }
 .form button{
-padding:12px;
-background:#00cfff;
+padding:14px;
+background:#00e0ff;
 border:none;
 cursor:pointer;
 }
-.success{display:none;color:#0f0}
+.success{
+display:none;
+color:#00ffae;
+}
+
+/* SOCIAL */
+.socials{
+margin-top:20px;
+display:flex;
+gap:15px;
+}
+.socials a{
+color:#fff;
+text-decoration:none;
+border-bottom:1px solid #fff;
+}
+
+/* WHATSAPP */
+.whatsapp{
+position:fixed;
+bottom:20px;
+left:20px;
+background:#25D366;
+color:#000;
+padding:12px 16px;
+border-radius:30px;
+text-decoration:none;
+font-weight:600;
+z-index:999;
+}
 
 /* CHAT */
 .chat-btn{
 position:fixed;
 bottom:20px;
 right:20px;
-background:#00cfff;
+background:#00e0ff;
 padding:14px;
 border-radius:50%;
 cursor:pointer;
+z-index:999;
 }
-.chat{
+.chat-box{
 position:fixed;
 bottom:80px;
 right:20px;
-width:300px;
-height:400px;
+width:320px;
+height:420px;
 background:#111;
 display:none;
 flex-direction:column;
+border:1px solid #333;
 }
-.messages{flex:1;overflow-y:auto;padding:10px}
-.quick{display:flex;flex-wrap:wrap;gap:5px;padding:5px}
-.quick span{background:#222;padding:5px;border-radius:20px;cursor:pointer;font-size:12px}
-.input{display:flex}
-.input input{flex:1;background:none;border:none;color:#fff;padding:10px}
-.input button{background:#00cfff;border:none;padding:10px}
+.chat-messages{
+flex:1;
+overflow-y:auto;
+padding:10px;
+}
+.chat-input{
+display:flex;
+}
+.chat-input input{
+flex:1;
+background:none;
+border:none;
+color:#fff;
+padding:10px;
+}
+.chat-input button{
+background:#00e0ff;
+border:none;
+padding:10px;
+}
+.quick{
+display:flex;
+flex-wrap:wrap;
+gap:5px;
+padding:5px;
+}
+.quick span{
+background:#222;
+padding:6px;
+border-radius:20px;
+cursor:pointer;
+font-size:12px;
+}
 
 /* MOBILE */
 @media(max-width:768px){
 .hero h1{font-size:42px}
+.nav-links{
+display:none;
+flex-direction:column;
+background:#000;
+position:absolute;
+top:60px;
+right:0;
+width:200px;
+}
+.nav-links.show{display:flex}
+.menu-toggle{display:block}
 }
 </style>
 </head>
@@ -208,19 +351,22 @@ flex-direction:column;
 <div class="progress" id="progress"></div>
 
 <div class="nav">
-<div><b>EIGHTYSIX MEDIA</b></div>
-<div>
+<div class="logo">EIGHTYSIX MEDIA</div>
+<div class="menu-toggle" onclick="toggleMenu()">☰</div>
+<div class="nav-links" id="navLinks">
 <a href="#portfolio">Work</a>
 <a href="#about">About</a>
+<a href="#services">Services</a>
 <a href="#contact">Contact</a>
 </div>
 </div>
 
 <section class="hero">
-<div>
+<div class="hero-content">
 <h1>Cinematic Visual Identity</h1>
-<p>Seiyaa — Photographer | Eightysix Media — Studio</p>
+<p>Seiyaa — Photographer | Eightysix Media — Creative Studio</p>
 <a href="#portfolio" class="btn">View Work</a>
+<a href="#contact" class="btn">Book Shoot</a>
 </div>
 </section>
 
@@ -228,122 +374,186 @@ flex-direction:column;
 <h2>Portfolio</h2>
 
 <div class="filters">
-<button class="active" data="all">All</button>
-<button data="portrait">Portrait</button>
-<button data="fashion">Fashion</button>
-<button data="street">Street</button>
+<div class="filter-btn active" data-filter="all">All</div>
+<div class="filter-btn" data-filter="portrait">Portrait</div>
+<div class="filter-btn" data-filter="fashion">Fashion</div>
+<div class="filter-btn" data-filter="street">Street</div>
+<div class="filter-btn" data-filter="creative">Creative</div>
 </div>
 
 <div class="grid">
-<div class="item" data="portrait"><img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e"></div>
-<div class="item" data="fashion"><img src="https://images.unsplash.com/photo-1495121605193-b116b5b09a0e"></div>
-<div class="item" data="street"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee"></div>
-<div class="item" data="portrait"><img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04"></div>
+<div class="item" data-cat="portrait"><img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e" loading="lazy"></div>
+<div class="item" data-cat="fashion"><img src="https://images.unsplash.com/photo-1495121605193-b116b5b09a0e" loading="lazy"></div>
+<div class="item" data-cat="street"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee" loading="lazy"></div>
+<div class="item" data-cat="creative"><img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04" loading="lazy"></div>
+
+<div class="item" data-cat="portrait"><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9" loading="lazy"></div>
+<div class="item" data-cat="fashion"><img src="https://images.unsplash.com/photo-1519741497674-611481863552" loading="lazy"></div>
+<div class="item" data-cat="street"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836" loading="lazy"></div>
+<div class="item" data-cat="creative"><img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429" loading="lazy"></div>
+</div>
+</section>
+
+<section class="section" id="about">
+<h2>About</h2>
+<p>Seiyaa is a cinematic photographer focused on creating bold, identity-driven visuals. Eightysix Media is the creative system behind high-impact campaigns and storytelling.</p>
+</section>
+
+<section class="section" id="services">
+<h2>Services</h2>
+<div class="services">
+<div class="card"><h3>Photography</h3><p>High-converting visuals for brands & models.</p></div>
+<div class="card"><h3>Creative Direction</h3><p>Concept, lighting, and full shoot direction.</p></div>
+<div class="card"><h3>Brand Visuals</h3><p>Campaign-ready imagery for businesses.</p></div>
 </div>
 </section>
 
 <section class="cta">
-<h2>Book Your Shoot</h2>
-<a href="#contact" class="btn">Contact Now</a>
+<h2>Ready to Work Together?</h2>
+<a href="#contact" class="btn">Book Now</a>
 </section>
 
 <section class="section" id="contact">
 <h2>Contact</h2>
 <form class="form" onsubmit="sendMail(event)">
-<input required placeholder="Name" id="name">
-<input required placeholder="Email" id="email">
-<textarea required placeholder="Project"></textarea>
-<button>Send</button>
-<div class="success" id="ok">Opening email...</div>
+<input id="name" required placeholder="Name">
+<input id="email" type="email" required placeholder="Email">
+<textarea id="msg" required placeholder="Project details"></textarea>
+<button type="submit">Send Inquiry</button>
+<div class="success" id="success">Opening email...</div>
 </form>
+
+<div class="socials">
+<a href="https://instagram.com/seiyaasstudio" target="_blank">Instagram</a>
+<a href="mailto:rainiercasas28@gmail.com">Email</a>
+</div>
 </section>
 
-<div class="lightbox" id="lightbox"><img id="lightImg"></div>
+<a href="https://wa.me/639000000000" class="whatsapp">WhatsApp</a>
+
+<div class="lightbox" id="lightbox">
+<img id="lightbox-img">
+</div>
 
 <div class="chat-btn" onclick="toggleChat()">💬</div>
-<div class="chat" id="chat">
-<div class="messages" id="msg"></div>
+
+<div class="chat-box" id="chatBox">
+<div class="chat-messages" id="chatMessages"></div>
+
 <div class="quick">
-<span onclick="ask('pricing')">Pricing</span>
-<span onclick="ask('services')">Services</span>
-<span onclick="ask('booking')">Booking</span>
+<span onclick="quick('pricing')">Pricing</span>
+<span onclick="quick('services')">Services</span>
+<span onclick="quick('booking')">Booking</span>
+<span onclick="quick('location')">Location</span>
 </div>
-<div class="input">
-<input id="input">
-<button onclick="send()">Send</button>
+
+<div class="chat-input">
+<input id="chatInput">
+<button onclick="sendMsg()">Send</button>
 </div>
 </div>
 
 <script>
 
+/* NAV MOBILE */
+function toggleMenu(){
+document.getElementById("navLinks").classList.toggle("show");
+}
+
 /* PROGRESS */
-window.onscroll=()=>{
+window.addEventListener("scroll",()=>{
 let h=document.documentElement;
 let sc=(h.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
 document.getElementById("progress").style.width=sc+"%";
-}
+});
 
 /* FILTER */
-document.querySelectorAll(".filters button").forEach(btn=>{
+document.querySelectorAll(".filter-btn").forEach(btn=>{
 btn.onclick=()=>{
-document.querySelectorAll(".filters button").forEach(b=>b.classList.remove("active"));
+document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
 btn.classList.add("active");
-let f=btn.getAttribute("data");
+let f=btn.dataset.filter;
+
 document.querySelectorAll(".item").forEach(i=>{
-i.classList.toggle("hide",f!="all"&&i.getAttribute("data")!=f);
+i.classList.toggle("hide",f!=="all" && i.dataset.cat!==f);
 });
-}
+};
 });
 
 /* LIGHTBOX */
+const lightbox=document.getElementById("lightbox");
+const lightboxImg=document.getElementById("lightbox-img");
+
 document.querySelectorAll(".item img").forEach(img=>{
 img.onclick=()=>{
-document.getElementById("lightImg").src=img.src;
-document.getElementById("lightbox").style.display="flex";
-}
+lightbox.classList.add("active");
+lightboxImg.src=img.src;
+};
 });
-document.getElementById("lightbox").onclick=()=>lightbox.style.display="none";
+lightbox.onclick=()=>lightbox.classList.remove("active");
 
-/* MAIL */
+/* EMAIL */
 function sendMail(e){
 e.preventDefault();
-window.location.href="mailto:rainiercasas28@gmail.com";
-document.getElementById("ok").style.display="block";
+let name=document.getElementById("name").value;
+let email=document.getElementById("email").value;
+let msg=document.getElementById("msg").value;
+
+let link=`mailto:rainiercasas28@gmail.com?subject=Booking from ${name}&body=${msg} (${email})`;
+window.location.href=link;
+
+document.getElementById("success").style.display="block";
 }
 
 /* CHAT */
 function toggleChat(){
-let c=document.getElementById("chat");
-c.style.display=c.style.display==="flex"?"none":"flex";
+let box=document.getElementById("chatBox");
+box.style.display=box.style.display==="flex"?"none":"flex";
+
+if(!box.dataset.init){
+addBot("Hey 👋 I can help with pricing, booking, or services.");
+box.dataset.init=true;
+}
 }
 
-function ask(q){
-document.getElementById("input").value=q;
-send();
+function quick(q){
+document.getElementById("chatInput").value=q;
+sendMsg();
 }
 
-function send(){
-let input=document.getElementById("input");
-let text=input.value.toLowerCase();
-if(!text)return;
+function sendMsg(){
+let input=document.getElementById("chatInput");
+let msg=input.value.toLowerCase();
+if(!msg)return;
 
-add("You: "+text);
+addUser(msg);
 
-setTimeout(()=>{
-let reply="I can help with bookings.";
-if(text.includes("price")) reply="Packages start ₱3k.";
-if(text.includes("service")) reply="Photography, branding.";
-if(text.includes("book")) reply="Use contact form.";
-add("AI: "+reply);
-},500);
-
+setTimeout(()=>reply(msg),600);
 input.value="";
 }
 
-function add(t){
-let box=document.getElementById("msg");
-box.innerHTML+="<div>"+t+"</div>";
-box.scrollTop=box.scrollHeight;
+function addUser(t){
+let c=document.getElementById("chatMessages");
+c.innerHTML+=`<div>> ${t}</div>`;
+c.scrollTop=c.scrollHeight;
+}
+
+function addBot(t){
+let c=document.getElementById("chatMessages");
+c.innerHTML+=`<div style="color:#aaa;">AI: ${t}</div>`;
+c.scrollTop=c.scrollHeight;
+}
+
+function reply(msg){
+let r="I can help you with your project.";
+if(msg.includes("price")) r="Pricing ranges ₱3k–₱15k depending on concept.";
+else if(msg.includes("service")) r="We offer photography, branding, and creative direction.";
+else if(msg.includes("book")) r="Go to contact section and send your idea.";
+else if(msg.includes("availability")) r="Send your schedule and we’ll confirm availability.";
+else if(msg.includes("location")) r="Available nationwide.";
+else if(msg.includes("portfolio")) r="Check categories above.";
+
+addBot(r);
 }
 
 </script>
