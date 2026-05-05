@@ -244,13 +244,8 @@ border:none;
 cursor:pointer;
 transition:.3s;
 }
-.form button:hover{
-box-shadow:var(--glow);
-}
-.success{
-display:none;
-color:#0f0;
-}
+.form button:hover{box-shadow:var(--glow)}
+.success{display:none;color:#0f0}
 
 /* INSTAGRAM */
 .social{
@@ -265,8 +260,7 @@ display:inline-block;
 transition:.3s;
 }
 .social a:hover{
-background:#fff;
-color:#000;
+background:#fff;color:#000;
 }
 
 /* CHAT */
@@ -280,37 +274,114 @@ padding:14px 18px;
 border-radius:30px;
 cursor:pointer;
 z-index:999;
+box-shadow:0 8px 30px rgba(0,0,0,.4);
 }
+
+/* NEW CHAT UI */
 .chat-box{
 position:fixed;
-bottom:80px;
+bottom:90px;
 right:20px;
 width:360px;
 height:520px;
 background:#0b0b0b;
-border:1px solid #333;
+border:1px solid #222;
 display:none;
 flex-direction:column;
 z-index:999;
-border-radius:14px;
+border-radius:18px;
 overflow:hidden;
+box-shadow:0 20px 60px rgba(0,0,0,.6);
 }
+
+.chat-header{
+padding:16px;
+border-bottom:1px solid #222;
+font-weight:600;
+background:#0f0f0f;
+}
+
 .chat-messages{
 flex:1;
 overflow-y:auto;
-padding:12px;
+padding:14px;
 display:flex;
 flex-direction:column;
-gap:8px;
+gap:10px;
+scroll-behavior:smooth;
 }
-.msg-user{align-self:flex-end;background:#fff;color:#000;padding:8px 12px;border-radius:12px}
-.msg-bot{align-self:flex-start;background:#1a1a1a;padding:8px 12px;border-radius:12px}
+
+.msg{
+padding:10px 14px;
+border-radius:14px;
+max-width:75%;
+font-size:13px;
+line-height:1.4;
+animation:fadeUp .3s ease;
+}
+.msg-user{
+align-self:flex-end;
+background:#fff;
+color:#000;
+}
+.msg-bot{
+align-self:flex-start;
+background:#1a1a1a;
+}
+
+.chat-input{
+display:flex;
+border-top:1px solid #222;
+}
+.chat-input input{
+flex:1;
+padding:12px;
+background:none;
+border:none;
+color:#fff;
+}
+.chat-input button{
+background:#fff;
+border:none;
+padding:12px 16px;
+cursor:pointer;
+}
+
+/* QUICK REPLIES */
+.quick{
+display:flex;
+flex-wrap:wrap;
+gap:6px;
+padding:10px;
+border-top:1px solid #222;
+}
+.quick button{
+background:#1a1a1a;
+border:none;
+color:#fff;
+padding:6px 10px;
+font-size:11px;
+cursor:pointer;
+border-radius:10px;
+transition:.3s;
+}
+.quick button:hover{
+background:#fff;
+color:#000;
+}
+
+/* ANIMATION */
+@keyframes fadeUp{
+from{opacity:0;transform:translateY(10px)}
+to{opacity:1;transform:translateY(0)}
+}
 
 /* MOBILE */
 @media(max-width:768px){
 .hero h1{font-size:42px}
 .section{padding:80px 6%}
 .item.featured{grid-column:span 1}
+.chat-box{width:95%;right:2.5%}
 }
 </style>
 </head>
@@ -351,9 +422,7 @@ gap:8px;
 
 <section class="team" id="team">
 <h2>Core Team</h2>
-
 <div class="team-grid">
-
 <div class="team-card active" onclick="toggleTeam(this)">
 <h3>Rain Casas</h3>
 <p>Main Photographer • Director</p>
@@ -361,29 +430,23 @@ gap:8px;
 <p>Cinematic Lighting</p>
 <p>Creative Direction</p>
 <p>Brand Identity</p>
-<p>Storytelling Visuals</p>
 </div>
 </div>
-
 <div class="team-card" onclick="toggleTeam(this)">
 <h3>Tristan Buerano</h3>
 <p>Lighting Assistant</p>
 <div class="team-expand">
 <p>Lighting Setup</p>
 <p>Mobile Photography</p>
-<p>Scene Support</p>
 </div>
 </div>
-
 <div class="team-card" onclick="toggleTeam(this)">
 <h3>Xaris Joshua Baltazar</h3>
 <p>Lighting Assistant</p>
 <div class="team-expand">
 <p>Light Control</p>
-<p>Composition Support</p>
 </div>
 </div>
-
 </div>
 </section>
 
@@ -408,11 +471,23 @@ gap:8px;
 </div>
 
 <div class="chat-btn" onclick="toggleChat()">Chat</div>
+
 <div class="chat-box" id="chatBox">
+<div class="chat-header">Assistant</div>
+
 <div class="chat-messages" id="chatMessages"></div>
-<div style="display:flex;">
-<input id="chatInput" style="flex:1;padding:10px;background:none;border:none;color:#fff">
-<button onclick="sendMsg()" style="background:#fff;border:none;padding:10px">Send</button>
+
+<div class="quick">
+<button onclick="quick('pricing')">Pricing</button>
+<button onclick="quick('services')">Services</button>
+<button onclick="quick('booking')">Booking</button>
+<button onclick="quick('location')">Location</button>
+<button onclick="quick('portfolio')">Portfolio</button>
+</div>
+
+<div class="chat-input">
+<input id="chatInput" placeholder="Type a message...">
+<button onclick="sendMsg()">Send</button>
 </div>
 </div>
 
@@ -424,7 +499,7 @@ cursor.style.left=e.clientX+"px";
 cursor.style.top=e.clientY+"px";
 });
 
-/* HERO WORDS */
+/* HERO */
 const words=["CINEMATIC","EDITORIAL","IDENTITY","MOOD","STORY"];
 let wi=0;
 setInterval(()=>{
@@ -432,20 +507,12 @@ heroWords.textContent=words[wi];
 wi=(wi+1)%words.length;
 },1500);
 
-/* EXACT 20 IMAGES */
+/* IMAGES */
 const batches=[
-[
-["_DSC8255","portrait"],["_DSC8261","portrait"],["_DSC8267","portrait"],["_DSC8303","portrait"],["_DSC8330","portrait"]
-],
-[
-["_DSC7851","fashion"],["_DSC7860","fashion"],["_DSC7867","fashion"],["_DSC7886","fashion"],["_DSC7900","fashion"]
-],
-[
-["_DSC7665","street"],["_DSC7676","street"],["_DSC7679","street"],["_DSC7685","street"],["_DSC7694","street"]
-],
-[
-["_DSC8091","creative"],["_DSC8092","creative"],["_DSC8093","creative"],["_DSC8105","creative"],["_DSC8112","creative"]
-]
+[["_DSC8255","portrait"],["_DSC8261","portrait"],["_DSC8267","portrait"],["_DSC8303","portrait"],["_DSC8330","portrait"]],
+[["_DSC7851","fashion"],["_DSC7860","fashion"],["_DSC7867","fashion"],["_DSC7886","fashion"],["_DSC7900","fashion"]],
+[["_DSC7665","street"],["_DSC7676","street"],["_DSC7679","street"],["_DSC7685","street"],["_DSC7694","street"]],
+[["_DSC8091","creative"],["_DSC8092","creative"],["_DSC8093","creative"],["_DSC8105","creative"],["_DSC8112","creative"]]
 ];
 
 let currentBatch=0;
@@ -464,13 +531,11 @@ grid.innerHTML+=`
 }
 render();
 
-/* AUTO ROTATE */
 setInterval(()=>{
 currentBatch=(currentBatch+1)%batches.length;
 render(document.querySelector(".filter-btn.active").dataset.filter);
 },5000);
 
-/* FILTER */
 document.querySelectorAll(".filter-btn").forEach(btn=>{
 btn.onclick=()=>{
 document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
@@ -496,14 +561,12 @@ if(c!==el)c.classList.remove("active");
 el.classList.toggle("active");
 }
 
-/* CONTACT (EMAIL FUNCTIONAL) */
+/* CONTACT */
 function sendEmail(e){
 e.preventDefault();
-
 let n=name.value.trim();
 let em=email.value.trim();
 let m=msg.value.trim();
-
 let valid=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 if(!n||!valid.test(em)||!m)return;
 
@@ -511,29 +574,47 @@ let subject=`New Inquiry from ${n}`;
 let body=`Name: ${n}%0AEmail: ${em}%0A%0AMessage:%0A${m}`;
 
 window.location.href=`mailto:rainiercasas28@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
-
 success.style.display="block";
 }
 
 /* CHAT */
 function toggleChat(){
 chatBox.style.display=chatBox.style.display==="flex"?"none":"flex";
+if(!chatBox.dataset.init){
+bot("Hi 👋 Ask me anything about your shoot.");
+chatBox.dataset.init=true;
+}
+}
+function quick(q){
+chatInput.value=q;
+sendMsg();
 }
 function sendMsg(){
 let msg=chatInput.value.toLowerCase();
 if(!msg)return;
-chatMessages.innerHTML+=`<div class="msg-user">${msg}</div>`;
-let r="Tell me more.";
-if(msg.includes("price")) r="₱3k–₱15k depending on project.";
-else if(msg.includes("service")) r="Photography, branding, creative direction.";
-else if(msg.includes("book")) r="Use contact form.";
-else if(msg.includes("location")) r="Available nationwide.";
-else if(msg.includes("portfolio")) r="Browse above.";
-chatMessages.innerHTML+=`<div class="msg-bot">${r}</div>`;
+user(msg);
+setTimeout(()=>reply(msg),300);
 chatInput.value="";
 }
+function user(t){
+chatMessages.innerHTML+=`<div class="msg msg-user">${t}</div>`;
+chatMessages.scrollTop=chatMessages.scrollHeight;
+}
+function bot(t){
+chatMessages.innerHTML+=`<div class="msg msg-bot">${t}</div>`;
+chatMessages.scrollTop=chatMessages.scrollHeight;
+}
+function reply(m){
+let r="I can help you with that. Try asking about pricing or booking.";
+if(m.includes("price")) r="Pricing ranges ₱3k–₱15k depending on concept. Want a custom quote?";
+else if(m.includes("service")) r="Services: Portrait, Fashion, Creative Direction, Branding.";
+else if(m.includes("book")) r="You can book using the contact form. Want me to guide you?";
+else if(m.includes("location")) r="Shoots available nationwide.";
+else if(m.includes("portfolio")) r="Scroll up to explore recent work.";
+bot(r);
+}
 
-/* NAV ACTIVE */
+/* NAV */
 const sections=document.querySelectorAll("section");
 const navLinks=document.querySelectorAll(".nav a");
 window.addEventListener("scroll",()=>{
