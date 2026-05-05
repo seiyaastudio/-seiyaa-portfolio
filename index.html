@@ -41,7 +41,7 @@ background:rgba(0,0,0,.6);
 backdrop-filter:blur(14px);
 }
 .logo{font-family:'Playfair Display';letter-spacing:3px}
-.nav a{color:var(--muted);margin-left:25px;text-decoration:none}
+.nav a{color:var(--muted);margin-left:25px;text-decoration:none;transition:.3s}
 .nav a.active,.nav a:hover{color:#fff}
 
 /* HERO */
@@ -60,7 +60,7 @@ background:url('images/_DSC8255.jpg') center/cover;
 opacity:.25;
 }
 .hero-content{position:relative;max-width:650px;}
-.hero h1{font-family:'Playfair Display';font-size:64px}
+.hero h1{font-family:'Playfair Display';font-size:64px;line-height:1.1}
 .hero p{color:var(--muted);margin:20px 0}
 
 .btn{
@@ -70,6 +70,7 @@ text-decoration:none;
 color:#fff;
 margin-right:10px;
 transition:.3s;
+display:inline-block;
 }
 .btn:hover{background:#fff;color:#000;box-shadow:var(--glow)}
 
@@ -90,9 +91,8 @@ transition:.3s;
 /* GRID */
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:20px;
-position:relative;
 }
 
 .item{
@@ -101,14 +101,14 @@ border-radius:16px;
 overflow:hidden;
 aspect-ratio:4/5;
 cursor:pointer;
-transition:.4s ease;
+transition:.5s cubic-bezier(.22,1,.36,1);
+opacity:1;
 }
 
 .item.hide{
 opacity:0;
-transform:scale(.9);
+transform:scale(.85);
 pointer-events:none;
-position:absolute;
 }
 
 .item img{
@@ -124,9 +124,10 @@ transition:.6s cubic-bezier(.22,1,.36,1);
 position:absolute;
 bottom:0;
 width:100%;
-padding:10px;
+padding:12px;
 background:linear-gradient(transparent,rgba(0,0,0,.8));
 font-size:12px;
+letter-spacing:1px;
 opacity:0;
 transition:.3s;
 }
@@ -148,7 +149,7 @@ max-width:95%;
 max-height:95%;
 object-fit:contain;
 border-radius:16px;
-animation:zoom .4s ease;
+animation:zoom .35s ease;
 }
 @keyframes zoom{
 from{transform:scale(.8);opacity:0}
@@ -169,6 +170,7 @@ background:var(--glass);
 cursor:pointer;
 transition:.4s;
 border-radius:16px;
+text-align:left;
 }
 .team-card:hover{
 transform:translateY(-6px);
@@ -184,25 +186,29 @@ max-height:0;
 overflow:hidden;
 opacity:0;
 transition:.5s ease;
-text-align:left;
 font-size:13px;
 color:#ccc;
 }
-
 .team-card.active .team-expand{
 max-height:400px;
 opacity:1;
 margin-top:12px;
 }
-
 .skills li{margin-bottom:6px}
 
 /* CONTACT */
-.form{display:flex;flex-direction:column;gap:12px;max-width:400px}
+.form{display:flex;flex-direction:column;gap:12px;max-width:420px}
 .form input,.form textarea{
 background:#000;border:1px solid #333;padding:12px;color:#fff;
 }
-.success{display:none;color:#0f0}
+.form button{
+padding:14px;background:#fff;border:none;cursor:pointer;
+}
+.success{
+display:none;
+color:#0f0;
+font-size:13px;
+}
 
 /* CHAT */
 .chat-btn{
@@ -214,6 +220,7 @@ color:#000;
 padding:14px;
 border-radius:30px;
 cursor:pointer;
+z-index:999;
 }
 .chat-box{
 position:fixed;
@@ -222,10 +229,15 @@ right:20px;
 width:320px;
 height:420px;
 background:#111;
+border:1px solid #333;
 display:none;
 flex-direction:column;
+z-index:999;
 }
-.chat-messages{flex:1;overflow-y:auto;padding:10px}
+.chat-messages{flex:1;overflow-y:auto;padding:10px;font-size:13px}
+.chat-input{display:flex;border-top:1px solid #222}
+.chat-input input{flex:1;background:none;border:none;color:#fff;padding:10px}
+.chat-input button{background:#fff;border:none;padding:10px}
 
 /* MOBILE */
 @media(max-width:768px){
@@ -249,8 +261,9 @@ flex-direction:column;
 <section class="hero">
 <div class="hero-content">
 <h1>Cinematic Identity</h1>
-<p>Premium photography & visuals</p>
+<p>Premium visuals for brands, models, and creators</p>
 <a href="#portfolio" class="btn">View Work</a>
+<a href="#contact" class="btn">Book Shoot</a>
 </div>
 </section>
 
@@ -267,7 +280,7 @@ flex-direction:column;
 
 <div class="grid">
 
-<!-- 20 COMPLETE IMAGES -->
+<!-- COMPLETE 20 IMAGES -->
 <div class="item" data-cat="portrait"><img src="images/_DSC8255.jpg" loading="lazy"><div class="overlay">Portrait</div></div>
 <div class="item" data-cat="portrait"><img src="images/_DSC8261.jpg" loading="lazy"><div class="overlay">Portrait</div></div>
 <div class="item" data-cat="portrait"><img src="images/_DSC8267.jpg" loading="lazy"><div class="overlay">Portrait</div></div>
@@ -309,6 +322,7 @@ flex-direction:column;
 <li>✔ Video Production</li>
 <li>✔ Lighting Mastery</li>
 <li>✔ Creative Direction</li>
+<li>✔ Branding Strategy</li>
 </ul>
 </div>
 </div>
@@ -345,17 +359,22 @@ flex-direction:column;
 <form class="form" onsubmit="sendEmail(event)">
 <input id="name" required placeholder="Name">
 <input id="email" type="email" required placeholder="Email">
-<textarea id="msg" required placeholder="Project"></textarea>
-<button>Send</button>
-<div class="success" id="success">Opening email...</div>
+<textarea id="msg" required placeholder="Project details"></textarea>
+<button type="submit">Send Inquiry</button>
+<div class="success" id="success">Opening email client...</div>
 </form>
 </section>
 
 <div class="lightbox" id="lightbox"><img id="lightbox-img"></div>
 
 <div class="chat-btn" onclick="toggleChat()">Chat</div>
+
 <div class="chat-box" id="chatBox">
 <div class="chat-messages" id="chatMessages"></div>
+<div class="chat-input">
+<input id="chatInput" placeholder="Ask something...">
+<button onclick="sendMsg()">Send</button>
+</div>
 </div>
 
 <script>
@@ -365,9 +384,14 @@ document.querySelectorAll(".filter-btn").forEach(btn=>{
 btn.onclick=()=>{
 document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
 btn.classList.add("active");
+
 let f=btn.dataset.filter;
 document.querySelectorAll(".item").forEach(i=>{
-i.classList.toggle("hide",f!=="all"&&i.dataset.cat!==f);
+if(f==="all"||i.dataset.cat===f){
+i.classList.remove("hide");
+}else{
+i.classList.add("hide");
+}
 });
 };
 });
@@ -392,26 +416,61 @@ el.classList.toggle("active");
 /* CONTACT */
 function sendEmail(e){
 e.preventDefault();
-let name=document.getElementById("name").value;
-let email=document.getElementById("email").value;
-let msg=document.getElementById("msg").value;
-window.location.href=`mailto:rainiercasas28@gmail.com?subject=${name}&body=${msg} (${email})`;
+let name=document.getElementById("name").value.trim();
+let email=document.getElementById("email").value.trim();
+let msg=document.getElementById("msg").value.trim();
+
+if(!name||!email||!msg)return;
+
+let mail=`mailto:rainiercasas28@gmail.com?subject=Booking - ${name}&body=${msg}%0A%0AFrom:${email}`;
+window.location.href=mail;
+
 document.getElementById("success").style.display="block";
 }
 
-/* CHAT */
+/* CHATBOT */
 function toggleChat(){
 let box=document.getElementById("chatBox");
 box.style.display=box.style.display==="flex"?"none":"flex";
+
 if(!box.dataset.init){
-addBot("Hi 👋 Ask about pricing, booking, or services.");
+addBot("Hey 👋 I can help you with pricing, booking, and services.");
 box.dataset.init=true;
 }
+}
+
+function sendMsg(){
+let input=document.getElementById("chatInput");
+let msg=input.value.toLowerCase();
+if(!msg)return;
+
+addUser(msg);
+setTimeout(()=>reply(msg),500);
+input.value="";
+}
+
+function addUser(t){
+let c=document.getElementById("chatMessages");
+c.innerHTML+=`<div>> ${t}</div>`;
+c.scrollTop=c.scrollHeight;
 }
 
 function addBot(t){
 let c=document.getElementById("chatMessages");
 c.innerHTML+=`<div style="color:#aaa;">AI: ${t}</div>`;
+c.scrollTop=c.scrollHeight;
+}
+
+function reply(msg){
+let r="I can help with bookings, pricing, and services.";
+
+if(msg.includes("price")) r="Pricing ranges from ₱3k–₱15k depending on concept.";
+else if(msg.includes("service")) r="We offer photography, creative direction, and branding visuals.";
+else if(msg.includes("book")) r="Use the contact form to secure your shoot.";
+else if(msg.includes("location")) r="Available nationwide.";
+else if(msg.includes("portfolio")) r="Browse categories above to see our work.";
+
+addBot(r);
 }
 
 </script>
