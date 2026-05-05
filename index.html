@@ -28,21 +28,24 @@ overflow-x:hidden;
 scroll-behavior:smooth;
 }
 
-/* CURSOR GRADIENT (REFINED) */
+/* PREMIUM CURSOR GLOW */
 .cursor-glow{
 position:fixed;
 top:0;
 left:0;
-width:500px;
-height:500px;
+width:420px;
+height:420px;
 pointer-events:none;
-background:radial-gradient(circle, rgba(255,255,255,0.05), transparent 65%);
+background:radial-gradient(circle at center,
+rgba(255,255,255,0.05),
+rgba(255,255,255,0.02) 30%,
+transparent 70%);
 transform:translate(-50%,-50%);
 z-index:0;
-mix-blend-mode:soft-light;
+filter:blur(20px);
 }
 
-/* PROGRESS */
+/* PROGRESS BAR */
 .progress{
 position:fixed;
 top:0;
@@ -85,7 +88,7 @@ position:absolute;
 inset:0;
 background:url('images/_DSC8255.jpg') center/cover;
 opacity:.35;
-animation:zoomHero 18s ease-in-out infinite alternate;
+animation:zoomHero 20s ease-in-out infinite alternate;
 }
 @keyframes zoomHero{
 0%{transform:scale(1.05)}
@@ -95,6 +98,7 @@ animation:zoomHero 18s ease-in-out infinite alternate;
 .hero h1{font-family:'Playfair Display';font-size:64px;line-height:1.1}
 .hero p{color:var(--muted);margin:20px 0}
 
+/* BUTTON */
 .btn{
 padding:14px 30px;
 border:1px solid #fff;
@@ -400,12 +404,23 @@ font-size:13px;
 
 <script>
 
-/* CURSOR GRADIENT */
-const glow=document.getElementById("cursorGlow");
+/* CURSOR GLOW SMOOTH */
+let glow=document.getElementById("cursorGlow");
+let x=0,y=0;
+let tx=0,ty=0;
+
 document.addEventListener("mousemove",e=>{
-glow.style.left=e.clientX+"px";
-glow.style.top=e.clientY+"px";
+tx=e.clientX;
+ty=e.clientY;
 });
+
+function animateGlow(){
+x+= (tx-x)*0.1;
+y+= (ty-y)*0.1;
+glow.style.transform=`translate(${x}px,${y}px)`;
+requestAnimationFrame(animateGlow);
+}
+animateGlow();
 
 /* PROGRESS */
 window.onscroll=()=>{
