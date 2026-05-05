@@ -58,7 +58,7 @@ content:"";
 position:absolute;
 inset:0;
 background:url('images/_DSC8255.jpg') center/cover;
-opacity:.3;
+opacity:.35;
 }
 .hero-content{position:relative;max-width:650px;}
 .hero h1{font-family:'Playfair Display';font-size:64px;line-height:1.1}
@@ -82,7 +82,7 @@ transform:translateY(-2px);
 
 /* SECTION */
 .section{padding:120px 8%}
-.section h2{font-family:'Playfair Display';font-size:40px;margin-bottom:25px}
+.section h2{font-family:'Playfair Display';font-size:42px;margin-bottom:25px}
 
 /* FILTER */
 .filters{
@@ -116,8 +116,6 @@ overflow:hidden;
 aspect-ratio:4/5;
 cursor:pointer;
 transition:.4s cubic-bezier(.22,1,.36,1);
-opacity:1;
-transform:scale(1);
 }
 .item img{
 width:100%;
@@ -131,6 +129,7 @@ transition:.6s cubic-bezier(.22,1,.36,1);
 opacity:0;
 transform:scale(.85);
 pointer-events:none;
+position:absolute;
 }
 
 .overlay{
@@ -178,8 +177,8 @@ background:linear-gradient(180deg,#050505,#0a0a0a);
 .team h2{
 font-family:'Playfair Display';
 font-size:56px;
-margin-bottom:10px;
-text-shadow:0 0 25px rgba(255,255,255,.2);
+margin-bottom:20px;
+text-shadow:0 0 25px rgba(255,255,255,.25);
 }
 .team-grid{
 display:grid;
@@ -201,7 +200,7 @@ box-shadow:var(--glow);
 }
 .team-card.active{
 transform:scale(1.05);
-box-shadow:0 0 80px rgba(255,255,255,.2);
+box-shadow:0 0 80px rgba(255,255,255,.25);
 }
 
 .team-expand{
@@ -390,9 +389,15 @@ document.querySelectorAll(".filter-btn").forEach(btn=>{
 btn.onclick=()=>{
 document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
 btn.classList.add("active");
+
 let f=btn.dataset.filter;
+
 document.querySelectorAll(".item").forEach(i=>{
-i.classList.toggle("hide",f!=="all" && i.dataset.cat!==f);
+if(f==="all"||i.dataset.cat===f){
+i.classList.remove("hide");
+}else{
+i.classList.add("hide");
+}
 });
 };
 });
@@ -427,10 +432,11 @@ success.style.display="block";
 function toggleChat(){
 chatBox.style.display=chatBox.style.display==="flex"?"none":"flex";
 if(!chatBox.dataset.init){
-addBot("Hi 👋 Ask about pricing, booking, services, location, or portfolio.");
+addBot("Hi 👋 Ask about pricing, services, booking, location or portfolio.");
 chatBox.dataset.init=true;
 }
 }
+
 function addBot(t){
 chatMessages.innerHTML+=`<div style="color:#aaa;margin-bottom:6px;">AI: ${t}</div>`;
 chatMessages.scrollTop=chatMessages.scrollHeight;
@@ -439,6 +445,7 @@ chatMessages.scrollTop=chatMessages.scrollHeight;
 /* NAV ACTIVE */
 const sections=document.querySelectorAll("section");
 const navLinks=document.querySelectorAll(".nav a");
+
 window.addEventListener("scroll",()=>{
 let current="";
 sections.forEach(sec=>{
