@@ -15,7 +15,7 @@
 --text:#fff;
 --muted:#9a9a9a;
 --accent:#fff;
---glow:0 0 60px rgba(255,255,255,0.12);
+--glow:0 0 60px rgba(255,255,255,0.15);
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
@@ -28,16 +28,16 @@ overflow-x:hidden;
 scroll-behavior:smooth;
 }
 
-/* CURSOR GLOW */
-.cursor-glow{
+/* CURSOR GRADIENT */
+.cursor{
 position:fixed;
 width:420px;
 height:420px;
+background:radial-gradient(circle,rgba(255,255,255,0.08),transparent 70%);
 pointer-events:none;
-background:radial-gradient(circle,rgba(255,255,255,0.06),transparent 70%);
-transform:translate(-50%,-50%);
 z-index:0;
-filter:blur(50px);
+transform:translate(-50%,-50%);
+filter:blur(60px);
 }
 
 /* NAV */
@@ -70,35 +70,35 @@ content:"";
 position:absolute;
 inset:0;
 background:url('images/_DSC8255.jpg') center/cover;
-opacity:.4;
+opacity:.35;
 }
-.hero-content{position:relative;z-index:2;}
+.hero-content{position:relative;z-index:2}
 .hero h1{
 font-family:'Playfair Display';
-font-size:72px;
+font-size:70px;
 line-height:1.05;
 }
 .hero-words{
 margin-top:20px;
-letter-spacing:3px;
 font-size:12px;
+letter-spacing:3px;
 color:var(--muted);
 height:20px;
 }
 
 /* QUOTES */
-.quote-section{
+.quote{
 padding:160px 8%;
 text-align:center;
 }
 .quote-text{
 font-family:'Playfair Display';
-font-size:42px;
-max-width:900px;
+font-size:38px;
+max-width:800px;
 margin:auto;
 opacity:0;
-transform:translateY(30px);
-transition:.7s;
+transform:translateY(20px);
+transition:.6s;
 }
 .quote-text.active{
 opacity:1;
@@ -114,41 +114,59 @@ margin-bottom:30px;
 }
 
 /* FILTER */
-.filters{display:flex;gap:10px;margin-bottom:40px;flex-wrap:wrap}
+.filters{
+display:flex;
+gap:10px;
+margin-bottom:50px;
+flex-wrap:wrap;
+}
 .filter-btn{
 padding:10px 18px;
 border:1px solid var(--border);
 cursor:pointer;
 transition:.3s;
+font-size:13px;
 }
-.filter-btn.active{background:#fff;color:#000}
+.filter-btn.active{
+background:#fff;
+color:#000;
+}
 
-/* GRID (CINEMATIC HIERARCHY) */
-.grid{
-display:grid;
-grid-template-columns:repeat(6,1fr);
-grid-auto-rows:140px;
-gap:16px;
-}
-.item{
-position:relative;
+/* CAROUSELS */
+.carousel-wrap{display:flex;flex-direction:column;gap:90px}
+
+.carousel{position:relative}
+.track{
+display:flex;
+gap:20px;
 overflow:hidden;
+scroll-behavior:smooth;
+}
+
+.slide{
+min-width:260px;
+height:380px;
 border-radius:14px;
+overflow:hidden;
+position:relative;
 cursor:pointer;
 transition:.4s;
+opacity:.5;
+transform:scale(.9);
 }
-.item img{
+
+.slide.active{
+opacity:1;
+transform:scale(1);
+}
+
+.slide img{
 width:100%;
 height:100%;
 object-fit:cover;
-transition:.6s;
+transition:.5s;
 }
-.item:hover img{transform:scale(1.12)}
-
-.item.large{grid-column:span 3;grid-row:span 3}
-.item.wide{grid-column:span 3;grid-row:span 2}
-.item.tall{grid-column:span 2;grid-row:span 3}
-.item.small{grid-column:span 2;grid-row:span 2}
+.slide:hover img{transform:scale(1.08)}
 
 .overlay{
 position:absolute;
@@ -156,30 +174,66 @@ bottom:0;
 width:100%;
 padding:12px;
 background:linear-gradient(transparent,rgba(0,0,0,.9));
+font-size:12px;
 opacity:0;
 transition:.3s;
-font-size:12px;
 }
-.item:hover .overlay{opacity:1}
+.slide:hover .overlay{opacity:1}
 
-.item.hide{
+/* ARROWS */
+.arrow{
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+background:rgba(255,255,255,.08);
+border:1px solid var(--border);
+padding:10px 14px;
+cursor:pointer;
+z-index:2;
+}
+.arrow:hover{background:#fff;color:#000}
+.left{left:-10px}
+.right{right:-10px}
+
+/* TEAM */
+.team{
+padding:140px 8%;
+text-align:center;
+}
+.team h2{
+font-family:'Playfair Display';
+font-size:50px;
+margin-bottom:20px;
+}
+.team-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:30px;
+}
+.team-card{
+background:var(--glass);
+border:1px solid var(--border);
+padding:25px;
+border-radius:16px;
+cursor:pointer;
+transition:.4s;
+}
+.team-card.active{
+transform:scale(1.05);
+box-shadow:var(--glow);
+}
+.team-expand{
+max-height:0;
+overflow:hidden;
 opacity:0;
-transform:scale(.8);
-pointer-events:none;
+transition:.4s;
+text-align:left;
 }
-
-/* LIGHTBOX */
-.lightbox{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.96);
-display:none;
-justify-content:center;
-align-items:center;
-z-index:2000;
+.team-card.active .team-expand{
+max-height:400px;
+opacity:1;
+margin-top:10px;
 }
-.lightbox.active{display:flex}
-.lightbox img{max-width:95%;max-height:95%}
 
 /* CONTACT */
 .form{
@@ -199,12 +253,10 @@ padding:14px;
 background:#fff;
 border:none;
 cursor:pointer;
+transition:.3s;
 }
-.success{
-display:none;
-color:#0f0;
-margin-top:10px;
-}
+.form button:hover{box-shadow:var(--glow)}
+.success{display:none;color:#0f0}
 
 /* CHAT */
 .chat-btn{
@@ -218,7 +270,6 @@ border-radius:30px;
 cursor:pointer;
 z-index:999;
 }
-
 .chat-box{
 position:fixed;
 bottom:80px;
@@ -233,7 +284,6 @@ z-index:999;
 border-radius:14px;
 overflow:hidden;
 }
-
 .chat-messages{
 flex:1;
 overflow-y:auto;
@@ -242,44 +292,40 @@ display:flex;
 flex-direction:column;
 gap:8px;
 }
+.msg-user{align-self:flex-end;background:#fff;color:#000;padding:8px 12px;border-radius:12px}
+.msg-bot{align-self:flex-start;background:#1a1a1a;padding:8px 12px;border-radius:12px}
 
-.msg-user{
-align-self:flex-end;
-background:#fff;
-color:#000;
-padding:8px 12px;
-border-radius:12px;
+/* LIGHTBOX */
+.lightbox{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.95);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:2000;
 }
-
-.msg-bot{
-align-self:flex-start;
-background:#1a1a1a;
-padding:8px 12px;
-border-radius:12px;
-}
+.lightbox.active{display:flex}
+.lightbox img{max-width:95%;max-height:95%}
 
 /* MOBILE */
 @media(max-width:768px){
-.grid{grid-template-columns:repeat(2,1fr)}
-.item.large,.item.wide,.item.tall,.item.small{
-grid-column:span 2;
-grid-row:span 2;
-}
+.slide{min-width:220px;height:300px}
 .hero h1{font-size:42px}
-.quote-text{font-size:28px}
+.section{padding:80px 6%}
 }
 </style>
 </head>
 
 <body>
 
-<div class="cursor-glow" id="glow"></div>
+<div class="cursor" id="cursor"></div>
 
 <div class="nav">
 <div class="logo">EIGHTYSIX MEDIA</div>
 <div>
 <a href="#portfolio">Work</a>
-<a href="#quotes">Vision</a>
+<a href="#team">Team</a>
 <a href="#contact">Contact</a>
 </div>
 </div>
@@ -291,7 +337,7 @@ grid-row:span 2;
 </div>
 </section>
 
-<section class="quote-section" id="quotes">
+<section class="quote">
 <div class="quote-text" id="quoteText"></div>
 </section>
 
@@ -306,7 +352,43 @@ grid-row:span 2;
 <div class="filter-btn" data-filter="creative">Creative</div>
 </div>
 
-<div class="grid" id="grid"></div>
+<div class="carousel-wrap" id="wrap"></div>
+</section>
+
+<section class="team" id="team">
+<h2>Core Team</h2>
+
+<div class="team-grid">
+
+<div class="team-card active" onclick="toggleTeam(this)">
+<h3>Rain Casas</h3>
+<p>Main Photographer • Main Videographer</p>
+<div class="team-expand">
+<p>• Cinematic Lighting</p>
+<p>• Creative Direction</p>
+<p>• Brand Identity</p>
+</div>
+</div>
+
+<div class="team-card" onclick="toggleTeam(this)">
+<h3>Tristan Buerano</h3>
+<p>Lighting Assistant</p>
+<div class="team-expand">
+<p>• Lighting Setup</p>
+<p>• Mobile Photography</p>
+</div>
+</div>
+
+<div class="team-card" onclick="toggleTeam(this)">
+<h3>Xaris Baltazar</h3>
+<p>Lighting Assistant</p>
+<div class="team-expand">
+<p>• Light Control</p>
+<p>• Scene Support</p>
+</div>
+</div>
+
+</div>
 </section>
 
 <section class="section" id="contact">
@@ -325,18 +407,22 @@ grid-row:span 2;
 <div class="chat-btn" onclick="toggleChat()">Chat</div>
 <div class="chat-box" id="chatBox">
 <div class="chat-messages" id="chatMessages"></div>
+<div style="display:flex;">
+<input id="chatInput" style="flex:1;padding:10px;background:none;border:none;color:#fff">
+<button onclick="sendMsg()" style="background:#fff;border:none;padding:10px">Send</button>
+</div>
 </div>
 
 <script>
 
 /* CURSOR */
 document.addEventListener("mousemove",e=>{
-glow.style.left=e.clientX+"px";
-glow.style.top=e.clientY+"px";
+cursor.style.left=e.clientX+"px";
+cursor.style.top=e.clientY+"px";
 });
 
 /* HERO WORDS */
-const words=["CINEMATIC","RAW","EDITORIAL","STORY","IDENTITY","MOOD"];
+const words=["CINEMATIC","EDITORIAL","IDENTITY","MOOD","STORY"];
 let wi=0;
 setInterval(()=>{
 heroWords.textContent=words[wi];
@@ -346,13 +432,9 @@ wi=(wi+1)%words.length;
 /* QUOTES */
 const quotes=[
 "You're not hiring a photographer. You're building authority.",
-"Your visuals should feel like a movie, not a post.",
-"We don’t shoot photos. We create perception.",
-"Attention is earned in milliseconds. We make it count.",
-"Strong visuals don’t just look good. They convert.",
-"You don’t need more content. You need better visuals."
+"We don’t shoot. We position.",
+"Visuals should feel like cinema, not content."
 ];
-
 let qi=0;
 function rotateQuote(){
 quoteText.classList.remove("active");
@@ -363,43 +445,75 @@ qi=(qi+1)%quotes.length;
 },300);
 }
 rotateQuote();
-setInterval(rotateQuote,6000);
+setInterval(rotateQuote,5000);
 
 /* IMAGES */
 const images=[
-["_DSC8255","portrait","large"],["_DSC8330","portrait","large"],["_DSC8267","portrait","tall"],["_DSC8261","portrait","small"],["_DSC8303","portrait","wide"],
-["_DSC7851","fashion","large"],["_DSC7867","fashion","tall"],["_DSC7860","fashion","small"],["_DSC7886","fashion","wide"],["_DSC7900","fashion","small"],
-["_DSC7665","street","large"],["_DSC7685","street","tall"],["_DSC7676","street","small"],["_DSC7679","street","wide"],["_DSC7694","street","small"],
-["_DSC8091","creative","large"],["_DSC8105","creative","tall"],["_DSC8092","creative","small"],["_DSC8093","creative","wide"],["_DSC8112","creative","small"]
+["_DSC8255","portrait"],["_DSC8261","portrait"],["_DSC8267","portrait"],["_DSC8303","portrait"],["_DSC8330","portrait"],
+["_DSC7851","fashion"],["_DSC7860","fashion"],["_DSC7867","fashion"],["_DSC7886","fashion"],["_DSC7900","fashion"],
+["_DSC7665","street"],["_DSC7676","street"],["_DSC7679","street"],["_DSC7685","street"],["_DSC7694","street"],
+["_DSC8091","creative"],["_DSC8092","creative"],["_DSC8093","creative"],["_DSC8105","creative"],["_DSC8112","creative"]
 ];
 
-grid.innerHTML=images.map(i=>`
-<div class="item ${i[2]}" data-cat="${i[1]}">
+const cats=["portrait","fashion","street","creative"];
+let filter="all";
+
+function build(){
+wrap.innerHTML="";
+cats.forEach(c=>{
+if(filter!=="all" && filter!==c)return;
+
+let group=images.filter(i=>i[1]===c);
+
+wrap.innerHTML+=`
+<div class="carousel">
+<h3 style="margin-bottom:20px;color:#aaa;text-transform:uppercase">${c}</h3>
+<div class="arrow left" onclick="move(this,-1)">‹</div>
+<div class="arrow right" onclick="move(this,1)">›</div>
+<div class="track">
+${group.map(i=>`
+<div class="slide">
 <img src="images/${i[0]}.jpg" loading="lazy">
-<div class="overlay">${i[1]}</div>
+<div class="overlay">${c}</div>
+</div>`).join("")}
 </div>
-`).join("");
+</div>`;
+});
+}
+build();
 
 /* FILTER */
 document.querySelectorAll(".filter-btn").forEach(btn=>{
 btn.onclick=()=>{
 document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
 btn.classList.add("active");
-let f=btn.dataset.filter;
-document.querySelectorAll(".item").forEach(i=>{
-i.classList.toggle("hide",f!=="all" && i.dataset.cat!==f);
-});
+filter=btn.dataset.filter;
+build();
 };
 });
 
+/* MOVE */
+function move(el,dir){
+let track=el.parentElement.querySelector(".track");
+track.scrollLeft+=dir*300;
+}
+
 /* LIGHTBOX */
 document.addEventListener("click",e=>{
-if(e.target.tagName==="IMG" && e.target.closest(".item")){
+if(e.target.tagName==="IMG" && e.target.closest(".slide")){
 lightboxImg.src=e.target.src;
 lightbox.classList.add("active");
 }
 });
 lightbox.onclick=()=>lightbox.classList.remove("active");
+
+/* TEAM */
+function toggleTeam(el){
+document.querySelectorAll(".team-card").forEach(c=>{
+if(c!==el)c.classList.remove("active");
+});
+el.classList.toggle("active");
+}
 
 /* CONTACT */
 function sendEmail(e){
@@ -409,19 +523,52 @@ window.location.href=`mailto:rainiercasas28@gmail.com?subject=${name.value}&body
 success.style.display="block";
 }
 
-/* CHATBOT */
+/* CHAT */
 function toggleChat(){
 chatBox.style.display=chatBox.style.display==="flex"?"none":"flex";
 if(!chatBox.dataset.init){
-bot("Ask about pricing, booking, services, or creative direction.");
+bot("Hi 👋 Ask me about pricing, services, booking, location, or portfolio.");
 chatBox.dataset.init=true;
 }
 }
-
+function sendMsg(){
+let msg=chatInput.value.toLowerCase();
+if(!msg)return;
+user(msg);
+setTimeout(()=>reply(msg),300);
+chatInput.value="";
+}
+function user(t){
+chatMessages.innerHTML+=`<div class="msg-user">${t}</div>`;
+chatMessages.scrollTop=chatMessages.scrollHeight;
+}
 function bot(t){
 chatMessages.innerHTML+=`<div class="msg-bot">${t}</div>`;
 chatMessages.scrollTop=chatMessages.scrollHeight;
 }
+function reply(m){
+let r="I can help.";
+if(m.includes("price")) r="₱3k–₱15k depending on project.";
+else if(m.includes("service")) r="Photography, branding, creative direction.";
+else if(m.includes("book")) r="Use contact form to book.";
+else if(m.includes("location")) r="Available nationwide.";
+else if(m.includes("portfolio")) r="Browse above.";
+bot(r);
+}
+
+/* NAV */
+const sections=document.querySelectorAll("section");
+const navLinks=document.querySelectorAll(".nav a");
+window.addEventListener("scroll",()=>{
+let current="";
+sections.forEach(sec=>{
+if(window.scrollY>=sec.offsetTop-200) current=sec.id;
+});
+navLinks.forEach(a=>{
+a.classList.remove("active");
+if(a.getAttribute("href")==="#"+current) a.classList.add("active");
+});
+});
 
 </script>
 
