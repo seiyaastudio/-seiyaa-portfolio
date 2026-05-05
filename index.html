@@ -394,11 +394,11 @@ gap:8px;
 <input id="email" type="email" required placeholder="Email">
 <textarea id="msg" required placeholder="Project details"></textarea>
 <button type="submit">Send Inquiry</button>
-<div class="success" id="success">Opening email client...</div>
+<div class="success" id="success">Email client opened successfully.</div>
 </form>
 
 <div class="social">
-<a href="https://instagram.com/seiyaa.visuals" target="_blank">Instagram</a>
+<a href="https://instagram.com/seiyaasstudio" target="_blank">Instagram</a>
 </div>
 
 </section>
@@ -432,7 +432,7 @@ heroWords.textContent=words[wi];
 wi=(wi+1)%words.length;
 },1500);
 
-/* 20 IMAGES */
+/* EXACT 20 IMAGES */
 const batches=[
 [
 ["_DSC8255","portrait"],["_DSC8261","portrait"],["_DSC8267","portrait"],["_DSC8303","portrait"],["_DSC8330","portrait"]
@@ -453,7 +453,6 @@ let currentBatch=0;
 function render(filter="all"){
 grid.innerHTML="";
 let imgs=batches[currentBatch];
-
 imgs.forEach((i,index)=>{
 if(filter!=="all" && i[1]!==filter)return;
 grid.innerHTML+=`
@@ -465,7 +464,7 @@ grid.innerHTML+=`
 }
 render();
 
-/* AUTO ROTATE BATCH */
+/* AUTO ROTATE */
 setInterval(()=>{
 currentBatch=(currentBatch+1)%batches.length;
 render(document.querySelector(".filter-btn.active").dataset.filter);
@@ -497,17 +496,21 @@ if(c!==el)c.classList.remove("active");
 el.classList.toggle("active");
 }
 
-/* CONTACT */
+/* CONTACT (EMAIL FUNCTIONAL) */
 function sendEmail(e){
 e.preventDefault();
+
 let n=name.value.trim();
 let em=email.value.trim();
 let m=msg.value.trim();
+
 let valid=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 if(!n||!valid.test(em)||!m)return;
 
-let mail=`mailto:rainiercasas28@gmail.com?subject=${encodeURIComponent("Inquiry from "+n)}&body=${encodeURIComponent(m+"\n\nEmail: "+em)}`;
-window.location.href=mail;
+let subject=`New Inquiry from ${n}`;
+let body=`Name: ${n}%0AEmail: ${em}%0A%0AMessage:%0A${m}`;
+
+window.location.href=`mailto:rainiercasas28@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
 
 success.style.display="block";
 }
