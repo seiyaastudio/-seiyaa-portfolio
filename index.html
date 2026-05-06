@@ -14,7 +14,7 @@
 --border:rgba(255,255,255,0.12);
 --text:#fff;
 --muted:#9a9a9a;
---glow:0 0 60px rgba(255,255,255,0.15);
+--glow:0 0 80px rgba(255,255,255,0.18);
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
@@ -27,15 +27,16 @@ overflow-x:hidden;
 scroll-behavior:smooth;
 }
 
-/* CURSOR */
+/* CURSOR GRADIENT */
 .cursor{
 position:fixed;
-width:520px;height:520px;
-background:radial-gradient(circle,rgba(255,255,255,0.06),transparent 70%);
+width:600px;height:600px;
+background:radial-gradient(circle,rgba(255,255,255,0.08),transparent 70%);
 pointer-events:none;
 transform:translate(-50%,-50%);
-filter:blur(90px);
+filter:blur(100px);
 z-index:0;
+transition:transform .05s linear;
 }
 
 /* NAV */
@@ -110,16 +111,16 @@ color:#000;
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:20px;
+gap:22px;
 }
 
 .item{
 position:relative;
-border-radius:14px;
+border-radius:16px;
 overflow:hidden;
 aspect-ratio:4/5;
 cursor:pointer;
-transition:opacity .5s, transform .5s;
+transition:transform .6s cubic-bezier(.22,1,.36,1), opacity .5s;
 opacity:1;
 transform:scale(1);
 }
@@ -131,7 +132,7 @@ aspect-ratio:4/3;
 
 .item.hide{
 opacity:0;
-transform:scale(.9);
+transform:scale(.85);
 pointer-events:none;
 }
 
@@ -140,20 +141,23 @@ width:100%;
 height:100%;
 object-fit:cover;
 display:block;
-transition:transform .6s ease;
+transition:transform .8s ease;
 }
 
-.item:hover img{transform:scale(1.08)}
+.item:hover img{
+transform:scale(1.1);
+}
 
 .overlay{
 position:absolute;
 bottom:0;
 width:100%;
-padding:12px;
-background:linear-gradient(transparent,rgba(0,0,0,.9));
+padding:14px;
+background:linear-gradient(transparent,rgba(0,0,0,.95));
 font-size:12px;
+letter-spacing:1px;
 opacity:0;
-transition:.3s;
+transition:.4s;
 }
 .item:hover .overlay{opacity:1}
 
@@ -168,18 +172,18 @@ align-items:center;
 z-index:3000;
 opacity:0;
 pointer-events:none;
-transition:.3s;
+transition:.4s;
 }
 .lightbox.active{
 opacity:1;
 pointer-events:auto;
 }
 .lightbox img{
-max-width:90%;
-max-height:90%;
-border-radius:12px;
+max-width:92%;
+max-height:92%;
+border-radius:14px;
 transform:scale(.9);
-transition:.4s;
+transition:.5s cubic-bezier(.22,1,.36,1);
 }
 .lightbox.active img{transform:scale(1)}
 
@@ -212,14 +216,13 @@ box-shadow:var(--glow);
 }
 .team-card.active{
 transform:scale(1.05);
-box-shadow:0 0 90px rgba(255,255,255,.2);
+box-shadow:0 0 100px rgba(255,255,255,.25);
 }
 .team-expand{
 max-height:0;
 overflow:hidden;
 opacity:0;
 transition:.4s;
-text-align:left;
 }
 .team-card.active .team-expand{
 max-height:500px;
@@ -262,7 +265,7 @@ transition:.3s;
 }
 .social a:hover{background:#fff;color:#000}
 
-/* CHAT */
+/* CHAT CLEAN UI */
 .chat-btn{
 position:fixed;
 bottom:20px;
@@ -273,25 +276,26 @@ padding:14px 18px;
 border-radius:30px;
 cursor:pointer;
 z-index:999;
+box-shadow:0 10px 40px rgba(0,0,0,.5);
 }
 
 .chat-box{
 position:fixed;
 bottom:90px;
 right:20px;
-width:360px;
-height:520px;
-background:#0b0b0b;
+width:340px;
+height:500px;
+background:#0a0a0a;
 border:1px solid #222;
 display:none;
 flex-direction:column;
-z-index:999;
-border-radius:18px;
+border-radius:20px;
 overflow:hidden;
+z-index:999;
 }
 
 .chat-header{
-padding:14px;
+padding:16px;
 border-bottom:1px solid #222;
 font-weight:600;
 }
@@ -299,7 +303,7 @@ font-weight:600;
 .chat-messages{
 flex:1;
 overflow-y:auto;
-padding:14px;
+padding:16px;
 display:flex;
 flex-direction:column;
 gap:10px;
@@ -310,16 +314,10 @@ padding:10px 14px;
 border-radius:14px;
 max-width:75%;
 font-size:13px;
+animation:fadeUp .3s ease;
 }
-.msg-user{
-align-self:flex-end;
-background:#fff;
-color:#000;
-}
-.msg-bot{
-align-self:flex-start;
-background:#1a1a1a;
-}
+.msg-user{align-self:flex-end;background:#fff;color:#000}
+.msg-bot{align-self:flex-start;background:#1a1a1a}
 
 .chat-input{
 display:flex;
@@ -335,7 +333,7 @@ color:#fff;
 .chat-input button{
 background:#fff;
 border:none;
-padding:12px 16px;
+padding:12px;
 cursor:pointer;
 }
 
@@ -352,17 +350,22 @@ border:none;
 color:#fff;
 padding:6px 10px;
 font-size:11px;
-cursor:pointer;
 border-radius:10px;
+cursor:pointer;
+transition:.3s;
 }
-.quick button:hover{
-background:#fff;color:#000;
+.quick button:hover{background:#fff;color:#000}
+
+@keyframes fadeUp{
+from{opacity:0;transform:translateY(10px)}
+to{opacity:1;transform:translateY(0)}
 }
 
 @media(max-width:768px){
 .hero h1{font-size:42px}
 .section{padding:80px 6%}
 .item.featured{grid-column:span 1}
+.chat-box{width:95%;right:2.5%}
 }
 </style>
 </head>
@@ -407,24 +410,17 @@ background:#fff;color:#000;
 <div class="team-card active" onclick="toggleTeam(this)">
 <h3>Rain Casas</h3>
 <p>Main Photographer • Director</p>
-<div class="team-expand">
-<p>Cinematic Lighting</p>
-<p>Creative Direction</p>
-</div>
+<div class="team-expand"><p>Cinematic Lighting</p></div>
 </div>
 <div class="team-card" onclick="toggleTeam(this)">
 <h3>Tristan Buerano</h3>
 <p>Lighting Assistant</p>
-<div class="team-expand">
-<p>Lighting Setup</p>
-</div>
+<div class="team-expand"><p>Lighting Setup</p></div>
 </div>
 <div class="team-card" onclick="toggleTeam(this)">
 <h3>Xaris Joshua Baltazar</h3>
 <p>Lighting Assistant</p>
-<div class="team-expand">
-<p>Light Control</p>
-</div>
+<div class="team-expand"><p>Light Control</p></div>
 </div>
 </div>
 </section>
@@ -436,13 +432,12 @@ background:#fff;color:#000;
 <input id="email" type="email" required placeholder="Email">
 <textarea id="msg" required placeholder="Project details"></textarea>
 <button type="submit">Send Inquiry</button>
-<div class="success" id="success">Email client opened.</div>
+<div class="success" id="success">Opening email...</div>
 </form>
 
 <div class="social">
 <a href="https://instagram.com/seiyaasstudio" target="_blank">Instagram</a>
 </div>
-
 </section>
 
 <div class="lightbox" id="lightbox">
@@ -483,7 +478,7 @@ heroWords.textContent=words[wi];
 wi=(wi+1)%words.length;
 },1500);
 
-/* IMAGES FIXED (20 EXACT) */
+/* IMAGES FIXED (NO BREAKING) */
 const images=[
 ["_DSC8255","portrait"],["_DSC8261","portrait"],["_DSC8267","portrait"],["_DSC8303","portrait"],["_DSC8330","portrait"],
 ["_DSC7851","fashion"],["_DSC7860","fashion"],["_DSC7867","fashion"],["_DSC7886","fashion"],["_DSC7900","fashion"],
@@ -491,20 +486,19 @@ const images=[
 ["_DSC8091","creative"],["_DSC8092","creative"],["_DSC8093","creative"],["_DSC8105","creative"],["_DSC8112","creative"]
 ];
 
-function render(filter="all"){
+function render(){
 grid.innerHTML="";
 images.forEach((i,index)=>{
-let show=(filter==="all"||i[1]===filter);
 grid.innerHTML+=`
-<div class="item ${index<2?'featured':''} ${show?'':'hide'}" data-cat="${i[1]}">
-<img src="images/${i[0]}.jpg" loading="lazy">
+<div class="item ${index<2?'featured':''}" data-cat="${i[1]}">
+<img src="images/${i[0]}.jpg" loading="lazy" onerror="this.src='images/${i[0]}.JPG'">
 <div class="overlay">${i[1]}</div>
 </div>`;
 });
 }
 render();
 
-/* FILTER ANIMATION */
+/* FILTER (SMOOTH FIXED) */
 document.querySelectorAll(".filter-btn").forEach(btn=>{
 btn.onclick=()=>{
 document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
@@ -548,10 +542,7 @@ let m=msg.value.trim();
 let valid=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 if(!n||!valid.test(em)||!m)return;
 
-let subject=`New Inquiry from ${n}`;
-let body=`Name: ${n}%0AEmail: ${em}%0A%0AMessage:%0A${m}`;
-
-window.location.href=`mailto:rainiercasas28@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+window.location.href=`mailto:rainiercasas28@gmail.com?subject=${encodeURIComponent("New Inquiry - "+n)}&body=${encodeURIComponent("Name: "+n+"\nEmail: "+em+"\n\n"+m)}`;
 success.style.display="block";
 }
 
@@ -559,14 +550,11 @@ success.style.display="block";
 function toggleChat(){
 chatBox.style.display=chatBox.style.display==="flex"?"none":"flex";
 if(!chatBox.dataset.init){
-bot("Hi 👋 Ask about pricing, services, booking.");
+bot("Hi 👋 Ask me anything.");
 chatBox.dataset.init=true;
 }
 }
-function quick(q){
-chatInput.value=q;
-sendMsg();
-}
+function quick(q){chatInput.value=q;sendMsg();}
 function sendMsg(){
 let msg=chatInput.value.toLowerCase();
 if(!msg)return;
@@ -583,8 +571,30 @@ chatMessages.innerHTML+=`<div class="msg msg-bot">${t}</div>`;
 chatMessages.scrollTop=chatMessages.scrollHeight;
 }
 function reply(m){
-let r="Try asking about pricing or booking.";
+let r="Ask about pricing or booking.";
 if(m.includes("price")) r="₱3k–₱15k depending on concept.";
-else if(m.includes("service")) r="Photography, branding, creative direction.";
+else if(m.includes("service")) r="Photography, branding, direction.";
 else if(m.includes("book")) r="Use contact form to book.";
-else
+else if(m.includes("location")) r="Available nationwide.";
+else if(m.includes("portfolio")) r="Scroll up to explore.";
+bot(r);
+}
+
+/* NAV */
+const sections=document.querySelectorAll("section");
+const navLinks=document.querySelectorAll(".nav a");
+window.addEventListener("scroll",()=>{
+let current="";
+sections.forEach(sec=>{
+if(window.scrollY>=sec.offsetTop-200) current=sec.id;
+});
+navLinks.forEach(a=>{
+a.classList.remove("active");
+if(a.getAttribute("href")==="#"+current) a.classList.add("active");
+});
+});
+
+</script>
+
+</body>
+</html>
