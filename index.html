@@ -14,20 +14,24 @@
 --border:rgba(255,255,255,0.12);
 --text:#fff;
 --muted:#9a9a9a;
+--accent:#ffffff;
 --glow:0 0 80px rgba(255,255,255,0.18);
 }
 
+/* RESET */
 *{margin:0;padding:0;box-sizing:border-box}
 
+/* BODY */
 body{
 background:var(--bg);
 color:var(--text);
 font-family:'Inter',sans-serif;
 overflow-x:hidden;
 scroll-behavior:smooth;
+line-height:1.6;
 }
 
-/* CURSOR */
+/* CURSOR LIGHT */
 .cursor{
 position:fixed;
 width:600px;height:600px;
@@ -43,13 +47,25 @@ z-index:0;
 position:fixed;
 top:0;width:100%;
 padding:18px 8%;
-display:flex;justify-content:space-between;align-items:center;
+display:flex;
+justify-content:space-between;
+align-items:center;
 background:rgba(0,0,0,.6);
 backdrop-filter:blur(14px);
 z-index:1000;
 }
-.logo{font-family:'Playfair Display';letter-spacing:3px}
-.nav a{color:var(--muted);margin-left:25px;text-decoration:none;transition:.3s}
+.logo{
+font-family:'Playfair Display';
+letter-spacing:4px;
+font-size:14px;
+}
+.nav a{
+color:var(--muted);
+margin-left:25px;
+text-decoration:none;
+font-size:13px;
+transition:.3s;
+}
 .nav a.active,.nav a:hover{color:#fff}
 
 /* HERO */
@@ -62,44 +78,51 @@ position:relative;
 }
 .hero::before{
 content:"";
-position:absolute;inset:0;
+position:absolute;
+inset:0;
 background:url('images/_DSC8255.jpg') center/cover;
 opacity:.35;
 }
-.hero-content{position:relative;z-index:2}
+.hero-content{position:relative;z-index:2;max-width:800px}
 .hero h1{
 font-family:'Playfair Display';
-font-size:70px;
+font-size:72px;
+line-height:1.05;
+margin-bottom:10px;
 }
 .hero-words{
-margin-top:20px;
 font-size:12px;
 letter-spacing:3px;
 color:var(--muted);
-height:20px;
 }
 
 /* SECTION */
-.section{padding:120px 8%}
+.section{
+padding:120px 8%;
+}
 .section h2{
 font-family:'Playfair Display';
-font-size:44px;
-margin-bottom:30px;
+font-size:48px;
+margin-bottom:10px;
+}
+.section p.subtitle{
+color:var(--muted);
+margin-bottom:40px;
 }
 
 /* FILTER */
 .filters{
 display:flex;
-gap:10px;
-margin-bottom:50px;
+gap:12px;
+margin-bottom:40px;
 flex-wrap:wrap;
 }
 .filter-btn{
-padding:10px 18px;
+padding:10px 20px;
 border:1px solid var(--border);
+font-size:12px;
 cursor:pointer;
 transition:.3s;
-font-size:13px;
 }
 .filter-btn.active{
 background:#fff;
@@ -115,13 +138,13 @@ gap:22px;
 
 .item{
 position:relative;
-border-radius:16px;
+border-radius:18px;
 overflow:hidden;
 aspect-ratio:4/5;
 cursor:pointer;
-transition:transform .6s cubic-bezier(.22,1,.36,1), opacity .5s;
 opacity:1;
 transform:scale(1);
+transition:all .5s ease;
 }
 
 .item.featured{
@@ -129,23 +152,14 @@ grid-column:span 2;
 aspect-ratio:4/3;
 }
 
-.item.hide{
-opacity:0;
-transform:scale(.85);
-pointer-events:none;
-}
-
 .item img{
 width:100%;
 height:100%;
 object-fit:cover;
-display:block;
-transition:transform .8s ease;
+transition:transform .7s ease;
 }
 
-.item:hover img{
-transform:scale(1.1);
-}
+.item:hover img{transform:scale(1.08)}
 
 .overlay{
 position:absolute;
@@ -153,8 +167,8 @@ bottom:0;
 width:100%;
 padding:14px;
 background:linear-gradient(transparent,rgba(0,0,0,.95));
-font-size:12px;
-letter-spacing:1px;
+font-size:11px;
+letter-spacing:2px;
 opacity:0;
 transition:.4s;
 }
@@ -173,10 +187,7 @@ opacity:0;
 pointer-events:none;
 transition:.4s;
 }
-.lightbox.active{
-opacity:1;
-pointer-events:auto;
-}
+.lightbox.active{opacity:1;pointer-events:auto}
 .lightbox img{
 max-width:92%;
 max-height:92%;
@@ -188,8 +199,13 @@ transition:.5s;
 
 /* TEAM */
 .team{
-padding:140px 8%;
+padding:120px 8%;
 text-align:center;
+}
+.team h2{
+font-family:'Playfair Display';
+font-size:48px;
+margin-bottom:20px;
 }
 .team-grid{
 display:grid;
@@ -200,37 +216,70 @@ gap:30px;
 background:var(--glass);
 border:1px solid var(--border);
 padding:25px;
-border-radius:16px;
+border-radius:18px;
 cursor:pointer;
 transition:.4s;
 }
-.team-card:hover{transform:translateY(-6px);box-shadow:var(--glow)}
-.team-card.active{transform:scale(1.05)}
-.team-expand{max-height:0;overflow:hidden;opacity:0;transition:.4s}
-.team-card.active .team-expand{max-height:500px;opacity:1;margin-top:10px}
+.team-card:hover{
+transform:translateY(-6px);
+box-shadow:var(--glow);
+}
+.team-card.active{
+transform:scale(1.05);
+}
+.team-expand{
+max-height:0;
+overflow:hidden;
+opacity:0;
+transition:.4s;
+}
+.team-card.active .team-expand{
+max-height:500px;
+opacity:1;
+margin-top:10px;
+}
 
 /* CONTACT */
 .form{
 max-width:420px;
 display:flex;
 flex-direction:column;
-gap:12px;
+gap:14px;
 }
 .form input,.form textarea{
-background:#000;border:1px solid #333;padding:12px;color:#fff;
+background:#000;
+border:1px solid #333;
+padding:14px;
+color:#fff;
 }
 .form button{
-padding:14px;background:#fff;border:none;cursor:pointer;transition:.3s;
+padding:14px;
+background:#fff;
+border:none;
+cursor:pointer;
+transition:.3s;
 }
-.success{display:none;color:#0f0}
+.form button:hover{opacity:.8}
+.success{
+display:none;
+color:#0f0;
+margin-top:10px;
+}
 
+/* SOCIAL */
+.social{
+margin-top:25px;
+}
 .social a{
 color:#fff;
 border:1px solid #333;
-padding:10px 16px;
-display:inline-block;
-margin-top:20px;
+padding:10px 18px;
 text-decoration:none;
+transition:.3s;
+}
+.social a:hover{
+background:#fff;
+color:#000;
 }
 
 /* CHAT */
@@ -250,9 +299,9 @@ z-index:999;
 position:fixed;
 bottom:90px;
 right:20px;
-width:340px;
-height:500px;
-background:#0a0a0a;
+width:360px;
+height:520px;
+background:#0b0b0b;
 border:1px solid #222;
 display:none;
 flex-direction:column;
@@ -261,20 +310,79 @@ overflow:hidden;
 z-index:999;
 }
 
-.chat-header{padding:16px;border-bottom:1px solid #222}
-.chat-messages{
-flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;
+.chat-header{
+padding:16px;
+border-bottom:1px solid #222;
+font-weight:600;
+letter-spacing:1px;
 }
-.msg{padding:10px 14px;border-radius:14px;max-width:75%}
-.msg-user{align-self:flex-end;background:#fff;color:#000}
-.msg-bot{align-self:flex-start;background:#1a1a1a}
 
-.chat-input{display:flex;border-top:1px solid #222}
-.chat-input input{flex:1;padding:12px;background:none;border:none;color:#fff}
-.chat-input button{background:#fff;border:none;padding:12px}
+.chat-messages{
+flex:1;
+overflow-y:auto;
+padding:16px;
+display:flex;
+flex-direction:column;
+gap:10px;
+}
 
-.quick{display:flex;flex-wrap:wrap;gap:6px;padding:10px}
-.quick button{background:#1a1a1a;color:#fff;border:none;padding:6px 10px;border-radius:10px;cursor:pointer}
+.msg{
+padding:10px 14px;
+border-radius:14px;
+max-width:75%;
+font-size:13px;
+}
+
+.msg-user{
+align-self:flex-end;
+background:#fff;
+color:#000;
+}
+
+.msg-bot{
+align-self:flex-start;
+background:#1a1a1a;
+}
+
+.chat-input{
+display:flex;
+border-top:1px solid #222;
+}
+
+.chat-input input{
+flex:1;
+padding:12px;
+background:none;
+border:none;
+color:#fff;
+}
+
+.chat-input button{
+background:#fff;
+border:none;
+padding:12px;
+}
+
+.quick{
+display:flex;
+flex-wrap:wrap;
+gap:6px;
+padding:10px;
+}
+
+.quick button{
+background:#1a1a1a;
+color:#fff;
+border:none;
+padding:6px 10px;
+border-radius:10px;
+cursor:pointer;
+transition:.3s;
+}
+.quick button:hover{
+background:#fff;
+color:#000;
+}
 
 /* MOBILE */
 @media(max-width:768px){
@@ -307,6 +415,7 @@ flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;
 
 <section class="section" id="portfolio">
 <h2>Portfolio</h2>
+<p class="subtitle">Selected works across portrait, fashion, street, and creative direction.</p>
 
 <div class="filters">
 <div class="filter-btn active" data-filter="portrait">Portrait</div>
@@ -321,21 +430,31 @@ flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;
 <section class="team" id="team">
 <h2>Core Team</h2>
 <div class="team-grid">
+
 <div class="team-card active" onclick="toggleTeam(this)">
 <h3>Rain Casas</h3>
 <p>Main Photographer • Director</p>
-<div class="team-expand"><p>Cinematic Lighting</p></div>
+<div class="team-expand">
+<p>Cinematic lighting, storytelling visuals, and brand direction.</p>
 </div>
+</div>
+
 <div class="team-card" onclick="toggleTeam(this)">
 <h3>Tristan Buerano</h3>
-<p>Lighting Assistant</p>
-<div class="team-expand"><p>Lighting Setup</p></div>
+<p>Lighting Assistant • Mobile Photographer</p>
+<div class="team-expand">
+<p>Lighting setup, mobile capture, and creative support.</p>
 </div>
+</div>
+
 <div class="team-card" onclick="toggleTeam(this)">
 <h3>Xaris Joshua Baltazar</h3>
-<p>Lighting Assistant</p>
-<div class="team-expand"><p>Light Control</p></div>
+<p>Lighting Assistant • Mobile Photographer</p>
+<div class="team-expand">
+<p>Light control, composition, and scene support.</p>
 </div>
+</div>
+
 </div>
 </section>
 
@@ -363,6 +482,7 @@ flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;
 <div class="chat-box" id="chatBox">
 <div class="chat-header">Assistant</div>
 <div class="chat-messages" id="chatMessages"></div>
+
 <div class="quick">
 <button onclick="quick('pricing')">Pricing</button>
 <button onclick="quick('services')">Services</button>
@@ -370,6 +490,7 @@ flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;
 <button onclick="quick('location')">Location</button>
 <button onclick="quick('portfolio')">Portfolio</button>
 </div>
+
 <div class="chat-input">
 <input id="chatInput">
 <button onclick="sendMsg()">Send</button>
@@ -377,19 +498,20 @@ flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;
 </div>
 
 <script>
-
-/* CURSOR */
 document.addEventListener("mousemove",e=>{
 cursor.style.left=e.clientX+"px";
 cursor.style.top=e.clientY+"px";
 });
 
-/* HERO */
+/* HERO WORDS */
 const words=["CINEMATIC","EDITORIAL","IDENTITY","MOOD","STORY"];
 let wi=0;
-setInterval(()=>{heroWords.textContent=words[wi];wi=(wi+1)%words.length},1500);
+setInterval(()=>{
+heroWords.textContent=words[wi];
+wi=(wi+1)%words.length;
+},1500);
 
-/* IMAGES */
+/* IMAGES EXACT 20 */
 const images=[
 ["_DSC8255","portrait"],["_DSC8261","portrait"],["_DSC8267","portrait"],["_DSC8303","portrait"],["_DSC8330","portrait"],
 ["_DSC7851","fashion"],["_DSC7860","fashion"],["_DSC7867","fashion"],["_DSC7886","fashion"],["_DSC7900","fashion"],
@@ -399,11 +521,12 @@ const images=[
 
 function render(filter="portrait"){
 grid.innerHTML="";
-images.forEach((i,index)=>{
-if(i[1]!==filter)return;
+let filtered=images.filter(i=>i[1]===filter);
+filtered.forEach((i,index)=>{
 grid.innerHTML+=`
 <div class="item ${index<2?'featured':''}" data-cat="${i[1]}">
-<img src="images/${i[0]}.jpg" loading="lazy" onerror="this.src='images/${i[0]}.JPG'">
+<img src="images/${i[0]}.jpg" loading="lazy"
+onerror="this.onerror=null;this.src='images/${i[0]}.JPG'">
 <div class="overlay">${i[1]}</div>
 </div>`;
 });
@@ -443,6 +566,7 @@ let n=name.value.trim();
 let em=email.value.trim();
 let m=msg.value.trim();
 let valid=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 if(!n||!valid.test(em)||!m)return;
 
 window.location.href=`mailto:rainiercasas28@gmail.com?subject=${encodeURIComponent("New Inquiry - "+n)}&body=${encodeURIComponent("Name: "+n+"\nEmail: "+em+"\n\n"+m)}`;
@@ -453,7 +577,7 @@ success.style.display="block";
 function toggleChat(){
 chatBox.style.display=chatBox.style.display==="flex"?"none":"flex";
 if(!chatBox.dataset.init){
-bot("Hi 👋 Ask me anything.");
+bot("Hi 👋 Ask about pricing, services, booking or portfolio.");
 chatBox.dataset.init=true;
 }
 }
@@ -482,7 +606,7 @@ else if(m.includes("portfolio")) r="You're already viewing it.";
 bot(r);
 }
 
-/* NAV */
+/* NAV ACTIVE */
 const sections=document.querySelectorAll("section");
 const navLinks=document.querySelectorAll(".nav a");
 window.addEventListener("scroll",()=>{
@@ -495,7 +619,6 @@ a.classList.remove("active");
 if(a.getAttribute("href")==="#"+current) a.classList.add("active");
 });
 });
-
 </script>
 
 </body>
