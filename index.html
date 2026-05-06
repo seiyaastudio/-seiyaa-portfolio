@@ -70,7 +70,6 @@ opacity:.35;
 .hero h1{
 font-family:'Playfair Display';
 font-size:70px;
-line-height:1.05;
 }
 .hero-words{
 margin-top:20px;
@@ -113,31 +112,37 @@ display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:20px;
 }
+
 .item{
 position:relative;
 border-radius:14px;
 overflow:hidden;
 aspect-ratio:4/5;
 cursor:pointer;
-transition:.5s;
+transition:opacity .5s, transform .5s;
 opacity:1;
 transform:scale(1);
 }
-.item.hide{
-opacity:0;
-transform:scale(.8);
-pointer-events:none;
-}
+
 .item.featured{
 grid-column:span 2;
 aspect-ratio:4/3;
 }
+
+.item.hide{
+opacity:0;
+transform:scale(.9);
+pointer-events:none;
+}
+
 .item img{
 width:100%;
 height:100%;
 object-fit:cover;
-transition:.5s;
+display:block;
+transition:transform .6s ease;
 }
+
 .item:hover img{transform:scale(1.08)}
 
 .overlay{
@@ -176,9 +181,7 @@ border-radius:12px;
 transform:scale(.9);
 transition:.4s;
 }
-.lightbox.active img{
-transform:scale(1);
-}
+.lightbox.active img{transform:scale(1)}
 
 /* TEAM */
 .team{
@@ -247,21 +250,17 @@ transition:.3s;
 .form button:hover{box-shadow:var(--glow)}
 .success{display:none;color:#0f0}
 
-/* INSTAGRAM */
-.social{
-margin-top:20px;
-}
+/* SOCIAL */
 .social a{
 color:#fff;
-text-decoration:none;
 border:1px solid #333;
 padding:10px 16px;
 display:inline-block;
+margin-top:20px;
+text-decoration:none;
 transition:.3s;
 }
-.social a:hover{
-background:#fff;color:#000;
-}
+.social a:hover{background:#fff;color:#000}
 
 /* CHAT */
 .chat-btn{
@@ -274,10 +273,8 @@ padding:14px 18px;
 border-radius:30px;
 cursor:pointer;
 z-index:999;
-box-shadow:0 8px 30px rgba(0,0,0,.4);
 }
 
-/* NEW CHAT UI */
 .chat-box{
 position:fixed;
 bottom:90px;
@@ -291,14 +288,12 @@ flex-direction:column;
 z-index:999;
 border-radius:18px;
 overflow:hidden;
-box-shadow:0 20px 60px rgba(0,0,0,.6);
 }
 
 .chat-header{
-padding:16px;
+padding:14px;
 border-bottom:1px solid #222;
 font-weight:600;
-background:#0f0f0f;
 }
 
 .chat-messages{
@@ -308,7 +303,6 @@ padding:14px;
 display:flex;
 flex-direction:column;
 gap:10px;
-scroll-behavior:smooth;
 }
 
 .msg{
@@ -316,8 +310,6 @@ padding:10px 14px;
 border-radius:14px;
 max-width:75%;
 font-size:13px;
-line-height:1.4;
-animation:fadeUp .3s ease;
 }
 .msg-user{
 align-self:flex-end;
@@ -347,7 +339,6 @@ padding:12px 16px;
 cursor:pointer;
 }
 
-/* QUICK REPLIES */
 .quick{
 display:flex;
 flex-wrap:wrap;
@@ -363,25 +354,15 @@ padding:6px 10px;
 font-size:11px;
 cursor:pointer;
 border-radius:10px;
-transition:.3s;
 }
 .quick button:hover{
-background:#fff;
-color:#000;
+background:#fff;color:#000;
 }
 
-/* ANIMATION */
-@keyframes fadeUp{
-from{opacity:0;transform:translateY(10px)}
-to{opacity:1;transform:translateY(0)}
-}
-
-/* MOBILE */
 @media(max-width:768px){
 .hero h1{font-size:42px}
 .section{padding:80px 6%}
 .item.featured{grid-column:span 1}
-.chat-box{width:95%;right:2.5%}
 }
 </style>
 </head>
@@ -429,7 +410,6 @@ to{opacity:1;transform:translateY(0)}
 <div class="team-expand">
 <p>Cinematic Lighting</p>
 <p>Creative Direction</p>
-<p>Brand Identity</p>
 </div>
 </div>
 <div class="team-card" onclick="toggleTeam(this)">
@@ -437,7 +417,6 @@ to{opacity:1;transform:translateY(0)}
 <p>Lighting Assistant</p>
 <div class="team-expand">
 <p>Lighting Setup</p>
-<p>Mobile Photography</p>
 </div>
 </div>
 <div class="team-card" onclick="toggleTeam(this)">
@@ -457,7 +436,7 @@ to{opacity:1;transform:translateY(0)}
 <input id="email" type="email" required placeholder="Email">
 <textarea id="msg" required placeholder="Project details"></textarea>
 <button type="submit">Send Inquiry</button>
-<div class="success" id="success">Email client opened successfully.</div>
+<div class="success" id="success">Email client opened.</div>
 </form>
 
 <div class="social">
@@ -474,9 +453,7 @@ to{opacity:1;transform:translateY(0)}
 
 <div class="chat-box" id="chatBox">
 <div class="chat-header">Assistant</div>
-
 <div class="chat-messages" id="chatMessages"></div>
-
 <div class="quick">
 <button onclick="quick('pricing')">Pricing</button>
 <button onclick="quick('services')">Services</button>
@@ -484,9 +461,8 @@ to{opacity:1;transform:translateY(0)}
 <button onclick="quick('location')">Location</button>
 <button onclick="quick('portfolio')">Portfolio</button>
 </div>
-
 <div class="chat-input">
-<input id="chatInput" placeholder="Type a message...">
+<input id="chatInput">
 <button onclick="sendMsg()">Send</button>
 </div>
 </div>
@@ -507,23 +483,20 @@ heroWords.textContent=words[wi];
 wi=(wi+1)%words.length;
 },1500);
 
-/* IMAGES */
-const batches=[
-[["_DSC8255","portrait"],["_DSC8261","portrait"],["_DSC8267","portrait"],["_DSC8303","portrait"],["_DSC8330","portrait"]],
-[["_DSC7851","fashion"],["_DSC7860","fashion"],["_DSC7867","fashion"],["_DSC7886","fashion"],["_DSC7900","fashion"]],
-[["_DSC7665","street"],["_DSC7676","street"],["_DSC7679","street"],["_DSC7685","street"],["_DSC7694","street"]],
-[["_DSC8091","creative"],["_DSC8092","creative"],["_DSC8093","creative"],["_DSC8105","creative"],["_DSC8112","creative"]]
+/* IMAGES FIXED (20 EXACT) */
+const images=[
+["_DSC8255","portrait"],["_DSC8261","portrait"],["_DSC8267","portrait"],["_DSC8303","portrait"],["_DSC8330","portrait"],
+["_DSC7851","fashion"],["_DSC7860","fashion"],["_DSC7867","fashion"],["_DSC7886","fashion"],["_DSC7900","fashion"],
+["_DSC7665","street"],["_DSC7676","street"],["_DSC7679","street"],["_DSC7685","street"],["_DSC7694","street"],
+["_DSC8091","creative"],["_DSC8092","creative"],["_DSC8093","creative"],["_DSC8105","creative"],["_DSC8112","creative"]
 ];
-
-let currentBatch=0;
 
 function render(filter="all"){
 grid.innerHTML="";
-let imgs=batches[currentBatch];
-imgs.forEach((i,index)=>{
-if(filter!=="all" && i[1]!==filter)return;
+images.forEach((i,index)=>{
+let show=(filter==="all"||i[1]===filter);
 grid.innerHTML+=`
-<div class="item ${index<2?'featured':''}" data-cat="${i[1]}">
+<div class="item ${index<2?'featured':''} ${show?'':'hide'}" data-cat="${i[1]}">
 <img src="images/${i[0]}.jpg" loading="lazy">
 <div class="overlay">${i[1]}</div>
 </div>`;
@@ -531,16 +504,21 @@ grid.innerHTML+=`
 }
 render();
 
-setInterval(()=>{
-currentBatch=(currentBatch+1)%batches.length;
-render(document.querySelector(".filter-btn.active").dataset.filter);
-},5000);
-
+/* FILTER ANIMATION */
 document.querySelectorAll(".filter-btn").forEach(btn=>{
 btn.onclick=()=>{
 document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
 btn.classList.add("active");
-render(btn.dataset.filter);
+
+let f=btn.dataset.filter;
+
+document.querySelectorAll(".item").forEach(el=>{
+if(f==="all"||el.dataset.cat===f){
+el.classList.remove("hide");
+}else{
+el.classList.add("hide");
+}
+});
 };
 });
 
@@ -581,7 +559,7 @@ success.style.display="block";
 function toggleChat(){
 chatBox.style.display=chatBox.style.display==="flex"?"none":"flex";
 if(!chatBox.dataset.init){
-bot("Hi 👋 Ask me anything about your shoot.");
+bot("Hi 👋 Ask about pricing, services, booking.");
 chatBox.dataset.init=true;
 }
 }
@@ -605,30 +583,8 @@ chatMessages.innerHTML+=`<div class="msg msg-bot">${t}</div>`;
 chatMessages.scrollTop=chatMessages.scrollHeight;
 }
 function reply(m){
-let r="I can help you with that. Try asking about pricing or booking.";
-if(m.includes("price")) r="Pricing ranges ₱3k–₱15k depending on concept. Want a custom quote?";
-else if(m.includes("service")) r="Services: Portrait, Fashion, Creative Direction, Branding.";
-else if(m.includes("book")) r="You can book using the contact form. Want me to guide you?";
-else if(m.includes("location")) r="Shoots available nationwide.";
-else if(m.includes("portfolio")) r="Scroll up to explore recent work.";
-bot(r);
-}
-
-/* NAV */
-const sections=document.querySelectorAll("section");
-const navLinks=document.querySelectorAll(".nav a");
-window.addEventListener("scroll",()=>{
-let current="";
-sections.forEach(sec=>{
-if(window.scrollY>=sec.offsetTop-200) current=sec.id;
-});
-navLinks.forEach(a=>{
-a.classList.remove("active");
-if(a.getAttribute("href")==="#"+current) a.classList.add("active");
-});
-});
-
-</script>
-
-</body>
-</html>
+let r="Try asking about pricing or booking.";
+if(m.includes("price")) r="₱3k–₱15k depending on concept.";
+else if(m.includes("service")) r="Photography, branding, creative direction.";
+else if(m.includes("book")) r="Use contact form to book.";
+else
