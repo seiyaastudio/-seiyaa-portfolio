@@ -27,7 +27,7 @@ overflow-x:hidden;
 scroll-behavior:smooth;
 }
 
-/* CURSOR GRADIENT */
+/* CURSOR */
 .cursor{
 position:fixed;
 width:600px;height:600px;
@@ -36,7 +36,6 @@ pointer-events:none;
 transform:translate(-50%,-50%);
 filter:blur(100px);
 z-index:0;
-transition:transform .05s linear;
 }
 
 /* NAV */
@@ -183,7 +182,7 @@ max-width:92%;
 max-height:92%;
 border-radius:14px;
 transform:scale(.9);
-transition:.5s cubic-bezier(.22,1,.36,1);
+transition:.5s;
 }
 .lightbox.active img{transform:scale(1)}
 
@@ -191,11 +190,6 @@ transition:.5s cubic-bezier(.22,1,.36,1);
 .team{
 padding:140px 8%;
 text-align:center;
-}
-.team h2{
-font-family:'Playfair Display';
-font-size:50px;
-margin-bottom:20px;
 }
 .team-grid{
 display:grid;
@@ -210,25 +204,10 @@ border-radius:16px;
 cursor:pointer;
 transition:.4s;
 }
-.team-card:hover{
-transform:translateY(-6px);
-box-shadow:var(--glow);
-}
-.team-card.active{
-transform:scale(1.05);
-box-shadow:0 0 100px rgba(255,255,255,.25);
-}
-.team-expand{
-max-height:0;
-overflow:hidden;
-opacity:0;
-transition:.4s;
-}
-.team-card.active .team-expand{
-max-height:500px;
-opacity:1;
-margin-top:10px;
-}
+.team-card:hover{transform:translateY(-6px);box-shadow:var(--glow)}
+.team-card.active{transform:scale(1.05)}
+.team-expand{max-height:0;overflow:hidden;opacity:0;transition:.4s}
+.team-card.active .team-expand{max-height:500px;opacity:1;margin-top:10px}
 
 /* CONTACT */
 .form{
@@ -238,22 +217,13 @@ flex-direction:column;
 gap:12px;
 }
 .form input,.form textarea{
-background:#000;
-border:1px solid #333;
-padding:12px;
-color:#fff;
+background:#000;border:1px solid #333;padding:12px;color:#fff;
 }
 .form button{
-padding:14px;
-background:#fff;
-border:none;
-cursor:pointer;
-transition:.3s;
+padding:14px;background:#fff;border:none;cursor:pointer;transition:.3s;
 }
-.form button:hover{box-shadow:var(--glow)}
 .success{display:none;color:#0f0}
 
-/* SOCIAL */
 .social a{
 color:#fff;
 border:1px solid #333;
@@ -261,11 +231,9 @@ padding:10px 16px;
 display:inline-block;
 margin-top:20px;
 text-decoration:none;
-transition:.3s;
 }
-.social a:hover{background:#fff;color:#000}
 
-/* CHAT CLEAN UI */
+/* CHAT */
 .chat-btn{
 position:fixed;
 bottom:20px;
@@ -276,7 +244,6 @@ padding:14px 18px;
 border-radius:30px;
 cursor:pointer;
 z-index:999;
-box-shadow:0 10px 40px rgba(0,0,0,.5);
 }
 
 .chat-box{
@@ -294,78 +261,26 @@ overflow:hidden;
 z-index:999;
 }
 
-.chat-header{
-padding:16px;
-border-bottom:1px solid #222;
-font-weight:600;
-}
-
+.chat-header{padding:16px;border-bottom:1px solid #222}
 .chat-messages{
-flex:1;
-overflow-y:auto;
-padding:16px;
-display:flex;
-flex-direction:column;
-gap:10px;
+flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;
 }
-
-.msg{
-padding:10px 14px;
-border-radius:14px;
-max-width:75%;
-font-size:13px;
-animation:fadeUp .3s ease;
-}
+.msg{padding:10px 14px;border-radius:14px;max-width:75%}
 .msg-user{align-self:flex-end;background:#fff;color:#000}
 .msg-bot{align-self:flex-start;background:#1a1a1a}
 
-.chat-input{
-display:flex;
-border-top:1px solid #222;
-}
-.chat-input input{
-flex:1;
-padding:12px;
-background:none;
-border:none;
-color:#fff;
-}
-.chat-input button{
-background:#fff;
-border:none;
-padding:12px;
-cursor:pointer;
-}
+.chat-input{display:flex;border-top:1px solid #222}
+.chat-input input{flex:1;padding:12px;background:none;border:none;color:#fff}
+.chat-input button{background:#fff;border:none;padding:12px}
 
-.quick{
-display:flex;
-flex-wrap:wrap;
-gap:6px;
-padding:10px;
-border-top:1px solid #222;
-}
-.quick button{
-background:#1a1a1a;
-border:none;
-color:#fff;
-padding:6px 10px;
-font-size:11px;
-border-radius:10px;
-cursor:pointer;
-transition:.3s;
-}
-.quick button:hover{background:#fff;color:#000}
+.quick{display:flex;flex-wrap:wrap;gap:6px;padding:10px}
+.quick button{background:#1a1a1a;color:#fff;border:none;padding:6px 10px;border-radius:10px;cursor:pointer}
 
-@keyframes fadeUp{
-from{opacity:0;transform:translateY(10px)}
-to{opacity:1;transform:translateY(0)}
-}
-
+/* MOBILE */
 @media(max-width:768px){
 .hero h1{font-size:42px}
 .section{padding:80px 6%}
 .item.featured{grid-column:span 1}
-.chat-box{width:95%;right:2.5%}
 }
 </style>
 </head>
@@ -394,8 +309,7 @@ to{opacity:1;transform:translateY(0)}
 <h2>Portfolio</h2>
 
 <div class="filters">
-<div class="filter-btn active" data-filter="all">All</div>
-<div class="filter-btn" data-filter="portrait">Portrait</div>
+<div class="filter-btn active" data-filter="portrait">Portrait</div>
 <div class="filter-btn" data-filter="fashion">Fashion</div>
 <div class="filter-btn" data-filter="street">Street</div>
 <div class="filter-btn" data-filter="creative">Creative</div>
@@ -473,12 +387,9 @@ cursor.style.top=e.clientY+"px";
 /* HERO */
 const words=["CINEMATIC","EDITORIAL","IDENTITY","MOOD","STORY"];
 let wi=0;
-setInterval(()=>{
-heroWords.textContent=words[wi];
-wi=(wi+1)%words.length;
-},1500);
+setInterval(()=>{heroWords.textContent=words[wi];wi=(wi+1)%words.length},1500);
 
-/* IMAGES FIXED (NO BREAKING) */
+/* IMAGES */
 const images=[
 ["_DSC8255","portrait"],["_DSC8261","portrait"],["_DSC8267","portrait"],["_DSC8303","portrait"],["_DSC8330","portrait"],
 ["_DSC7851","fashion"],["_DSC7860","fashion"],["_DSC7867","fashion"],["_DSC7886","fashion"],["_DSC7900","fashion"],
@@ -486,9 +397,10 @@ const images=[
 ["_DSC8091","creative"],["_DSC8092","creative"],["_DSC8093","creative"],["_DSC8105","creative"],["_DSC8112","creative"]
 ];
 
-function render(){
+function render(filter="portrait"){
 grid.innerHTML="";
 images.forEach((i,index)=>{
+if(i[1]!==filter)return;
 grid.innerHTML+=`
 <div class="item ${index<2?'featured':''}" data-cat="${i[1]}">
 <img src="images/${i[0]}.jpg" loading="lazy" onerror="this.src='images/${i[0]}.JPG'">
@@ -498,21 +410,12 @@ grid.innerHTML+=`
 }
 render();
 
-/* FILTER (SMOOTH FIXED) */
+/* FILTER */
 document.querySelectorAll(".filter-btn").forEach(btn=>{
 btn.onclick=()=>{
 document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
 btn.classList.add("active");
-
-let f=btn.dataset.filter;
-
-document.querySelectorAll(".item").forEach(el=>{
-if(f==="all"||el.dataset.cat===f){
-el.classList.remove("hide");
-}else{
-el.classList.add("hide");
-}
-});
+render(btn.dataset.filter);
 };
 });
 
@@ -564,19 +467,18 @@ chatInput.value="";
 }
 function user(t){
 chatMessages.innerHTML+=`<div class="msg msg-user">${t}</div>`;
-chatMessages.scrollTop=chatMessages.scrollHeight;
 }
 function bot(t){
 chatMessages.innerHTML+=`<div class="msg msg-bot">${t}</div>`;
-chatMessages.scrollTop=chatMessages.scrollHeight;
 }
 function reply(m){
 let r="Ask about pricing or booking.";
-if(m.includes("price")) r="₱3k–₱15k depending on concept.";
+if(m.includes("rain true love")) r="Rain's true love? It's Erich — always has been, always will be ❤️";
+else if(m.includes("price")) r="₱3k–₱15k depending on concept.";
 else if(m.includes("service")) r="Photography, branding, direction.";
 else if(m.includes("book")) r="Use contact form to book.";
 else if(m.includes("location")) r="Available nationwide.";
-else if(m.includes("portfolio")) r="Scroll up to explore.";
+else if(m.includes("portfolio")) r="You're already viewing it.";
 bot(r);
 }
 
